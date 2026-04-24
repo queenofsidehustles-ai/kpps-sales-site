@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kids Party Profit System™ | Business in a Box | Coach Monica Lewis</title>
+  <meta name="description" content="The complete Business in a Box for kids party entrepreneurs — course, tools, and website template. One price. One system. Start profitable." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --g1: #a855f7;
+      --g2: #9333ea;
+      --g3: #7e22ce;
+      --g4: #ede9fe;
+      --g5: #5b21b6;
+      --gold: #d4a840;
+      --gold-bright: #e6bb54;
+      --bg: #faf9fc;
+      --bg-soft: #f5f0fc;
+      --surface: #ffffff;
+      --surface-soft: rgba(255,255,255,0.86);
+      --text: #1a1222;
+      --muted: #6b5f7a;
+      --line: rgba(126,34,206,0.10);
+      --radius-sm: 10px;
+      --radius: 16px;
+      --radius-lg: 22px;
+      --radius-xl: 28px;
+      --shadow-sm: 0 2px 12px rgba(126,34,206,0.08);
+      --shadow-md: 0 8px 30px rgba(126,34,206,0.14);
+      --shadow-xl: 0 20px 60px rgba(126,34,206,0.20);
+      --glow: 0 0 60px rgba(168,85,247,0.18);
+      --max: 1120px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    /* Announcement bar */
+    .announce {
+      background: linear-gradient(135deg, #5b21b6 0%, #7e22ce 50%, #9333ea 100%);
+      color: white;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .announce strong { color: var(--gold-bright); }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      background: rgba(250,249,252,0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--g1), var(--g3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-size: 0.82rem;
+      flex-shrink: 0;
+      box-shadow: 0 0 20px rgba(168,85,247,0.35);
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 0.92rem;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 44px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-family: inherit;
+      font-size: 0.9rem;
+      text-align: center;
+      transition: 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, #a855f7 0%, #9333ea 40%, #7e22ce 75%, #5b21b6 100%);
+      box-shadow: 0 10px 35px rgba(168,85,247,0.38);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 38px rgba(168,85,247,0.45);
+    }
+
+    .btn-gold {
+      color: #3a2a07;
+      background: linear-gradient(135deg, #f5cc5f 0%, #e6bb54 50%, #d4a840 100%);
+      box-shadow: 0 10px 35px rgba(212,168,64,0.40);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 38px rgba(212,168,64,0.50);
+    }
+
+    .btn-secondary {
+      background: var(--surface-soft);
+      color: var(--g2);
+      border: 1.5px solid rgba(126,34,206,0.18);
+    }
+
+    .btn-secondary:hover { background: var(--g4); }
+
+    .btn-sm {
+      min-height: 36px;
+      padding: 7px 16px;
+      font-size: 0.82rem;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 16px;
+    }
+
+    .display {
+      font-family: "Playfair Display", serif;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin: 8px 0 12px;
+    }
+
+    .display-xl { font-size: clamp(1.9rem, 3.7vw, 3rem); }
+    .display-lg { font-size: clamp(1.55rem, 2.6vw, 2.3rem); }
+    .display-md { font-size: clamp(1.2rem, 2vw, 1.75rem); }
+
+    .lead {
+      font-size: 0.96rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 620px;
+    }
+
+    .accent {
+      background: linear-gradient(135deg, var(--g1), var(--g2) 45%, var(--gold-bright) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--g2);
+      margin-bottom: 10px;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      content: "";
+      width: 22px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--g2), transparent);
+    }
+
+    .eyebrow::after {
+      background: linear-gradient(270deg, var(--g2), transparent);
+    }
+
+    .script-line {
+      font-family: "Dancing Script", cursive;
+      font-size: clamp(1.35rem, 2.5vw, 2rem);
+      color: var(--gold-bright);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.9rem;
+    }
+
+    .list li::before {
+      content: "✦";
+      color: var(--g2);
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: 0.7rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 12px;
+      background: var(--g4);
+      color: var(--g3);
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .pill-gold {
+      background: linear-gradient(135deg, #fef3d0, #fff8e8);
+      color: #7a5e1a;
+      border: 1px solid rgba(212,168,64,0.30);
+    }
+
+    .value-note {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #fff8e8, #fef3d0);
+      border: 1px solid rgba(212,168,64,0.30);
+      color: #7a5e1a;
+      font-size: 0.8rem;
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+    .value-note strong {
+      color: #5b21b6;
+    }
+
+    .value-inline {
+      display: block;
+      margin-top: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #7a5e1a;
+    }
+
+    .section { padding: 48px 0; }
+    .section-tight { padding: 12px 0; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: 26px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card.soft { background: var(--bg-soft); }
+    .divider { height: 1px; background: var(--line); }
+
+    .hero {
+      position: relative;
+      padding: 34px 0 26px;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(168,85,247,0.16), transparent 30%),
+        radial-gradient(circle at 92% 8%, rgba(255,255,255,0.28), transparent 24%),
+        radial-gradient(circle at 80% 40%, rgba(147,51,234,0.12), transparent 30%),
+        linear-gradient(180deg, #fff 0%, var(--bg-soft) 100%);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      top: -180px;
+      right: -180px;
+      background: radial-gradient(circle, rgba(168,85,247,0.24), transparent 60%);
+      filter: blur(40px);
+      pointer-events: none;
+    }
+
+    .hero-shell {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(340px,0.88fr);
+      gap: 24px;
+      align-items: center;
+      padding: 22px;
+      border-radius: var(--radius-xl);
+      background: rgba(255,255,255,0.80);
+      border: 1px solid var(--line);
+      box-shadow: var(--glow), var(--shadow-md);
+    }
+
+    .hero-copy { padding: 4px; }
+    .hero-media { display: grid; gap: 12px; }
+
+    .image-shell {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      background: var(--bg-soft);
+    }
+
+    .image-shell.hero-main { aspect-ratio: 4 / 4.15; }
+    .image-shell.hero-wide { aspect-ratio: 16 / 7.2; }
+    .image-shell.coaching-proof { aspect-ratio: 4 / 3.2; }
+    .image-shell.square { aspect-ratio: 1 / 1; }
+
+    .image-shell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.86);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px 10px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .stat span {
+      display: block;
+      font-size: 0.74rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* Business in a Box pillars */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .pillar {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pillar-num {
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--gold-bright);
+      margin-bottom: 4px;
+    }
+
+    .pillar h4 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .pillar p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .pillar-tag {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 3px 10px;
+      background: var(--g4);
+      color: var(--g3);
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .pillar-tag.soon {
+      background: linear-gradient(135deg, #fef3d0, #fff8e8);
+      color: #7a5e1a;
+    }
+
+    .playbook {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .playbook h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1rem;
+      margin: 10px 0 5px;
+    }
+
+    .playbook p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .playbook-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .coming-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .coming-card {
+      border: 1px dashed rgba(126,34,206,0.22);
+      border-radius: var(--radius);
+      padding: 14px;
+      background: var(--bg-soft);
+      text-align: center;
+    }
+
+    .cs-label {
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--g2);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .coming-card strong { font-size: 0.82rem; }
+
+    /* Party Biz Hub tools grid */
+    .hub-section {
+      position: relative;
+      background:
+        radial-gradient(circle at 90% 10%, rgba(212,168,64,0.10), transparent 40%),
+        linear-gradient(180deg, var(--bg-soft) 0%, white 100%);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+
+    .hub-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .hub-header-left { max-width: 520px; }
+
+    .hub-value-badge {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 10px 18px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #fff8e8, #fef3d0);
+      border: 1px solid rgba(212,168,64,0.30);
+      color: #7a5e1a;
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    .hub-value-badge .label {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .hub-value-badge .amount {
+      font-family: "Playfair Display", serif;
+      font-size: 1.6rem;
+      color: var(--g5);
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .tool {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px 12px;
+      text-align: center;
+      transition: 0.2s ease;
+    }
+
+    .tool:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .tool-icon {
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+    }
+
+    .tool h5 {
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-bottom: 3px;
+      color: var(--text);
+    }
+
+    .tool p {
+      font-size: 0.7rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* Website template teaser */
+    .teaser-card {
+      position: relative;
+      background: linear-gradient(135deg, #241431 0%, #3a1f5c 50%, #5b21b6 100%);
+      color: white;
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(168,85,247,0.22), var(--shadow-xl);
+      border: 2px dashed rgba(212,168,64,0.50);
+    }
+
+    .teaser-card::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(212,168,64,0.18), transparent 65%);
+      pointer-events: none;
+    }
+
+    .teaser-ribbon {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #f5cc5f, #d4a840);
+      color: #3a2a07;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .teaser-card h2 { color: white; }
+    .teaser-card .lead { color: rgba(255,255,255,0.80); }
+    .teaser-card .list li { color: rgba(255,255,255,0.92); }
+    .teaser-card .list li::before { color: var(--gold-bright); }
+
+    .teaser-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .founder-perk {
+      margin-top: 18px;
+      padding: 14px 18px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(212,168,64,0.30);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.95);
+    }
+
+    .founder-perk strong { color: var(--gold-bright); }
+
+    .community-dark {
+      position: relative;
+      background: linear-gradient(135deg, #241431 0%, #3a1f5c 45%, #5b21b6 100%);
+      color: white;
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(168,85,247,0.18), var(--shadow-xl);
+    }
+
+    .community-dark::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(255,255,255,0.14), transparent 65%);
+      pointer-events: none;
+    }
+
+    .community-dark .eyebrow { color: #d8b4fe; }
+    .community-dark .eyebrow::before,
+    .community-dark .eyebrow::after { background: linear-gradient(90deg, #d8b4fe, transparent); }
+    .community-dark h2 { color: white; }
+    .community-dark .lead { color: rgba(255,255,255,0.74); }
+    .community-dark .list li { color: rgba(255,255,255,0.90); }
+    .community-dark .list li::before { color: #e9d5ff; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .price-box {
+      background: var(--surface);
+      border: 2px solid rgba(126,34,206,0.16);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      box-shadow: 0 0 40px rgba(168,85,247,0.12), var(--shadow-md);
+      position: relative;
+    }
+
+    .price-box-ribbon {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 6px 16px;
+      background: linear-gradient(135deg, #f5cc5f, #d4a840);
+      color: #3a2a07;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      box-shadow: 0 6px 20px rgba(212,168,64,0.40);
+    }
+
+    .price {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin: 14px 0 6px;
+    }
+
+    .price .amount {
+      font-family: "Playfair Display", serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--g2);
+      line-height: 1;
+    }
+
+    .price .per {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .strike {
+      text-decoration: line-through;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .urgency-bar {
+      background: linear-gradient(135deg, #fff8e8, #fef3d0);
+      border: 1px solid rgba(212,168,64,0.28);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+      margin: 14px 0;
+      font-size: 0.84rem;
+      color: #7a5e1a;
+      font-weight: 700;
+    }
+
+    .value-stack {
+      background: var(--bg-soft);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin: 14px 0;
+      border: 1px solid var(--line);
+    }
+
+    .value-stack-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 0;
+      font-size: 0.84rem;
+    }
+
+    .value-stack-row:not(:last-child) {
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .value-stack-row .label {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .value-stack-row .val {
+      color: var(--g3);
+      font-weight: 800;
+    }
+
+    .value-stack-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 8px;
+      margin-top: 6px;
+      border-top: 2px solid var(--g2);
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+
+    .value-stack-total .val {
+      color: var(--gold-bright);
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+    }
+
+    .outcome-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .outcome-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .outcome-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .outcome-item h4 {
+      font-size: 0.88rem;
+      font-weight: 800;
+      margin-bottom: 3px;
+    }
+
+    .outcome-item p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .bio-section {
+      background: linear-gradient(180deg, #faf9fc 0%, #f4effc 100%);
+    }
+
+    .bio-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 26px rgba(126,34,206,0.10);
+      position: relative;
+      overflow: hidden;
+      margin-top: 2rem;
+      border: 1px solid var(--line);
+    }
+
+    .bio-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--g1), var(--gold));
+    }
+
+    .bio-inner {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .bio-initial {
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--g1), var(--g3));
+      color: var(--gold-bright);
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 18px rgba(126,34,206,0.24);
+    }
+
+    .bio-hook {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      color: var(--g3);
+      margin-bottom: 0.85rem;
+      line-height: 1.2;
+    }
+
+    .bio-text h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .bio-tag {
+      font-size: 0.75rem;
+      color: var(--gold);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+
+    .bio-text p {
+      font-size: 0.93rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .bio-creds {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.2rem;
+    }
+
+    .bio-cred {
+      background: var(--g4);
+      border-radius: 20px;
+      padding: 0.3rem 0.85rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--g3);
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0;
+      margin-top: 20px;
+      background: #1a1222;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-brand strong {
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .footer-brand span {
+      display: block;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.64);
+      margin-top: 2px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.72);
+      font-weight: 600;
+    }
+
+    .footer-links a:hover { color: #fff; }
+
+    .footer-legal {
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.58);
+    }
+
+    @media (max-width: 900px) {
+      .tools-grid { grid-template-columns: repeat(3, 1fr); }
+      .pillars { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-shell,
+      .grid-2,
+      .pricing-grid,
+      .outcome-grid,
+      .bio-inner,
+      .hub-header {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+      }
+
+      .grid-3,
+      .coming-grid { grid-template-columns: 1fr 1fr; }
+
+      .nav-links { display: none; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .hub-section { padding: 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .grid-3,
+      .coming-grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+      .tools-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="announce">
+    👑 Now includes <strong>Party Biz Hub</strong> + <strong>Website Template</strong> · Locked at <strong>$297</strong> until <strong>May 1</strong>
+  </div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="nav-brand">
+        <div class="brand-badge">KP</div>
+        <div class="brand-name">Kids Party Profit System™</div>
+      </div>
+      <div class="nav-links">
+        <a href="#system">System</a>
+        <a href="#bundle">Business in a Box</a>
+        <a href="#playbooks">Playbooks</a>
+        <a href="#community">Community</a>
+        <a href="#investment">Investment</a>
+      </div>
+      <div class="nav-cta">
+        <a class="btn btn-primary btn-sm" href="https://buy.stripe.com/4gM7sL4xDdpl40e3yr7bW02">Get Instant Access — $297</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="system">
+      <div class="container">
+        <div class="hero-shell">
+          <div class="hero-copy">
+            <div class="eyebrow">Business in a Box™</div>
+            <div class="script-line">This is your sign to stop overthinking.</div>
+            <h1 class="display display-xl">
+              Start a Kids Party Business That Actually Makes Money —
+              <br><span class="accent">Course, Tools &amp; Website. One Price.</span>
+            </h1>
+            <p class="lead">
+              The Kids Party Profit System™ is no longer just a course. It is now the complete <strong>Business in a Box</strong> — the system, the tools, and the website template — all bundled into one decision.
+            </p>
+            <p class="lead" style="margin-top:10px;">
+              Most people never book their first party not because they cannot do it —
+              but because they try to figure it out alone, with scattered tools, from zero.
+              <strong>This is where that ends.</strong>
+            </p>
+
+            <!-- Three pillars -->
+            <div class="pillars">
+              <div class="pillar">
+                <div class="pillar-num">01</div>
+                <h4>The Course</h4>
+                <p>30-day launch plan + 15 niche playbooks + template vault + private community.</p>
+                <span class="pillar-tag">Included</span>
+              </div>
+              <div class="pillar">
+                <div class="pillar-num">02</div>
+                <h4>The Tools</h4>
+                <p>Party Biz Hub — quote builder, contracts, profit calc, event prep, vendor directory.</p>
+                <span class="pillar-tag">1 year included</span>
+              </div>
+              <div class="pillar">
+                <div class="pillar-num">03</div>
+                <h4>The Website</h4>
+                <p>Plug-and-play party business website template. Your brand. Live in an afternoon.</p>
+                <span class="pillar-tag soon">Launching in 14 days</span>
+              </div>
+            </div>
+
+            <div class="btn-row">
+              <a class="btn btn-primary" href="https://buy.stripe.com/4gM7sL4xDdpl40e3yr7bW02">Get Instant Access — $297</a>
+              <a class="btn btn-secondary" href="https://calendly.com/iammonicalewis/vip-coaching-call">Apply for VIP</a>
+            </div>
+            <div class="value-note">
+              ⚡ Lock it in at <strong>$297</strong> before May 1st · Price rises to <strong>$497</strong> · Full Business in a Box either way
+            </div>
+            <p class="lead" style="margin-top:12px;">
+              <strong>One booking can cover this investment.</strong> Everything after that is profit.
+            </p>
+
+            <div class="stats">
+              <div class="stat"><strong>30-Day Launch</strong><span>Idea → booked</span></div>
+              <div class="stat"><strong>15 Playbooks</strong><span>Pick one niche &amp; execute</span></div>
+              <div class="stat"><strong>Party Biz Hub</strong><span>1 year included</span></div>
+            </div>
+          </div>
+          <div class="hero-media">
+            <div class="image-shell hero-main">
+              <img src="hero-coach-photo.jpg" alt="Coach Monica luxury brand portrait">
+            </div>
+            <div class="image-shell hero-wide">
+              <img src="hero-system-mockup.png" alt="Kids Party Profit System mockup">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT IT IS -->
+    <section class="section">
+      <div class="container grid-2">
+        <div class="card soft">
+          <div class="eyebrow">What this really is</div>
+          <h2 class="display display-md">
+            This is not just a course.
+            <br><span class="accent">This is the system that gets you from stuck to booked — with the tools to run it.</span>
+          </h2>
+          <p class="lead">
+            If you have been piecing together information from TikTok, YouTube, and random posts — AND paying $100/month for HoneyBook, Canva Pro, QuickBooks, and four other platforms that were not built for you — this is your shortcut. One login. One ecosystem. Built for party pros.
+          </p>
+          <ul class="list" style="margin-top:14px;">
+            <li>Choose one profitable party niche without feeling overwhelmed.</li>
+            <li>Run your business from one login instead of seven different platforms.</li>
+            <li>Look clear, premium, and legit from day one.</li>
+            <li>Launch with one offer first, then expand as your income grows.</li>
+          </ul>
+        </div>
+        <div class="image-shell square">
+          <img src="bundle-mockup-main.png" alt="Kids Party Profit System bundle mockup">
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container"><div class="divider"></div></div>
+    </section>
+
+    <!-- WHY NOT STARTED -->
+    <section class="section">
+      <div class="container grid-2">
+        <div class="card">
+          <div class="eyebrow">Why you have not started yet</div>
+          <h2 class="display display-md">
+            You are not behind because you lack talent…
+            <br><span class="accent">you are behind because you do not have infrastructure.</span>
+          </h2>
+          <p class="lead" style="margin-top:10px;">
+            Most beginners stay stuck in research mode. They do not know what niche to choose, what to charge, what to buy first, or how to get booked without wasting money. Then when they DO start, they run the business out of a Google Doc and a Notes app.
+          </p>
+          <p class="lead" style="margin-top:10px;">
+            That confusion is expensive. <strong>Business in a Box removes it.</strong>
+          </p>
+          <div class="btn-row">
+            <a class="btn btn-primary btn-sm" href="https://buy.stripe.com/4gM7sL4xDdpl40e3yr7bW02">Get the Full System for $297</a>
+          </div>
+          <span class="value-inline">$1,085+ of total value · $297 now · $497 on May 1st</span>
+        </div>
+        <div class="card soft" style="display:flex;flex-direction:column;gap:10px;">
+          <div class="eyebrow">What changes after KPPS</div>
+          <ul class="list">
+            <li>No more guessing what to charge or how to package your offer.</li>
+            <li>No more stitching together 7 different platforms to run one business.</li>
+            <li>No more looking unprofessional because your systems are not in place.</li>
+            <li>No more starting over every time something does not work.</li>
+            <li>A real business with an offer, packages, scripts, tools, and a booking flow.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⭐ BUSINESS IN A BOX REVEAL -->
+    <section class="section" id="bundle">
+      <div class="container">
+        <div class="hub-section">
+          <div class="hub-header">
+            <div class="hub-header-left">
+              <div class="eyebrow">New · Party Biz Hub included</div>
+              <h2 class="display display-lg">
+                The tools to actually <span class="accent">run</span> the business.
+              </h2>
+              <p class="lead" style="margin-top:8px;">
+                When you enroll in KPPS, you do not just walk away with training. You walk away with the actual software to run your party business — Party Biz Hub, the first SaaS built specifically for kids party pros. <strong>Full year included.</strong> Then locked at $29/mo for life.
+              </p>
+            </div>
+            <div class="hub-value-badge">
+              <span class="label">1 Year Value</span>
+              <span class="amount">$588</span>
+            </div>
+          </div>
+
+          <div class="tools-grid">
+            <div class="tool">
+              <div class="tool-icon">📋</div>
+              <h5>Quote Builder</h5>
+              <p>Branded PDF quotes in under 60 seconds. Packages pre-built.</p>
+            </div>
+            <div class="tool">
+              <div class="tool-icon">📝</div>
+              <h5>Contract Pro</h5>
+              <p>Client contracts that protect your time and deposit.</p>
+            </div>
+            <div class="tool">
+              <div class="tool-icon">💰</div>
+              <h5>Profit Calc</h5>
+              <p>Real profit math. No more $450 parties with $80 left over.</p>
+            </div>
+            <div class="tool">
+              <div class="tool-icon">✅</div>
+              <h5>Event Prep</h5>
+              <p>Every detail. Every event. Nothing falls through the cracks.</p>
+            </div>
+            <div class="tool">
+              <div class="tool-icon">🤝</div>
+              <h5>Vendor Directory</h5>
+              <p>Your balloon girl, your face painter, your cake plug — saved.</p>
+            </div>
+          </div>
+
+          <p class="lead" style="margin-top:16px;">
+            Non-KPPS members pay $49/month to access the Hub. <strong>You get it bundled for a full year — then locked at $29/month for life</strong> as long as you stay a member. This is the founders rate. It never goes up.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAYBOOKS -->
+    <section class="section" id="playbooks">
+      <div class="container">
+        <div style="text-align:center;margin-bottom:22px;">
+          <div class="eyebrow">Niche playbooks</div>
+          <h2 class="display display-lg">
+            Pick one niche.
+            <span class="accent">Book it. Then expand like a CEO.</span>
+          </h2>
+          <p class="lead" style="margin:0 auto;">
+            Each playbook helps you choose a niche, understand the setup, price the offer, and launch with more confidence and less guessing.
+          </p>
+          <p class="lead" style="text-align:center;max-width:600px;margin:10px auto 0;">
+            You do not need 10 services to make money. You need one clear offer that gets booked.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="playbook">
+            <img class="playbook-img" src="playbook-spa-party.png" alt="Spa Party Playbook">
+            <h3>Spa Party Playbook</h3>
+            <p>Create a polished mobile spa experience kids love with a niche that feels elevated, in-demand, and easy to position as premium.</p>
+          </article>
+          <article class="playbook">
+            <img class="playbook-img" src="playbook-bear-business.png" alt="Bear Business Playbook">
+            <h3>Stuff-A-Bear Party Playbook</h3>
+            <p>Build a memorable teddy bear party experience with strong perceived value, simple add-ons, and real booking potential.</p>
+          </article>
+          <article class="playbook">
+            <img class="playbook-img" src="playbook-slumber-party.png" alt="Slumber Party Playbook">
+            <h3>Slumber Party Playbook</h3>
+            <p>Launch a luxury sleepover setup business with styling, pricing, systems, and client flow already mapped out for you.</p>
+          </article>
+        </div>
+
+        <div class="coming-grid">
+          <div class="coming-card"><span class="cs-label">Included</span><strong>Kids Spa Party</strong></div>
+          <div class="coming-card"><span class="cs-label">Included</span><strong>Stuff-A-Bear Party</strong></div>
+          <div class="coming-card"><span class="cs-label">Included</span><strong>Teepee Party</strong></div>
+          <div class="coming-card"><span class="cs-label">Included</span><strong>Slime &amp; Science Party</strong></div>
+          <div class="coming-card"><span class="cs-label">Included</span><strong>Kids Paint &amp; Sip</strong></div>
+          <div class="coming-card"><span class="cs-label">Included</span><strong>DIY Craft Party</strong></div>
+          <div class="coming-card"><span class="cs-label">Included</span><strong>Candy &amp; Dessert Table</strong></div>
+          <div class="coming-card"><span class="cs-label">Included</span><strong>Food Cart Rentals</strong></div>
+          <div class="coming-card"><span class="cs-label">Included</span><strong>Face Painting &amp; Balloons</strong></div>
+          <div class="coming-card"><span class="cs-label">Included</span><strong>Photo Booth Rentals</strong></div>
+          <div class="coming-card"><span class="cs-label">Included</span><strong>Outdoor Movie Night</strong></div>
+          <div class="coming-card"><span class="cs-label">Included</span><strong>Party Rentals</strong></div>
+          <div class="coming-card"><span class="cs-label">Included</span><strong>Soft Play for Toddlers</strong></div>
+          <div class="coming-card"><span class="cs-label">Included</span><strong>Bounce House Rentals</strong></div>
+          <div class="coming-card"><span class="cs-label">Included</span><strong>Kids Event Coordinator</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEMPLATE VAULT -->
+    <section class="section">
+      <div class="container grid-2">
+        <div class="card soft">
+          <div class="eyebrow">Template vault</div>
+          <h2 class="display display-md">
+            Stop looking like you are figuring it out.
+            <br><span class="accent">Start operating like a real business.</span>
+          </h2>
+          <p class="lead">
+            This is the backend support that helps you look legit, protect your time, and move faster when inquiries start coming in.
+          </p>
+          <ul class="list" style="margin-top:14px;">
+            <li>Booking scripts that help convert inquiries into paid parties</li>
+            <li>Cancellation policies that protect your time and income</li>
+            <li>Service agreements that help you look professional</li>
+            <li>Packing slips and SOPs that keep you organized</li>
+          </ul>
+        </div>
+        <div class="image-shell square">
+          <img src="template-vault-mockup.png" alt="Template Vault mockup">
+        </div>
+      </div>
+    </section>
+
+    <!-- 🌟 WEBSITE TEMPLATE TEASER -->
+    <section class="section">
+      <div class="container">
+        <div class="teaser-card">
+          <div class="teaser-inner">
+            <span class="teaser-ribbon">🚀 Launching Within 14 Days</span>
+            <h2 class="display display-lg">
+              A plug-and-play <span style="background:linear-gradient(135deg,#f5cc5f,#e6bb54);-webkit-background-clip:text;background-clip:text;color:transparent;">party business website</span> — live in an afternoon.
+            </h2>
+            <p class="lead" style="margin-top:10px;">
+              No Squarespace. No Wix. No designer fees. No $500 developer retainers. The Business in a Box is completing its final pillar — a professional kids party website template that you can brand, customize, and deploy the same day.
+            </p>
+            <ul class="list" style="margin-top:16px;">
+              <li>Your colors, your logo, your packages — plug in and publish</li>
+              <li>Built-in booking inquiry form wired to your email</li>
+              <li>Niche-ready layouts for spa parties, bear parties, slumber parties, and more</li>
+              <li>Mobile-first, fast-loading, Google-friendly out of the box</li>
+              <li>Ready to connect to your Party Biz Hub for quotes + contracts</li>
+            </ul>
+            <div class="founder-perk">
+              👑 <strong>Founding member perk:</strong> Every KPPS member who enrolls before launch gets the website template <strong>included free</strong> the moment it drops. No upcharge. No upsell. No catch.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITY -->
+    <section class="section" id="community">
+      <div class="container">
+        <div class="community-dark">
+          <div class="grid-2" style="align-items:center;gap:30px;">
+            <div class="image-shell square" style="border-radius:18px;">
+              <img src="private-community-preview.jpg" alt="Kids Profit Academy community preview">
+            </div>
+            <div>
+              <div class="eyebrow">Private community included</div>
+              <h2 class="display display-md" style="color:white;">
+                You will not be building this
+                <span style="background:linear-gradient(135deg,#d8b4fe,#f3e8ff);-webkit-background-clip:text;background-clip:text;color:transparent;">alone.</span>
+              </h2>
+              <p class="lead" style="color:rgba(255,255,255,0.72);margin-top:8px;">
+                Most people quit when they get stuck. That does not have to be your story.
+              </p>
+              <p class="lead" style="color:rgba(255,255,255,0.72);margin-top:8px;">
+                Inside the Kids Party Profit System™, you also get access to the private community: <strong style="color:white;">Kids Profit Academy</strong>.
+              </p>
+              <ul class="list" style="margin-top:14px;">
+                <li>Ask questions when you hit a wall</li>
+                <li>Learn alongside women building the same kind of business</li>
+                <li>Get support, momentum, and real-time ideas</li>
+                <li>Stay in motion instead of starting and stopping</li>
+              </ul>
+              <div class="btn-row" style="margin-top:18px;">
+                <a class="btn btn-primary" href="https://buy.stripe.com/4gM7sL4xDdpl40e3yr7bW02">Join KPPS for $297</a>
+              </div>
+              <span class="value-inline" style="color: rgba(255,255,255,0.82);">$297 now · $497 on May 1st · Full Box included</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 💰 INVESTMENT -->
+    <section class="section" id="investment">
+      <div class="container pricing-grid">
+        <div>
+          <div class="eyebrow">Your investment</div>
+          <h2 class="display display-lg">One decision. Three pillars. Real business.</h2>
+          <p class="lead">
+            Trying to figure this out on your own costs time, confusion, missed bookings, and wasted money. This gives you the system, the tools, and the website — all under one roof, all for one price.
+          </p>
+          <p class="lead" style="margin-top:12px;">
+            <strong>One booking can cover this investment.</strong> Everything after that is profit.
+          </p>
+          <div class="pill-row">
+            <span class="pill">30-Day Launch</span>
+            <span class="pill">15 Playbooks</span>
+            <span class="pill">Template Vault</span>
+            <span class="pill">Private Community</span>
+            <span class="pill pill-gold">★ Party Biz Hub (1 yr)</span>
+            <span class="pill pill-gold">★ Website Template</span>
+            <span class="pill">Lifetime Course Access</span>
+          </div>
+        </div>
+
+        <div class="price-box">
+          <div class="price-box-ribbon">👑 Business in a Box</div>
+          <div class="eyebrow" style="margin-top:8px;">Kids Party Profit System™</div>
+          <div class="strike">$497 after May 1st</div>
+          <div class="price">
+            <span class="amount">$297</span>
+            <span class="per">one-time · locks in full box</span>
+          </div>
+          <div class="urgency-bar">⚡ Founding price $297 until May 1st · Then $497 · Same $1,085+ value either way</div>
+
+          <div class="value-stack">
+            <div class="value-stack-row">
+              <span class="label">KPPS Course + 15 Playbooks</span>
+              <span class="val">$497</span>
+            </div>
+            <div class="value-stack-row">
+              <span class="label">Party Biz Hub — 1 year</span>
+              <span class="val">$588</span>
+            </div>
+            <div class="value-stack-row">
+              <span class="label">Website Template (launching)</span>
+              <span class="val">Included</span>
+            </div>
+            <div class="value-stack-row">
+              <span class="label">Private Community + Vault</span>
+              <span class="val">Included</span>
+            </div>
+            <div class="value-stack-total">
+              <span>Total Value</span>
+              <span class="val">$1,085+</span>
+            </div>
+          </div>
+
+          <ul class="list">
+            <li>Instant access to the full system</li>
+            <li>All 15 niche playbooks</li>
+            <li>Complete template vault</li>
+            <li>Private community access</li>
+            <li>Party Biz Hub — 1 year included, then $29/mo locked for life</li>
+            <li>Website template FREE at launch (within 14 days)</li>
+          </ul>
+          <div class="btn-row" style="margin-top:16px;">
+            <a class="btn btn-primary" style="width:100%;justify-content:center;" href="https://buy.stripe.com/4gM7sL4xDdpl40e3yr7bW02">Yes — Lock It In for $297</a>
+          </div>
+          <span class="value-inline" style="text-align:center;">Price goes to $497 on May 1st · Same Box either way</span>
+          <div class="pill-row" style="justify-content:center;margin-top:10px;">
+            <span class="pill">Afterpay</span>
+            <span class="pill">Klarna</span>
+            <span class="pill">Affirm</span>
+          </div>
+          <p style="font-size:0.72rem;color:var(--muted);margin-top:10px;text-align:center;">
+            By clicking Get Instant Access you agree to our no-refund policy and purchase terms.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUTCOMES -->
+    <section class="section">
+      <div class="container">
+        <div style="text-align:center;margin-bottom:22px;">
+          <div class="eyebrow">What this can look like for you</div>
+          <h2 class="display display-lg">This is what happens when you stop guessing and start moving.</h2>
+          <p class="lead" style="margin:0 auto;">
+            You are not just buying information. You are buying clarity, tools, and a faster path to your first booking.
+          </p>
+        </div>
+
+        <div class="outcome-grid">
+          <div class="outcome-item">
+            <div class="outcome-icon">📅</div>
+            <div>
+              <h4>Wake up with real inquiries</h4>
+              <p>Your content and positioning start bringing in leads who are actually interested in booking.</p>
+            </div>
+          </div>
+          <div class="outcome-item">
+            <div class="outcome-icon">💸</div>
+            <div>
+              <h4>Charge with confidence</h4>
+              <p>Profit Calc shows you your real margin. You know your pricing, your value, and how to package.</p>
+            </div>
+          </div>
+          <div class="outcome-item">
+            <div class="outcome-icon">📦</div>
+            <div>
+              <h4>Book your first paid party</h4>
+              <p>Scripts, Quote Builder, Contract Pro. Everything ready so the booking feels clear, not chaotic.</p>
+            </div>
+          </div>
+          <div class="outcome-item">
+            <div class="outcome-icon">🏆</div>
+            <div>
+              <h4>Build a real income stream</h4>
+              <p>From one booking to repeat clients and referrals — the path becomes simple enough to repeat.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:26px;">
+          <p class="lead" style="margin:0 auto 16px;">
+            The women who move first are the women who get clear, get booked, and get paid.
+          </p>
+          <div class="btn-row" style="justify-content:center;">
+            <a class="btn btn-primary" href="https://buy.stripe.com/4gM7sL4xDdpl40e3yr7bW02">Start Today for $297</a>
+            <a class="btn btn-secondary" href="https://calendly.com/iammonicalewis/vip-coaching-call">Apply for VIP</a>
+          </div>
+          <div class="value-note" style="margin-top:14px;">
+            ⚡ $297 now · $497 on May 1st · <strong>$1,085+ value</strong> locked in either way
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIP COACHING -->
+    <section class="section">
+      <div class="container grid-2">
+        <div class="card soft">
+          <div class="eyebrow">Private coaching with Coach Monica</div>
+          <h2 class="display display-md">Want faster results? Work with Monica <span class="accent">directly.</span></h2>
+          <p class="lead">The $297 system is self-paced, but the premium coaching path is for women who want direct strategy, feedback, and accountability.</p>
+          <ul class="list" style="margin-top:14px;">
+            <li>Help choosing your niche and launch path</li>
+            <li>Feedback on your pricing, packages, and positioning</li>
+            <li>Support fixing what is not working</li>
+            <li>Strategy, clarity, and accountability</li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="https://calendly.com/iammonicalewis/vip-coaching-call">Apply for VIP</a>
+          </div>
+        </div>
+        <div>
+          <div class="image-shell coaching-proof">
+            <img src="hero-party-proof.jpg" alt="Coach Monica proof image">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BIO -->
+    <section class="section bio-section" id="bio">
+      <div class="container">
+        <div class="eyebrow">Your coach</div>
+        <h2 class="display display-lg">Meet Coach Monica Lewis</h2>
+
+        <div class="bio-card">
+          <div class="bio-inner">
+            <div class="bio-initial">M</div>
+            <div class="bio-text">
+              <div class="bio-hook">"She is not teaching theory. She is teaching what she has already built."</div>
+              <h3>Coach Monica Lewis</h3>
+              <div class="bio-tag">Queen of Side Hustles™ · Entrepreneur · Business Coach · Orlando, FL</div>
+              <p>
+                Monica Lewis is not teaching from guesses. She is teaching from real business experience.
+                <br><br>
+                She is the founder of <strong>Bear Hug Events</strong> — an active, operating kids party business in Orlando, Florida. She previously built and operated <strong>Glitz and Glam Kids Mobile Spa</strong> in Alabama, and she oversees <strong>Mimolew Events</strong> in Ghana — a kids party and events brand with genuine international reach. Before building her party business portfolio she spent years in <strong>corporate logistics</strong>, which is exactly why her system is built the way it is — structured, process-driven, and designed to create repeatable results.
+                <br><br>
+                She built the Kids Party Profit System™ because she kept watching talented women sit on an income opportunity that could change their lives and never pull the trigger. Then she built <strong>Party Biz Hub</strong> — the first SaaS platform designed specifically for kids party pros — because she realized her students needed more than training. They needed tools. The blueprint she teaches is the same one she has used — across multiple markets, multiple cities, and multiple countries — to build real businesses that operate.
+                <br><br>
+                This is not motivation for the sake of motivation. This is instruction from someone who has already done what you are trying to do.
+              </p>
+
+              <div class="bio-creds">
+                <span class="bio-cred">🐻 Bear Hug Events — Orlando, FL</span>
+                <span class="bio-cred">✨ Glitz &amp; Glam Kids — Alabama</span>
+                <span class="bio-cred">🌍 Mimolew Events — Ghana</span>
+                <span class="bio-cred">👑 Creator of Party Biz Hub</span>
+                <span class="bio-cred">📦 Corporate Logistics Background</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section">
+      <div class="container card soft" style="text-align:center;">
+        <div class="eyebrow" style="justify-content:center;">Your next move</div>
+        <h2 class="display display-md" style="max-width:700px;margin-inline:auto;">
+          You do not need more information.
+          <br><span class="accent">You need a decision — and the whole box.</span>
+        </h2>
+        <p class="lead" style="margin:0 auto;max-width:620px;">
+          The system is built. The tools are live. The website template is days away. Your first booking is on the other side of action.
+        </p>
+        <div class="btn-row" style="justify-content:center;margin-top:18px;">
+          <a class="btn btn-primary" href="https://buy.stripe.com/4gM7sL4xDdpl40e3yr7bW02">Join KPPS — Full Box for $297</a>
+          <a class="btn btn-secondary" href="https://partybusinesscoach.com/free">Get the Free Kick Start</a>
+        </div>
+        <div class="value-note" style="margin-top:14px;">
+          Course + Tools + Website · <strong>$1,085+ value</strong> for <strong>$297</strong> · Rises to $497 on May 1st
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <strong>Coach Monica Lewis</strong>
+        <span>Kids Party Profit System™ · partybusinesscoach.com</span>
+        <span>Queen of Side Hustles™ · Orlando, Florida</span>
+      </div>
+
+      <nav class="footer-links">
+        <a href="#system">System</a>
+        <a href="#bundle">Business in a Box</a>
+        <a href="#playbooks">Playbooks</a>
+        <a href="#community">Community</a>
+        <a href="#investment">Investment</a>
+        <a href="#bio">Coach Monica</a>
+      </nav>
+
+      <p class="footer-legal">© <span id="yr"></span> Kids Party Profit System™. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("yr").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

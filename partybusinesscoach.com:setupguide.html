@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Website Setup Guide | Kids Party Profit System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple: #9c7bc4;
+      --purple-deep: #7048a0;
+      --purple-light: #ede7f6;
+      --gold: #c9a84c;
+      --gold-bright: #e4b94a;
+      --gold-light: #fdf6e3;
+      --white: #ffffff;
+      --text-dark: #2d1f3d;
+      --text-mid: #5a4570;
+      --text-light: #8c7a9e;
+      --bg: #faf9fc;
+    }
+    body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text-dark); padding: 2rem 1rem; max-width: 780px; margin: 0 auto; line-height: 1.7; }
+    .header { background: linear-gradient(135deg, #8a5db7 0%, #7048a0 60%, #5c3688 100%); border-radius: 16px; padding: 2.5rem 2rem; text-align: center; margin-bottom: 2rem; }
+    .header-script { font-family: 'Dancing Script', cursive; font-size: 1.4rem; color: var(--gold-bright); margin-bottom: 0.5rem; }
+    .header-title { font-size: clamp(1.4rem, 4vw, 1.9rem); font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+    .header-sub { font-size: 0.95rem; color: rgba(255,255,255,0.85); font-weight: 300; }
+    .welcome { background: var(--gold-light); border-left: 4px solid var(--gold); border-radius: 10px; padding: 1.2rem 1.5rem; margin-bottom: 2rem; font-size: 0.95rem; color: var(--text-mid); }
+    .welcome strong { color: var(--text-dark); }
+    .section { background: var(--white); border-radius: 14px; border: 0.5px solid #e0d6f0; padding: 1.75rem 1.75rem 1.5rem; margin-bottom: 1.5rem; }
+    .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--purple-light); }
+    .step-badge { background: linear-gradient(135deg, #8a5db7, #7048a0); color: var(--white); font-size: 0.85rem; font-weight: 700; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .section-title { font-size: 1.1rem; font-weight: 700; color: var(--purple-deep); }
+    .section-subtitle { font-size: 0.82rem; color: var(--text-light); margin-top: 2px; }
+    .steps { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .steps li { display: flex; gap: 12px; align-items: flex-start; font-size: 0.93rem; color: var(--text-mid); line-height: 1.6; }
+    .dot { width: 22px; height: 22px; border-radius: 50%; background: var(--purple-light); color: var(--purple-deep); font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .steps li strong { color: var(--text-dark); font-weight: 700; }
+    .tip { background: var(--purple-light); border-radius: 8px; padding: 0.9rem 1.1rem; margin-top: 1.1rem; font-size: 0.88rem; color: var(--text-mid); display: flex; gap: 10px; align-items: flex-start; }
+    .tip-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+    .warning { background: #fff8e6; border-left: 3px solid var(--gold); border-radius: 8px; padding: 0.9rem 1.1rem; margin-top: 1.1rem; font-size: 0.88rem; color: #7a5c00; }
+    .url-pill { display: inline-block; background: var(--purple-light); color: var(--purple-deep); font-weight: 700; font-size: 0.88rem; padding: 4px 12px; border-radius: 99px; margin: 2px 0; }
+    .option-box { border-radius: 8px; padding: 10px 14px; font-size: 0.88rem; margin-top: 8px; }
+    .option-purple { background: var(--purple-light); color: var(--text-mid); }
+    .option-purple strong { color: var(--purple-deep); }
+    .option-gold { background: var(--gold-light); color: #6b5000; }
+    .option-gold strong { color: #7a5c00; }
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--purple), var(--gold), transparent); opacity: 0.3; margin: 0.75rem 0; }
+    .congrats { background: linear-gradient(135deg, #8a5db7 0%, #7048a0 100%); border-radius: 14px; padding: 2rem; text-align: center; margin-top: 2rem; }
+    .congrats-script { font-family: 'Dancing Script', cursive; font-size: 1.6rem; color: var(--gold-bright); margin-bottom: 0.5rem; }
+    .congrats-text { font-size: 0.95rem; color: rgba(255,255,255,0.88); line-height: 1.6; }
+    .footer { text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e0d6f0; }
+    .footer-script { font-family: 'Dancing Script', cursive; font-size: 1.1rem; color: var(--purple); }
+    .footer-tag { font-size: 0.78rem; color: var(--text-light); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+    @media (max-width: 480px) { .section { padding: 1.25rem; } .header { padding: 2rem 1.25rem; } }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-script">Kids Party Profit System™</div>
+    <div class="header-title">Your Website Setup Guide</div>
+    <div class="header-sub">Step by step — simple enough for anyone to follow</div>
+  </div>
+
+  <div class="welcome">
+    <strong>Welcome!</strong> As part of your Kids Party Profit System package, Coach Monica has built your website files and sent them to you. This guide walks you through everything — from creating your free account, adding your photos, uploading your site, connecting your booking form, and adding your payment link. Follow each step in order and do not skip ahead. You have got this!
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-badge">1</div>
+      <div>
+        <div class="section-title">Create Your Free Netlify Account</div>
+        <div class="section-subtitle">Takes about 3 minutes — completely free</div>
+      </div>
+    </div>
+    <ul class="steps">
+      <li><div class="dot">1</div><div>Open your internet browser and go to <span class="url-pill">netlify.com</span></div></li>
+      <li><div class="dot">2</div><div>Click the <strong>Sign Up</strong> button in the top right corner of the page.</div></li>
+      <li><div class="dot">3</div><div>Choose how you want to sign up. The fastest option is <strong>Continue with Google</strong> using your existing Google or Gmail account. Or click <strong>Sign up with Email</strong> to use any email address and create a password.</div></li>
+      <li><div class="dot">4</div><div>If you signed up with email — check your inbox for a confirmation email from Netlify and click the link inside to verify your account.</div></li>
+      <li><div class="dot">5</div><div>Once you are in you will land on your <strong>Netlify Dashboard.</strong> This is your home base. Keep this tab open — you will need it in Step 3.</div></li>
+    </ul>
+    <div class="tip"><div class="tip-icon">💡</div><div>You do not need to enter any payment information. Netlify is completely free for everything you need.</div></div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-badge">2</div>
+      <div>
+        <div class="section-title">Add Your Photos to the Website Folder</div>
+        <div class="section-subtitle">Do this before uploading — photos must be inside the folder first</div>
+      </div>
+    </div>
+    <ul class="steps">
+      <li><div class="dot">1</div><div>Locate the website folder Coach Monica sent you on your computer. It may be in your <strong>Downloads folder,</strong> saved on your <strong>Desktop,</strong> or wherever you saved it. Open the folder so you can see the files inside.</div></li>
+      <li><div class="dot">2</div><div>Coach Monica will tell you whether she needs photos from you or whether she has already included images. If she needs photos from you she will send you a list of exact file names to use — for example <strong>profile-photo.jpg</strong> or <strong>hero-image.png.</strong></div></li>
+      <li><div class="dot">3</div><div>Find those photos on your phone or computer. <strong>Rename each photo file to exactly match the name Coach Monica gave you.</strong> To rename: right click the file, select Rename, type the new name, and press Enter.</div></li>
+      <li><div class="dot">4</div><div>Look inside the website folder for a subfolder called <strong>images</strong> or <strong>assets.</strong> If you see one — move your renamed photos into that subfolder. If there is no images subfolder just place your photos directly into the main website folder alongside the other files.</div></li>
+      <li><div class="dot">5</div><div>Once all your photos are in the folder you are ready for the next step. <strong>Do not upload yet until your photos are in place</strong> — otherwise your site will show blank spaces where images should appear.</div></li>
+    </ul>
+    <div class="tip"><div class="tip-icon">💡</div><div>If Coach Monica did not ask you for photos she has already included everything your site needs. You can always send her photos later and she will update the files for you.</div></div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-badge">3</div>
+      <div>
+        <div class="section-title">Upload Your Website Folder to Netlify</div>
+        <div class="section-subtitle">This is how your site goes live on the internet</div>
+      </div>
+    </div>
+    <ul class="steps">
+      <li><div class="dot">1</div><div>Go back to your Netlify Dashboard tab. Scroll down until you see a box that says <strong>Want to deploy a new site without connecting to Git?</strong> with a drag and drop area underneath it.</div></li>
+      <li>
+        <div class="dot">2</div>
+        <div>You have two ways to upload — choose whichever feels easier:
+          <div style="display:flex; flex-direction:column; gap:8px; margin-top:10px;">
+            <div class="option-box option-purple"><strong>Option A — Drag and Drop</strong><br>Find your website folder on your Desktop or in your Downloads folder. Click and hold the folder, drag it over to the Netlify upload box on your screen, and let go. It will upload automatically.</div>
+            <div class="option-box option-gold"><strong>Option B — Click to Browse (easier for most people)</strong><br>Look inside the Netlify upload box for a link that says <strong>browse to upload</strong> or <strong>click to select.</strong> Click it, find your website folder in the window that opens, click on it once to select it, then click <strong>Open</strong> or <strong>Choose.</strong> Netlify will do the rest.</div>
+          </div>
+        </div>
+      </li>
+      <li><div class="dot">3</div><div>Wait about 30 seconds. Netlify will process your files and your website will go live automatically.</div></li>
+      <li><div class="dot">4</div><div>Netlify will give you a web address that looks something like <span class="url-pill">random-name.netlify.app</span> — click it to see your live website. You will customize this address in Step 5.</div></li>
+    </ul>
+    <div class="warning">Always upload the entire FOLDER — not individual files. The whole folder must go in together so Netlify can find everything it needs to display your site correctly.</div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-badge">4</div>
+      <div>
+        <div class="section-title">Connect Your Booking Form</div>
+        <div class="section-subtitle">So you get notified every time someone submits a booking request</div>
+      </div>
+    </div>
+    <ul class="steps">
+      <li><div class="dot">1</div><div>From your Netlify Dashboard click on your site name to open your site settings.</div></li>
+      <li><div class="dot">2</div><div>In the left menu click <strong>Forms.</strong> Netlify automatically detects any booking or contact forms that are built into your website files.</div></li>
+      <li><div class="dot">3</div><div>You should see your booking form listed there. If it shows <strong>Active</strong> your form is already collecting submissions automatically inside Netlify.</div></li>
+      <li><div class="dot">4</div><div>To receive an email notification every time someone submits the form — click your form name, then click <strong>Form notifications,</strong> then <strong>Add notification,</strong> then select <strong>Email notification.</strong> Enter your email address and click Save.</div></li>
+      <li><div class="dot">5</div><div>Test it yourself. Go to your live website, fill out the booking form with your own name and information, and submit it. Check your email — you should receive a notification within a few minutes confirming everything is working.</div></li>
+    </ul>
+    <div class="tip"><div class="tip-icon">💡</div><div>All booking form submissions are saved inside Netlify under the Forms tab so you can always log in and review them — even if you miss an email notification.</div></div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-badge">5</div>
+      <div>
+        <div class="section-title">Add Your Stripe Payment Link</div>
+        <div class="section-subtitle">So clients can pay you directly from your website</div>
+      </div>
+    </div>
+    <ul class="steps">
+      <li><div class="dot">1</div><div>If you do not have a Stripe account yet go to <span class="url-pill">stripe.com</span> and click <strong>Start now.</strong> Sign up with your email, follow the steps, and connect your bank account so payments deposit directly to you.</div></li>
+      <li><div class="dot">2</div><div>Once inside Stripe click <strong>Payment Links</strong> in the left menu, then click <strong>Create payment link.</strong></div></li>
+      <li><div class="dot">3</div><div>Name your product — for example <strong>Party Booking Deposit</strong> or <strong>Kids Party Package.</strong> Set the price amount and click <strong>Create link.</strong> Stripe will generate a payment link that looks like <span class="url-pill">buy.stripe.com/xxxx</span></div></li>
+      <li><div class="dot">4</div><div>Copy that payment link and send it to Coach Monica along with the button text you want on your site — for example <strong>Book Now</strong> or <strong>Reserve Your Date.</strong> She will update your website files so the button goes directly to your Stripe payment page.</div></li>
+      <li><div class="dot">5</div><div>Once Coach Monica sends you the updated files follow Step 8 below to upload them and your payment button will be live.</div></li>
+    </ul>
+    <div class="tip"><div class="tip-icon">💡</div><div>Stripe is free to set up. They only charge a small processing fee of 2.9% plus 30 cents when you actually receive a payment. No monthly fees ever.</div></div>
+  </div>
+
+  <!-- STEP 6 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-badge">6</div>
+      <div>
+        <div class="section-title">Give Your Site a Custom Name</div>
+        <div class="section-subtitle">Optional but recommended — makes your link look professional</div>
+      </div>
+    </div>
+    <ul class="steps">
+      <li><div class="dot">1</div><div>From your Netlify Dashboard click on your site name, then click <strong>Site Configuration</strong> in the left menu.</div></li>
+      <li><div class="dot">2</div><div>Click <strong>Change site name,</strong> type in a name that represents your business — for example <span class="url-pill">monicasparties.netlify.app</span> — and click <strong>Save.</strong> Your new address goes live immediately.</div></li>
+    </ul>
+    <div class="tip"><div class="tip-icon">💡</div><div>If you already own a custom domain like yourpartywebsite.com you can connect it under Site Configuration by clicking <strong>Domain Management.</strong> Ask Coach Monica if you need help — it takes about 10 minutes.</div></div>
+  </div>
+
+  <!-- STEP 7 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-badge">7</div>
+      <div>
+        <div class="section-title">Check That Everything Is Working</div>
+        <div class="section-subtitle">Do this before sharing your site with anyone</div>
+      </div>
+    </div>
+    <ul class="steps">
+      <li><div class="dot">1</div><div>Click your site address and confirm the page loads correctly and looks the way it should.</div></li>
+      <li><div class="dot">2</div><div>Click every button and link on your site — especially your booking form and your payment button.</div></li>
+      <li><div class="dot">3</div><div>Fill out your booking form yourself as a test and confirm you receive the email notification.</div></li>
+      <li><div class="dot">4</div><div>Click your payment button and confirm it goes to your Stripe payment page correctly.</div></li>
+      <li><div class="dot">5</div><div>Open your site on your phone and confirm it looks good on mobile — most of your clients will find you from their phones.</div></li>
+      <li><div class="dot">6</div><div>Once everything looks great add your link to your <strong>TikTok bio, Instagram bio, and Facebook page</strong> right away and start getting booked.</div></li>
+    </ul>
+  </div>
+
+  <!-- STEP 8 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-badge">8</div>
+      <div>
+        <div class="section-title">Updating Your Site When Coach Monica Sends New Files</div>
+        <div class="section-subtitle">Simple — takes less than 2 minutes</div>
+      </div>
+    </div>
+    <ul class="steps">
+      <li><div class="dot">1</div><div>Log into <span class="url-pill">netlify.com</span> and click on your site name.</div></li>
+      <li><div class="dot">2</div><div>Click the <strong>Deploys</strong> tab at the top and scroll down to the upload box.</div></li>
+      <li><div class="dot">3</div><div>Drag your updated folder in or click to browse and select it — exactly the same as Step 3. Netlify replaces the old files automatically within about 30 seconds.</div></li>
+    </ul>
+    <div class="tip"><div class="tip-icon">💡</div><div>Your site address never changes no matter how many times you update it. You can update as often as you need to.</div></div>
+  </div>
+
+  <!-- TROUBLESHOOTING -->
+  <div class="section">
+    <div class="section-header">
+      <div class="step-badge" style="background: linear-gradient(135deg, var(--gold), var(--gold-bright)); color: var(--text-dark);">?</div>
+      <div>
+        <div class="section-title">Something Not Working?</div>
+        <div class="section-subtitle">Common issues and quick fixes</div>
+      </div>
+    </div>
+    <ul class="steps">
+      <li><div class="dot" style="background:#fff3e0; color:#b85c00;">!</div><div><strong>Site is not showing up after upload</strong> — Wait 60 seconds and refresh the page.</div></li>
+      <div class="divider"></div>
+      <li><div class="dot" style="background:#fff3e0; color:#b85c00;">!</div><div><strong>Images are blank or missing</strong> — Confirm your photo file names exactly match what Coach Monica gave you and that they were inside the folder before you uploaded.</div></li>
+      <div class="divider"></div>
+      <li><div class="dot" style="background:#fff3e0; color:#b85c00;">!</div><div><strong>Not receiving booking form emails</strong> — Check your spam folder first. Then confirm your email address is saved correctly under Forms in your Netlify settings.</div></li>
+      <div class="divider"></div>
+      <li><div class="dot" style="background:#fff3e0; color:#b85c00;">!</div><div><strong>Payment button is not working</strong> — Make sure Coach Monica has added your Stripe link to your files and that you have uploaded the updated folder to Netlify.</div></li>
+      <div class="divider"></div>
+      <li><div class="dot" style="background:#fff3e0; color:#b85c00;">!</div><div><strong>Still stuck</strong> — Take a screenshot of your screen and send it directly to Coach Monica. She will walk you through it.</div></li>
+    </ul>
+  </div>
+
+  <div class="congrats">
+    <div class="congrats-script">You did it, Queen!</div>
+    <div class="congrats-text">Your website is live, your booking form is connected, and your payment link is ready to go. Your business is officially open on the internet. Share your link everywhere and start getting booked. Coach Monica is cheering you on every step of the way.</div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-script">Coach Monica</div>
+    <div class="footer-tag">Kids Party Profit System™ · partybusinesscoach.com</div>
+  </div>
+
+</body>
+</html>

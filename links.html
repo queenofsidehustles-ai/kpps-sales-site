@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coach Monica — Kids Party Profit System™</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "DM Sans", sans-serif;
+      min-height: 100vh;
+      background: radial-gradient(circle at 10% 20%, rgba(200,180,240,0.22), transparent 35%),
+                  radial-gradient(circle at 90% 80%, rgba(212,168,64,0.10), transparent 30%),
+                  linear-gradient(180deg, #ffffff 0%, #f4f0fa 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 52px 20px 60px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page { width: 100%; max-width: 480px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .photo-ring { width: 180px; height: 180px; border-radius: 50%; border: 3px solid #d4a840; overflow: hidden; flex-shrink: 0; box-shadow: 0 6px 32px rgba(212,168,64,0.28); }
+    .photo-ring img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
+    .name { font-family: "Playfair Display", serif; font-size: clamp(2rem, 7vw, 2.8rem); font-weight: 800; text-align: center; line-height: 1.1; letter-spacing: -0.02em; }
+    .name .coach { color: #7559d4; }
+    .name .monica { color: #d4a840; }
+    .tagline { font-size: 0.78rem; color: #9d73df; text-align: center; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    .divider { width: 60px; height: 2px; background: linear-gradient(90deg, transparent, #d4a840, transparent); border-radius: 999px; }
+    .links { width: 100%; display: flex; flex-direction: column; gap: 14px; margin-top: 4px; }
+    .link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 18px 24px;
+      border-radius: 16px;
+      text-decoration: none;
+      background: white;
+      border: 1px solid rgba(117,89,212,0.14);
+      border-left: 4px solid #d4a840;
+      box-shadow: 0 2px 16px rgba(117,89,212,0.07);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      position: relative;
+    }
+    .link-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(117,89,212,0.14); }
+    .btn-text { text-align: center; width: 100%; }
+    .btn-title { display: block; font-size: 0.96rem; font-weight: 800; background: linear-gradient(135deg, #7559d4, #9d73df); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 3px; }
+    .btn-sub { display: block; font-size: 0.76rem; color: #9d73df; font-weight: 600; }
+    .btn-desc { display: block; font-size: 0.72rem; color: #8b7aad; font-weight: 500; margin-top: 4px; line-height: 1.4; font-style: italic; }
+
+    /* KPPS flagship button */
+    .link-btn.flagship {
+      background: linear-gradient(135deg, #ffffff 0%, #faf4ff 100%);
+      border: 2px solid #d4a840;
+      border-left: 2px solid #d4a840;
+      box-shadow: 0 4px 22px rgba(117,89,212,0.14), 0 0 0 1px rgba(212,168,64,0.15);
+    }
+    .flagship .btn-title { font-size: 1.02rem; }
+    .flagship-ribbon {
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #7559d4, #9d73df);
+      color: white;
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(117,89,212,0.35);
+    }
+
+    /* Party Biz Hub founders button — deep purple + gold */
+    .link-btn.founders {
+      background: linear-gradient(135deg, #241431 0%, #3a1f5c 50%, #5b21b6 100%);
+      border: 2px solid #d4a840;
+      border-left: 2px solid #d4a840;
+      box-shadow: 0 6px 26px rgba(126,34,206,0.25), 0 0 0 1px rgba(212,168,64,0.30);
+    }
+    .link-btn.founders:hover {
+      box-shadow: 0 10px 36px rgba(126,34,206,0.35), 0 0 0 1px rgba(212,168,64,0.50);
+    }
+    .founders-ribbon {
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #f5cc5f, #d4a840);
+      color: #3a2a07;
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(212,168,64,0.40);
+    }
+    .founders .btn-title {
+      background: linear-gradient(135deg, #f5cc5f, #e6bb54);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-size: 1rem;
+    }
+    .founders .btn-sub {
+      color: rgba(255,255,255,0.86);
+      font-weight: 600;
+    }
+    .founders .btn-desc {
+      color: rgba(255,255,255,0.72);
+      font-style: normal;
+    }
+    .counter-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(212,168,64,0.28);
+    }
+    .counter-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #f5cc5f;
+      box-shadow: 0 0 10px rgba(245,204,95,0.70);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.25); }
+    }
+    .counter-text {
+      font-size: 0.74rem;
+      color: #f5cc5f;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+    }
+
+    .footer { margin-top: 8px; font-size: 0.72rem; color: #c9a8f2; text-align: center; }
+    .footer a { color: #9d73df; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="photo-ring">
+      <img src="links-photo.jpg" alt="Coach Monica">
+    </div>
+    <div class="name"><span class="coach">Coach</span> <span class="monica">Monica</span></div>
+    <div class="tagline">Queen of Side Hustles &nbsp;&middot;&nbsp; Kids Party Business Coach</div>
+    <div class="divider"></div>
+
+    <div class="links">
+
+      <!-- 1. KPPS — BUSINESS IN A BOX (FLAGSHIP, TOP POSITION) -->
+      <a class="link-btn flagship" href="https://partybusinesscoach.com">
+        <span class="flagship-ribbon">👑 Flagship · Business in a Box</span>
+        <div class="btn-text">
+          <span class="btn-title">Kids Party Profit System™</span>
+          <span class="btn-sub">$297 now · Rises to $497 on May 1</span>
+          <span class="btn-desc">The complete start-a-party-business system — 30-day launch plan, 15 niche playbooks, Party Biz Hub (1 year included), website template, and private community. Everything you need to go from idea to booked.</span>
+        </div>
+      </a>
+
+      <!-- 2. PARTY BIZ HUB — FOUNDERS -->
+      <a class="link-btn founders" href="https://buy.stripe.com/6oU9ATfchgBx0O24Cv7bW05">
+        <span class="founders-ribbon">👑 Founders · Limited</span>
+        <div class="btn-text">
+          <span class="btn-title">Party Biz Hub — Founders Spot</span>
+          <span class="btn-sub">$97 one-time · Then $29/mo locked for life</span>
+          <span class="btn-desc">The all-in-one software &amp; back office built for kids party pros. Branded quotes, contracts, profit calculator, event prep, and vendor directory — one login replaces 5+ tools.</span>
+          <div class="counter-row">
+            <span class="counter-dot"></span>
+            <span class="counter-text" id="foundersCounter">SPOTS LEFT · LIVE COUNT</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 3. FREE KICK START -->
+      <a class="link-btn" href="https://partybusinesscoach.com/free">
+        <div class="btn-text">
+          <span class="btn-title">Free Starter Checklist</span>
+          <span class="btn-sub">How to book your first kids party — free download</span>
+        </div>
+      </a>
+
+      <!-- 4. 1-ON-1 COACHING (UPDATED PRICES) -->
+      <a class="link-btn" href="https://form.jotform.com/260948290253057">
+        <div class="btn-text">
+          <span class="btn-title">Apply for 1-on-1 Coaching</span>
+          <span class="btn-sub">Kickstart $997 &nbsp;&middot;&nbsp; VIP $1,497</span>
+        </div>
+      </a>
+
+      <!-- 5. TIKTOK -->
+      <a class="link-btn" href="https://www.tiktok.com/@kidspartybizcoach">
+        <div class="btn-text">
+          <span class="btn-title">Follow on TikTok</span>
+          <span class="btn-sub">@kidspartybizcoach — daily tips and lives</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="footer">&copy; 2026 Monica Oye Lewis &nbsp;&middot;&nbsp; <a href="https://partybusinesscoach.com">partybusinesscoach.com</a></div>
+  </div>
+
+  <script>
+    /* ===========================================================
+       FOUNDERS COUNTER
+       -----------------------------------------------------------
+       Every time a new founder signs up, change ONE number below:
+           CLAIMED = how many founders have joined so far
+
+       Example:
+           const CLAIMED = 0;   ← starts here
+           const CLAIMED = 12;  ← after 12 founders join
+
+       The page auto-calculates remaining spots.
+       =========================================================== */
+    const CLAIMED = 0;       // ← CHANGE THIS as founders sign up
+    const TOTAL   = 100;     // total founders offered
+    const remaining = TOTAL - CLAIMED;
+
+    const counterEl = document.getElementById('foundersCounter');
+    if (remaining <= 0) {
+      counterEl.textContent = 'ALL SPOTS CLAIMED · WAITLIST';
+    } else if (remaining <= 10) {
+      counterEl.textContent = `ONLY ${remaining} OF ${TOTAL} SPOTS LEFT`;
+    } else {
+      counterEl.textContent = `${remaining}/${TOTAL} SPOTS LEFT`;
+    }
+  </script>
+</body>
+</html>

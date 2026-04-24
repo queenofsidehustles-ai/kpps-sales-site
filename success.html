@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to Kids Party Profit Academy!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple: #9c7bc4;
+      --purple-deep: #7048a0;
+      --purple-light: #ede7f6;
+      --gold: #c9a84c;
+      --gold-bright: #e4b94a;
+      --gold-light: #fdf6e3;
+      --white: #ffffff;
+      --text-dark: #2d1f3d;
+      --text-mid: #5a4570;
+      --text-light: #8c7a9e;
+      --bg: #faf9fc;
+    }
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--bg);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 1rem 3rem;
+    }
+    .hero {
+      width: 100%;
+      background: linear-gradient(135deg, #8a5db7 0%, #7048a0 60%, #5c3688 100%);
+      padding: 3rem 2rem 4rem;
+      text-align: center;
+      margin-bottom: -2rem;
+    }
+    .hero-script {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      color: var(--gold-bright);
+      margin-bottom: 0.5rem;
+    }
+    .hero-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.88);
+      font-weight: 300;
+    }
+    .card {
+      background: var(--white);
+      border-radius: 20px;
+      max-width: 620px;
+      width: 100%;
+      padding: 2.5rem 2.5rem 2rem;
+      box-shadow: 0 8px 40px rgba(124,77,170,0.12);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Step boxes */
+    .steps-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
+    .step {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 1.1rem;
+    }
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #8a5db7, #7048a0);
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-body strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      margin-bottom: 2px;
+    }
+    .step-body span {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--purple), var(--gold), transparent);
+      opacity: 0.3;
+      margin: 1.5rem 0;
+    }
+
+    /* Important notice box */
+    .notice {
+      background: var(--gold-light);
+      border-left: 4px solid var(--gold);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+    }
+    .notice strong { color: var(--text-dark); }
+
+    /* CTA button */
+    .cta-wrap { text-align: center; margin-top: 1.5rem; }
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+      color: var(--text-dark);
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.35);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(201,168,76,0.45);
+    }
+    .cta-nudge {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      margin-top: 0.6rem;
+    }
+
+    /* Support box */
+    .support {
+      background: var(--purple-light);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      margin-top: 1.5rem;
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      text-align: center;
+      line-height: 1.6;
+    }
+    .support a {
+      color: var(--purple-deep);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+    .footer-script {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.1rem;
+      color: var(--purple);
+    }
+    .footer-tag {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    @media (max-width: 480px) {
+      .card { padding: 2rem 1.5rem; }
+      .hero { padding: 2.5rem 1.5rem 3.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-script">Welcome to the family, Queen!</div>
+    <div class="hero-sub">Your payment was received successfully.</div>
+  </div>
+
+  <div class="card">
+
+    <p class="steps-label">Here is what happens next</p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <strong>Check your email inbox right now</strong>
+        <span>You will receive an invitation email to join the <strong>Kids Party Profit Academy</strong> on Skool within a few hours. Check your spam or junk folder if you do not see it in your main inbox.</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <strong>Click the invite link in the email</strong>
+        <span>The email will have a button that takes you straight into your course community. Click it, create your free Skool account if you do not have one, and you are inside.</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <strong>Start in the Community tab — read Start Here first</strong>
+        <span>When you land inside the academy go to the <strong>Community</strong> tab first. Find the pinned <strong>Start Here</strong> post and read it completely. It walks you through how everything works and how to get the most out of your experience.</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <strong>Introduce yourself to the community</strong>
+        <span>Drop a quick intro post — your name, your city, and what kind of kids party business you are building. This is your people. We celebrate every win in here together.</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <strong>Head to the Classroom and start Phase 0</strong>
+        <span>Click the <strong>Classroom</strong> tab at the top. All six phases — Phase 0 through Phase 5 — are fully loaded and ready. Start with <strong>Phase 0 — Mindset Reset.</strong> Do not skip ahead. Each phase builds on the one before it and the system works when you trust the process.</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="notice">
+      <strong>Important:</strong> Your invite will be sent manually within a few hours of your purchase. If you have not received it within 24 hours please DM Coach Monica on TikTok at <strong>@kidspartybizcoach</strong> and she will get you sorted immediately.
+    </div>
+
+    <div class="cta-wrap">
+      <a class="cta-btn" href="https://www.skool.com/queen-of-side-hustles-academy-5720/about" target="_blank">
+        Go to Kids Party Profit Academy →
+      </a>
+      <p class="cta-nudge">You can also bookmark this link for easy access later.</p>
+    </div>
+
+    <div class="support">
+      Questions? Need help accessing your course?<br>
+      DM Coach Monica directly on TikTok <a href="https://www.tiktok.com/@kidspartybizcoach" target="_blank">@kidspartybizcoach</a><br>
+      and she will get you sorted right away.
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-script">Coach Monica</div>
+    <div class="footer-tag">Kids Party Profit System™ · partybusinesscoach.com</div>
+  </div>
+
+</body>

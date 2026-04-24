@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>You're In! | Kids Party Profit System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #b39ddb;
+      --purple-deep: #7c4daa;
+      --purple-light: #ede7f6;
+      --purple-mid: #9c7bc4;
+      --gold: #c9a84c;
+      --gold-light: #f5e6b8;
+      --gold-bright: #e4b94a;
+      --white: #ffffff;
+      --text-dark: #2d1f3d;
+      --text-mid: #5a4570;
+      --text-light: #8c7a9e;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--purple-light);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Hero banner */
+    .hero {
+      width: 100%;
+      background: linear-gradient(135deg, #8a5db7 0%, #7048a0 60%, #5c3688 100%);
+      padding: 3rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(201,168,76,0.12);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(179,157,219,0.15);
+      pointer-events: none;
+    }
+
+    .confetti-row {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      animation: pop 0.6s ease both;
+    }
+
+    .hero-script {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      color: var(--gold-bright);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      animation: fadeUp 0.7s ease 0.1s both;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.90);
+      letter-spacing: 0.04em;
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+
+    /* Main content card */
+    .card {
+      background: var(--white);
+      border-radius: 20px;
+      max-width: 640px;
+      width: calc(100% - 2rem);
+      margin: -2rem auto 2rem;
+      padding: 2.5rem 2.5rem 2rem;
+      box-shadow: 0 8px 40px rgba(124,77,170,0.12);
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+
+    .inbox-notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--purple-light);
+      border-left: 4px solid var(--purple-mid);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .inbox-icon {
+      font-size: 1.5rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .inbox-text {
+      font-size: 0.95rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    .inbox-text strong {
+      color: var(--purple-deep);
+      font-weight: 700;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--purple), var(--gold), transparent);
+      margin: 1.8rem 0;
+      opacity: 0.4;
+    }
+
+    .bridge-script {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.55rem;
+      color: var(--purple-deep);
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .bridge-body {
+      font-size: 0.97rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      text-align: center;
+      margin-bottom: 1.8rem;
+    }
+
+    .bridge-body strong {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    /* Bullet proof points */
+    .proof-list {
+      list-style: none;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .proof-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.93rem;
+      color: var(--text-mid);
+      line-height: 1.55;
+    }
+
+    .proof-list li::before {
+      content: '✦';
+      color: var(--gold);
+      font-size: 0.85rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    /* CTA button */
+    .cta-wrap {
+      text-align: center;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
+      color: var(--text-dark);
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      padding: 1rem 2.4rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.35);
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(201,168,76,0.45);
+    }
+
+    .cta-nudge {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      margin-top: 0.75rem;
+    }
+
+    /* Footer brand line */
+    .footer {
+      text-align: center;
+      padding: 1.5rem 1rem 2.5rem;
+      animation: fadeUp 0.8s ease 0.5s both;
+    }
+
+    .footer-script {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.2rem;
+      color: var(--purple-mid);
+    }
+
+    .footer-tagline {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      margin-top: 4px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pop {
+      0%   { transform: scale(0.5); opacity: 0; }
+      70%  { transform: scale(1.2); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @media (max-width: 480px) {
+      .card { padding: 2rem 1.5rem 1.75rem; }
+      .hero { padding: 2.5rem 1.5rem 3.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-script">You're officially in, Queen!</div>
+    <div class="hero-sub">Your free checklist is on its way to your inbox right now.</div>
+  </div>
+
+  <div class="card">
+
+    <div class="inbox-notice">
+      <div class="inbox-icon">📩</div>
+      <div class="inbox-text">
+        Your <strong>Kids Party Business Starter Checklist</strong> should arrive within 2–3 minutes.
+        If you don't see it, check your spam folder and mark us as a friend so you never miss a thing.
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="bridge-script">While you wait — you're already in the right place.</div>
+
+    <p class="bridge-body">
+      That checklist is just the beginning. If you're serious about building a
+      <strong>profitable kids party business</strong> — one that gives you real income
+      and real freedom — the <strong>Kids Party Profit System™</strong> was built
+      exactly for women like you.
+    </p>
+
+    <ul class="proof-list">
+      <li>Step-by-step system to launch and grow your kids party business from scratch</li>
+      <li>Proven pricing strategies so you never undercharge again</li>
+      <li>Marketing and booking templates so clients find YOU</li>
+      <li>Private community of women building alongside you</li>
+      <li>Direct coaching access to someone who has already done it</li>
+    </ul>
+
+    <div class="cta-wrap">
+      <a class="cta-btn" href="https://partybusinesscoach.com">
+        Yes — Show Me the Full System →
+      </a>
+      <p class="cta-nudge">No pressure. Just scroll and see if it's your next step.</p>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-script">Coach Monica</div>
+    <div class="footer-tagline">Kids Party Profit System™ · partybusinesscoach.com</div>
+  </div>
+
+</body>
+</html>
