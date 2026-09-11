@@ -161,26 +161,22 @@
     <div class="links">
 
       <!-- 1. KPPS — BUSINESS IN A BOX (FLAGSHIP, TOP POSITION) -->
-      <a class="link-btn flagship" href="https://partybusinesscoach.com">
+      <a class="link-btn flagship" href="https://partybusinesscoach.com?utm_source=links&utm_medium=bio">
         <span class="flagship-ribbon">👑 Flagship · Business in a Box</span>
         <div class="btn-text">
           <span class="btn-title">Kids Party Profit System™</span>
-          <span class="btn-sub">$297 now · Rises to $497 on May 1</span>
-          <span class="btn-desc">The complete start-a-party-business system — 30-day launch plan, 15 niche playbooks, Party Biz Hub (1 year included), website template, and private community. Everything you need to go from idea to booked.</span>
+          <span class="btn-sub">$197 one-time · Instant access</span>
+          <span class="btn-desc">Choose your party niche, build profitable packages, set your prices, and launch with a 30-day plan, 15 niche playbooks, Party Biz Hub for one year, a website template, printables store, and private community.</span>
         </div>
       </a>
 
-      <!-- 2. PARTY BIZ HUB — FOUNDERS -->
-      <a class="link-btn founders" href="https://buy.stripe.com/6oU9ATfchgBx0O24Cv7bW05">
-        <span class="founders-ribbon">👑 Founders · Limited</span>
+      <!-- 2. PARTY BIZ HUB — SOFTWARE -->
+      <a class="link-btn founders" href="https://partybizhub.com?utm_source=links&utm_medium=bio">
+        <span class="founders-ribbon">✨ Software · Built for Party Pros</span>
         <div class="btn-text">
-          <span class="btn-title">Party Biz Hub — Founders Spot</span>
-          <span class="btn-sub">$97 one-time · Then $29/mo locked for life</span>
-          <span class="btn-desc">The all-in-one software &amp; back office built for kids party pros. Branded quotes, contracts, profit calculator, event prep, and vendor directory — one login replaces 5+ tools.</span>
-          <div class="counter-row">
-            <span class="counter-dot"></span>
-            <span class="counter-text" id="foundersCounter">SPOTS LEFT · LIVE COUNT</span>
-          </div>
+          <span class="btn-title">Party Biz Hub</span>
+          <span class="btn-sub">Your all-in-one party business back office</span>
+          <span class="btn-desc">Create professional quotes and contracts, calculate your profit, prepare for events, organize vendors, generate content, and build your website from one place.</span>
         </div>
       </a>
 
@@ -188,15 +184,15 @@
       <a class="link-btn" href="https://partybusinesscoach.com/free">
         <div class="btn-text">
           <span class="btn-title">Free Starter Checklist</span>
-          <span class="btn-sub">How to book your first kids party — free download</span>
+          <span class="btn-sub">Choose your niche and map out your first offer — free</span>
         </div>
       </a>
 
-      <!-- 4. 1-ON-1 COACHING (UPDATED PRICES) -->
+      <!-- 4. 1-ON-1 COACHING -->
       <a class="link-btn" href="https://form.jotform.com/260948290253057">
         <div class="btn-text">
           <span class="btn-title">Apply for 1-on-1 Coaching</span>
-          <span class="btn-sub">Kickstart $997 &nbsp;&middot;&nbsp; VIP $1,497</span>
+          <span class="btn-sub">Personal strategy, accountability, and support</span>
         </div>
       </a>
 
@@ -204,7 +200,7 @@
       <a class="link-btn" href="https://www.tiktok.com/@kidspartybizcoach">
         <div class="btn-text">
           <span class="btn-title">Follow on TikTok</span>
-          <span class="btn-sub">@kidspartybizcoach — daily tips and lives</span>
+          <span class="btn-sub">@kidspartybizcoach — party ideas, business tips, and live coaching</span>
         </div>
       </a>
     </div>
@@ -212,31 +208,5 @@
     <div class="footer">&copy; 2026 Monica Oye Lewis &nbsp;&middot;&nbsp; <a href="https://partybusinesscoach.com">partybusinesscoach.com</a></div>
   </div>
 
-  <script>
-    /* ===========================================================
-       FOUNDERS COUNTER
-       -----------------------------------------------------------
-       Every time a new founder signs up, change ONE number below:
-           CLAIMED = how many founders have joined so far
-
-       Example:
-           const CLAIMED = 0;   ← starts here
-           const CLAIMED = 12;  ← after 12 founders join
-
-       The page auto-calculates remaining spots.
-       =========================================================== */
-    const CLAIMED = 0;       // ← CHANGE THIS as founders sign up
-    const TOTAL   = 100;     // total founders offered
-    const remaining = TOTAL - CLAIMED;
-
-    const counterEl = document.getElementById('foundersCounter');
-    if (remaining <= 0) {
-      counterEl.textContent = 'ALL SPOTS CLAIMED · WAITLIST';
-    } else if (remaining <= 10) {
-      counterEl.textContent = `ONLY ${remaining} OF ${TOTAL} SPOTS LEFT`;
-    } else {
-      counterEl.textContent = `${remaining}/${TOTAL} SPOTS LEFT`;
-    }
-  </script>
 </body>
 </html>
