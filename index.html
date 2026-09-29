@@ -840,6 +840,65 @@
       font-size: 0.85rem;
     }
 
+    /* ── PAYMENT PLAN OFFER ──────────────────────────────────────────
+       A real deadline, not a decorative one: the block removes itself the
+       moment the closing date passes, so the page cannot go on promising an
+       offer that has ended. Change data-plan-deadline to extend it. */
+    .plan-offer {
+      margin: 26px auto 0;
+      max-width: 560px;
+      border: 3px solid var(--gold);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(140deg, #2d0f4e 0%, #4c1d95 45%, #6b21a8 100%);
+      padding: 26px 22px 22px;
+      text-align: center;
+      position: relative;
+      color: #fff;
+      box-shadow: 0 14px 44px rgba(76,29,149,0.34);
+    }
+    .plan-offer[hidden] { display: none; }
+    .plan-offer-flag {
+      position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+      color: #2d0f4e; font-size: .74rem; font-weight: 900; letter-spacing: .14em;
+      text-transform: uppercase; padding: 7px 20px; border-radius: 999px;
+      white-space: nowrap; box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+    }
+    .plan-offer-head {
+      font-size: 1.15rem; font-weight: 700; color: rgba(255,255,255,0.92);
+      margin-top: 10px; line-height: 1.4;
+    }
+    .plan-offer-price {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(2.3rem, 7vw, 3.1rem); font-weight: 800;
+      color: var(--gold-bright); line-height: 1.05; margin: 6px 0 2px;
+      letter-spacing: -0.01em;
+    }
+    .plan-offer-price small {
+      display: block; font-family: inherit; font-size: .9rem; font-weight: 700;
+      color: rgba(255,255,255,0.78); letter-spacing: .02em; margin-top: 6px;
+    }
+    .plan-offer-sub {
+      font-size: .92rem; color: rgba(255,255,255,0.86);
+      margin-top: 10px; line-height: 1.65;
+    }
+    .plan-offer-sub strong { color: #fff; }
+    .plan-offer .btn { margin-top: 16px; width: 100%; justify-content: center; }
+    .btn-plan {
+      background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+      color: #2d0f4e; border: none; font-weight: 900; font-size: 1.04rem;
+      padding: 16px 24px; box-shadow: 0 8px 22px rgba(212,168,64,0.4);
+    }
+    .btn-plan:hover { filter: brightness(1.06); transform: translateY(-1px); }
+    .plan-offer-deadline {
+      margin-top: 12px; font-size: .88rem; font-weight: 800;
+      color: var(--gold-bright); letter-spacing: .01em;
+    }
+    .plan-offer-spots { font-weight: 900; }
+
+    /* The banner mention, so it reads as a real second option and not as
+       small print trailing the one-time price. */
+    .announce .plan-flash { color: var(--gold-bright); font-weight: 800; }
     .urgency-bar {
       background: linear-gradient(135deg, #fff8e8, #fef3d0);
       border: 1px solid rgba(212,168,64,0.28);
@@ -1513,7 +1572,10 @@
 <body>
 
   <div class="announce">
-    👑 The complete Kids Party Business in a Box · <strong>$197 one-time</strong> · Training, tools, website &amp; support included
+    👑 The complete Kids Party Business in a Box · <strong>$197 one-time</strong> · Training, tools, website &amp; support included<!--
+    The plan gets a mention at the top of every page view, and disappears
+    with the same deadline as the offer blocks below.
+ --><span data-plan-offer data-plan-deadline="2026-10-04"> · <span class="plan-flash">⚡ OR 3 PAYMENTS OF $69 — 10 SPOTS, ENDS OCT 4</span>
   </div>
 
   <nav class="nav">
@@ -1589,6 +1651,23 @@
             <div class="value-note">
               One payment · Lifetime training access · Party Biz Hub included for one year
             </div>
+          <div class="plan-offer" data-plan-offer
+               data-plan-deadline="2026-10-04"
+               data-plan-spots="10">
+            <div class="plan-offer-flag">⚡ Only <span class="plan-spots-count">10</span> spots · Payment plan</div>
+            <div class="plan-offer-head">Can't do $197 today? Split it:</div>
+            <div class="plan-offer-price">3 &times; $69<small>$207 total · two weeks apart</small></div>
+            <div class="plan-offer-sub">
+              <strong>You get everything immediately</strong> — the full system on your
+              first payment, not in thirds.<br>
+              Stops on its own after the third. There is never a fourth charge.
+            </div>
+            <a class="btn btn-plan" href="https://buy.stripe.com/9B600jazjaD42D17UUbAs02">
+              Start the 3-payment plan →
+            </a>
+            <div class="plan-offer-deadline" data-plan-deadline-text></div>
+          </div>
+
 <div class="pay-options">
                             <span class="pay-label">Flexible checkout:</span>
                             <span class="pay-badge cashapp">$ Cash App</span>
@@ -1616,6 +1695,31 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Payment plan, high on the page. Someone who cannot pay $197 today is
+         scanning for exactly this, and gives up long before the pricing
+         section if it is not visible early. -->
+    <section class="section" style="padding-top:8px;padding-bottom:8px">
+      <div class="container">
+
+          <div class="plan-offer" data-plan-offer
+               data-plan-deadline="2026-10-04"
+               data-plan-spots="10">
+            <div class="plan-offer-flag">⚡ Only <span class="plan-spots-count">10</span> spots · Payment plan</div>
+            <div class="plan-offer-head">Can't do $197 today? Split it:</div>
+            <div class="plan-offer-price">3 &times; $69<small>$207 total · two weeks apart</small></div>
+            <div class="plan-offer-sub">
+              <strong>You get everything immediately</strong> — the full system on your
+              first payment, not in thirds.<br>
+              Stops on its own after the third. There is never a fourth charge.
+            </div>
+            <a class="btn btn-plan" href="https://buy.stripe.com/9B600jazjaD42D17UUbAs02">
+              Start the 3-payment plan →
+            </a>
+            <div class="plan-offer-deadline" data-plan-deadline-text></div>
+          </div>
       </div>
     </section>
 
@@ -2064,6 +2168,24 @@
             <a class="btn btn-primary" style="width:100%;justify-content:center;" href="https://buy.stripe.com/28E28r5eZ4eG3H51wwbAs00">Yes — Start My Party Business for $197</a>
           </div>
           <span class="value-inline" style="text-align:center;">One payment · Full Business in a Box · Start today</span>
+
+          <div class="plan-offer" data-plan-offer
+               data-plan-deadline="2026-10-04"
+               data-plan-spots="10">
+            <div class="plan-offer-flag">⚡ Only <span class="plan-spots-count">10</span> spots · Payment plan</div>
+            <div class="plan-offer-head">Can't do $197 today? Split it:</div>
+            <div class="plan-offer-price">3 &times; $69<small>$207 total · two weeks apart</small></div>
+            <div class="plan-offer-sub">
+              <strong>You get everything immediately</strong> — the full system on your
+              first payment, not in thirds.<br>
+              Stops on its own after the third. There is never a fourth charge.
+            </div>
+            <a class="btn btn-plan" href="https://buy.stripe.com/9B600jazjaD42D17UUbAs02">
+              Start the 3-payment plan →
+            </a>
+            <div class="plan-offer-deadline" data-plan-deadline-text></div>
+          </div>
+
           <div class="pill-row" style="justify-content:center;margin-top:10px;">
             <span class="pill">Cash App Pay</span>
             <span class="pill">Afterpay</span>
@@ -2318,6 +2440,56 @@
 
   <script>
     document.getElementById("yr").textContent = new Date().getFullYear();
+  </script>
+  <script>
+  /* The payment plan closes itself.
+     ─────────────────────────────────────────────────────────────────────
+     A deadline that only exists in the copy is one the page keeps
+     advertising after it has passed, and returning visitors notice a
+     "last chance" that was also there last month. So the date is read from
+     the markup and enforced here: once it is gone, so is the offer, and the
+     page is back to the one-time price on its own.
+
+     To extend it, change data-plan-deadline on the blocks. Nothing else.
+
+     The spot count is a promise this page cannot keep by itself — nothing
+     here can see how many have sold. When they are gone, deactivate the
+     payment link in Stripe, or lower data-plan-spots. */
+  (function () {
+    var blocks = document.querySelectorAll('[data-plan-offer]');
+    if (!blocks.length) return;
+
+    blocks.forEach(function (block) {
+      var raw = block.getAttribute('data-plan-deadline') || '';
+      // Local midnight at the END of the closing day, so a deadline of the
+      // 4th is still open all day on the 4th, in the reader's own timezone.
+      var parts = raw.split('-').map(Number);
+      var closes = parts.length === 3
+        ? new Date(parts[0], parts[1] - 1, parts[2], 23, 59, 59)
+        : null;
+      if (!closes || isNaN(closes)) return;
+
+      if (Date.now() > closes.getTime()) {
+        block.hidden = true;
+        return;
+      }
+
+      var spots = block.getAttribute('data-plan-spots');
+      var count = block.querySelector('.plan-spots-count');
+      if (count && spots) count.textContent = spots;
+
+      var msLeft = closes.getTime() - Date.now();
+      var daysLeft = Math.ceil(msLeft / 86400000);
+      var dayName = closes.toLocaleDateString(undefined, {
+        weekday: 'long', month: 'long', day: 'numeric'
+      });
+      var urgency = daysLeft <= 1 ? 'Closes today'
+                  : daysLeft === 2 ? 'Closes tomorrow'
+                  : daysLeft + ' days left';
+      var line = block.querySelector('[data-plan-deadline-text]');
+      if (line) line.textContent = '\u23F0 ' + urgency + ' \u00b7 plan closes ' + dayName;
+    });
+  })();
   </script>
 </body>
 </html>
