@@ -1759,12 +1759,36 @@
        the whole document 500px wide on a 390px phone and clipped the copy. */
     html, body { overflow-x: hidden; }
 
+    /* The dated price step and the intake cap. Both are claims the page has
+       to be able to keep: the date removes itself once it passes, and the
+       cap is a ceiling rather than a live count of seats left. */
+    .offer-flash { color: var(--gold-bright); font-weight: 800; }
+    .offer-note {
+      margin: 10px auto 0;
+      max-width: 420px;
+      background: var(--g4);
+      border: 1px solid rgba(126,34,206,0.18);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 0.84rem;
+      color: var(--g5);
+      line-height: 1.5;
+    }
+    .seat-note {
+      margin-top: 14px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      text-align: center;
+    }
+    [data-offer-deadline][hidden] { display: none; }
+
   </style>
 </head>
 <body>
 
   <div class="announce">
-    👑 The complete kids party Business in a Box · <strong>$197 one-time</strong>, or 3 payments of $69
+    👑 The complete kids party Business in a Box · <strong>$197 one-time</strong>, or 3 payments of $69<span data-offer-deadline="2026-10-31"> · <span class="offer-flash">Price goes to $297 on November 1</span></span>
   </div>
 
   <nav class="nav">
@@ -2272,6 +2296,10 @@
             <span class="per">one-time</span>
           </div>
 
+          <div class="offer-note" data-offer-deadline="2026-10-31">
+            <strong>$197 through October 31.</strong> On November 1 the price goes to $297.
+          </div>
+
           <div class="pay-options">
             <span class="pay-label">Flexible checkout:</span>
             <span class="pay-badge cashapp">$ Cash App</span>
@@ -2319,6 +2347,10 @@
             <a class="btn btn-primary" style="width:100%;justify-content:center;" href="https://buy.stripe.com/28E28r5eZ4eG3H51wwbAs00">Yes, Start My Party Business for $197</a>
           </div>
           <span class="value-inline" style="text-align:center;">One payment · Instant access · Lifetime training access</span>
+
+          <p class="seat-note">
+            I take up to <strong>15 new students a month</strong>, because every one of them gets a launch plan call with me. When this month's calls are booked, the next ones start the following month.
+          </p>
 
           <!-- The payment plan, stated once here and once in the hero line.
                No deadline and no spot count: both were invented pressure on a
@@ -2427,6 +2459,25 @@
 
   <script>
     document.getElementById("yr").textContent = new Date().getFullYear();
+  </script>
+  <script>
+  /* A deadline that lives only in the copy is one the page keeps
+     advertising after it has passed. This one is read from the markup and
+     enforced here: at the end of the closing day, in the reader's own
+     timezone, the price-step lines remove themselves.
+
+     NOTE: when the date passes, the price on this page must actually
+     change to $297, and the Stripe link with it. Otherwise the claim was
+     never true. To move the date, edit data-offer-deadline. */
+  (function () {
+    document.querySelectorAll('[data-offer-deadline]').forEach(function (el) {
+      var parts = (el.getAttribute('data-offer-deadline') || '').split('-').map(Number);
+      if (parts.length !== 3) return;
+      var closes = new Date(parts[0], parts[1] - 1, parts[2], 23, 59, 59);
+      if (isNaN(closes)) return;
+      if (Date.now() > closes.getTime()) el.hidden = true;
+    });
+  })();
   </script>
 </body>
 </html>
