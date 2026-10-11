@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kids Party Profit System™ | Business in a Box | Coach Monica</title>
-  <meta name="description" content="Choose your kids party niche, build your first profitable package, and become launch-ready with a 30-day plan, website, templates, software, and support. $197 one-time." />
+  <meta name="description" content="Launch a kids party business that books $450+ parties, in 30 days or less. Built by Coach Monica, who has run 220+ kids parties. $197 one-time, or 3 payments of $69." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
@@ -440,7 +440,7 @@
       border-radius: 16px;
       overflow: hidden;
     }
-    .hero-media .hero-main { display: none; }
+    .hero-media .hero-main { display: block; max-width: 420px; margin: 0 auto; }
     .hero-media .hero-wide { border-radius: 0; }
     .hero-media .hero-wide img { width: 100%; display: block; }
 
@@ -452,6 +452,69 @@
       box-shadow: var(--shadow-sm);
       background: var(--bg-soft);
     }
+
+    /* Proof row — real party photos, so they get their own grid and captions. */
+    /* Two redacted receipts, beside the booking-price claim they back up. */
+    .receipts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      max-width: 520px;
+      margin: 18px auto 0;
+    }
+    .receipts img {
+      width: 100%;
+      display: block;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .proof-photos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+    @media (max-width: 760px) { .proof-photos { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .proof-photos { grid-template-columns: 1fr; } }
+    .proof-photos figure { margin: 0; }
+    .proof-photos .image-shell { aspect-ratio: 4 / 3; }
+    .proof-photos figcaption {
+      font-size: 0.76rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 7px;
+      font-weight: 600;
+    }
+
+    /* Walkthrough clips: vertical phone video, muted, looping. */
+    .proof-videos {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+    @media (max-width: 900px) { .proof-videos { grid-template-columns: repeat(3, 1fr); } }
+    .proof-videos figure { margin: 0; }
+    .proof-videos video {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+      display: block;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      background: var(--bg-soft);
+    }
+    .proof-videos figcaption {
+      font-size: 0.76rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 7px;
+      font-weight: 600;
+    }
+    @media (max-width: 560px) { .proof-videos { grid-template-columns: repeat(2, 1fr); } }
 
     .image-shell.hero-main { aspect-ratio: 4 / 4.15; }
     .image-shell.hero-wide { aspect-ratio: 16 / 7.2; }
@@ -1572,10 +1635,7 @@
 <body>
 
   <div class="announce">
-    👑 The complete Kids Party Business in a Box · <strong>$197 one-time</strong> · Training, tools, website &amp; support included<!--
-    The plan gets a mention at the top of every page view, and disappears
-    with the same deadline as the offer blocks below.
- --><span data-plan-offer data-plan-deadline="2026-10-04"> · <span class="plan-flash">⚡ OR 3 PAYMENTS OF $69 — 10 SPOTS, ENDS OCT 4</span>
+    👑 The complete kids party Business in a Box · <strong>$197 one-time</strong>, or 3 payments of $69
   </div>
 
   <nav class="nav">
@@ -1585,10 +1645,10 @@
         <div class="brand-name">Kids Party Profit System™</div>
       </div>
       <div class="nav-links">
-        <a href="#system">System</a>
-        <a href="#bundle">Business in a Box</a>
+        <a href="#proof">220+ Parties</a>
+        <a href="#bundle">What You Get</a>
         <a href="#playbooks">Playbooks</a>
-        <a href="#community">Community</a>
+        <a href="#how">How It Works</a>
         <a href="#investment">Investment</a>
       </div>
       <div class="nav-cta">
@@ -1599,152 +1659,126 @@
 
   <main>
 
-    <!-- HERO -->
+    <!-- 1. HERO -->
     <section class="hero" id="system">
       <div class="container">
         <div class="hero-shell">
           <div class="hero-copy">
-            <div class="eyebrow">For first-time party business owners</div>
-            <div class="script-line">You do not need every answer. You need a clear first move.</div>
+            <div class="eyebrow">For women ready to start a kids party business</div>
             <h1 class="display display-xl">
-              Turn one kids party idea into a business
-              <br><span class="accent">you are ready to launch in 30 days.</span>
+              Launch a kids party business that books
+              <br><span class="accent">$450+ parties, in 30 days or less.</span>
             </h1>
             <p class="lead">
-              Choose your best party niche, build a profitable package, set your prices, and put the professional systems in place to start accepting inquiries with confidence.
+              One booking can pay for this system twice. Pick one niche, plug in my packages, pricing, website and contracts, and I will personally map your launch plan with you.
             </p>
-            <p class="lead" style="margin-top:10px;">
-              The Kids Party Profit System™ combines the step-by-step training, templates, website, business software, and support you need in one clear path. <strong>No more piecing it together alone.</strong>
-            </p>
-
-            <!-- Three pillars -->
-            <div class="pillars">
-              <div class="pillar">
-                <div class="pillar-num">01</div>
-                <h4>The Course</h4>
-                <p>30-day launch plan + 15 niche playbooks + template vault + private community.</p>
-                <span class="pillar-tag">Included</span>
-              </div>
-              <div class="pillar">
-                <div class="pillar-num">02</div>
-                <h4>The Tools</h4>
-                <p>Party Biz Hub — quote builder, contracts, profit calc, event prep, vendor directory.</p>
-                <span class="pillar-tag">1 year included</span>
-              </div>
-              <div class="pillar">
-                <div class="pillar-num">03</div>
-                <h4>The Website</h4>
-                <p>Plug-and-play party business website template. Your brand. Live in an afternoon.</p>
-                <span class="pillar-tag soon">Included</span>
-              </div>
-              <div class="pillar">
-                <div class="pillar-num">04</div>
-                <h4>The Printables Store</h4>
-                <p>15 done-for-you party printable templates + your own branded digital store. Sell while you sleep.</p>
-                <span class="pillar-tag">Included</span>
-              </div>
-            </div>
+            <p class="lead" style="margin-top:10px;"><strong>Built by Coach Monica, who has run 220+ kids parties across Alabama, Florida and Ghana.</strong></p>
 
             <div class="btn-row">
-              <a class="btn btn-primary" href="https://buy.stripe.com/28E28r5eZ4eG3H51wwbAs00">Build My Party Business — $197</a>
+              <a class="btn btn-primary" href="https://buy.stripe.com/28E28r5eZ4eG3H51wwbAs00">Start My Party Business for $197</a>
             </div>
             <div class="value-note">
-              One payment · Lifetime training access · Party Biz Hub included for one year
+              One payment · Instant access · Or <a href="https://buy.stripe.com/9B600jazjaD42D17UUbAs02" style="color:inherit;">3 payments of $69</a>
             </div>
-          <div class="plan-offer" data-plan-offer
-               data-plan-deadline="2026-10-04"
-               data-plan-spots="10">
-            <div class="plan-offer-flag">⚡ Only <span class="plan-spots-count">10</span> spots · Payment plan</div>
-            <div class="plan-offer-head">Can't do $197 today? Split it:</div>
-            <div class="plan-offer-price">3 &times; $69<small>$207 total · two weeks apart</small></div>
-            <div class="plan-offer-sub">
-              <strong>You get everything immediately</strong> — the full system on your
-              first payment, not in thirds.<br>
-              Stops on its own after the third. There is never a fourth charge.
-            </div>
-            <a class="btn btn-plan" href="https://buy.stripe.com/9B600jazjaD42D17UUbAs02">
-              Start the 3-payment plan →
-            </a>
-            <div class="plan-offer-deadline" data-plan-deadline-text></div>
-          </div>
-
-<div class="pay-options">
-                            <span class="pay-label">Flexible checkout:</span>
-                            <span class="pay-badge cashapp">$ Cash App</span>
-                            <span class="pay-badge afterpay">afterpay</span>
-                            <span class="pay-badge klarna">K klarna</span>
-                            <span class="pay-badge zip">zip</span>
-                          </div>
-            <p class="lead" style="margin-top:12px;">
-              <strong>Start with one offer.</strong> Add more party experiences after your foundation is working.
-            </p>
-
-            <div class="stats">
-              <div class="stat"><strong>30-Day Launch</strong><span>Idea → launch-ready</span></div>
-              <div class="stat"><strong>15 Playbooks</strong><span>Pick one niche &amp; execute</span></div>
-              <div class="stat"><strong>Party Biz Hub</strong><span>1 year included</span></div>
-              <div class="stat"><strong>Printables Store</strong><span>Add digital products</span></div>
+            <div class="pay-options center">
+              <span class="pay-label">Flexible checkout:</span>
+              <span class="pay-badge cashapp">$ Cash App</span>
+              <span class="pay-badge afterpay">afterpay</span>
+              <span class="pay-badge klarna">K klarna</span>
+              <span class="pay-badge zip">zip</span>
             </div>
           </div>
+
+          <!-- One real photo of Monica. The system mockup now lives further down,
+               in What You Get, so the first thing on the page is a person. -->
           <div class="hero-media">
             <div class="image-shell hero-main">
-              <img src="hero-coach-photo.jpg" alt="Coach Monica luxury brand portrait">
-            </div>
-            <div class="image-shell hero-wide">
-              <img src="hero-system-mockup.png" alt="Kids Party Profit System mockup">
+              <img src="hero-coach-photo.jpg" alt="Coach Monica, founder of the Kids Party Profit System">
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Payment plan, high on the page. Someone who cannot pay $197 today is
-         scanning for exactly this, and gives up long before the pricing
-         section if it is not visible early. -->
-    <section class="section" style="padding-top:8px;padding-bottom:8px">
+    <!-- 2. PROOF — the track record, directly under the hero -->
+    <section class="section" id="proof">
       <div class="container">
-
-          <div class="plan-offer" data-plan-offer
-               data-plan-deadline="2026-10-04"
-               data-plan-spots="10">
-            <div class="plan-offer-flag">⚡ Only <span class="plan-spots-count">10</span> spots · Payment plan</div>
-            <div class="plan-offer-head">Can't do $197 today? Split it:</div>
-            <div class="plan-offer-price">3 &times; $69<small>$207 total · two weeks apart</small></div>
-            <div class="plan-offer-sub">
-              <strong>You get everything immediately</strong> — the full system on your
-              first payment, not in thirds.<br>
-              Stops on its own after the third. There is never a fourth charge.
-            </div>
-            <a class="btn btn-plan" href="https://buy.stripe.com/9B600jazjaD42D17UUbAs02">
-              Start the 3-payment plan →
-            </a>
-            <div class="plan-offer-deadline" data-plan-deadline-text></div>
-          </div>
-      </div>
-    </section>
-
-    <!-- WHAT IT IS -->
-    <section class="section">
-      <div class="container grid-2">
-        <div class="card soft">
-          <div class="eyebrow">What this really is</div>
-          <h2 class="display display-md">
-            More than ideas.
-            <br><span class="accent">It gives you the order, tools, and structure to move.</span>
+        <div style="text-align:center;margin-bottom:16px;">
+          <div class="eyebrow" style="justify-content:center;">Proof</div>
+          <h2 class="display display-lg">
+            I have run over 220 kids parties.
+            <br><span class="accent">This is the system I used.</span>
           </h2>
+        </div>
+
+        <div class="card soft">
           <p class="lead">
-            Free videos can give you inspiration. They rarely show you what to do first, what to charge, what to buy, or how to handle a real inquiry. KPPS turns scattered information into one guided launch path built specifically for kids party businesses.
+            I started with kids spa parties and sleepovers in Alabama while working a full-time government job. That became <strong>Glitz and Glam Kids Mobile Spa</strong>. I later opened <strong>Mimolew Events</strong> in Ghana, which still runs today, and founded <strong>Bear Hug Events</strong> in Orlando.
           </p>
-          <ul class="list" style="margin-top:14px;">
-            <li>Choose one profitable party niche without feeling overwhelmed.</li>
-            <li>Run your business from one login instead of seven different platforms.</li>
-            <li>Look clear, premium, and legit from day one.</li>
-            <li>Launch with one offer first, then expand as your income grows.</li>
-          </ul>
+          <p class="lead" style="margin-top:10px;">
+            Over 220 parties in three markets taught me what to offer, what to charge, and what to say when a parent asks for details. KPPS is that playbook, in the order you need it.
+          </p>
         </div>
-        <div class="image-shell square">
-          <img src="bundle-mockup-main.png" alt="Kids Party Profit System bundle mockup">
+
+        <div class="stats" style="grid-template-columns:repeat(3,1fr);">
+          <div class="stat"><strong>220+ parties run</strong><span>Alabama · Florida · Ghana</span></div>
+          <div class="stat"><strong>3 party businesses built</strong><span>Glitz &amp; Glam · Mimolew · Bear Hug</span></div>
+          <div class="stat"><strong>2 countries</strong><span>United States &amp; Ghana</span></div>
         </div>
+
+        <div class="proof-photos">
+          <figure>
+            <div class="image-shell"><img src="party-spa-robes-group.jpg" alt="Guests in robes at a kids spa party" loading="lazy"></div>
+            <figcaption>Kids spa party</figcaption>
+          </figure>
+          <figure>
+            <div class="image-shell"><img src="party-spa-in-action.jpg" alt="Kids spa party in progress, guests at their pedicure stations" loading="lazy"></div>
+            <figcaption>Spa party, pedicure stations</figcaption>
+          </figure>
+          <figure>
+            <div class="image-shell"><img src="party-superhero-sleepover.jpg" alt="Superhero sleepover setup with teepees, lanterns and personalised gift bags" loading="lazy"></div>
+            <figcaption>Superhero sleepover</figcaption>
+          </figure>
+          <figure>
+            <div class="image-shell"><img src="party-unicorn-sleepover.jpg" alt="Unicorn sleepover setup with six teepees and plush unicorns" loading="lazy"></div>
+            <figcaption>Unicorn sleepover</figcaption>
+          </figure>
+          <figure>
+            <div class="image-shell"><img src="party-princess-sleepover.jpg" alt="Princess sleepover setup in pink with three teepees" loading="lazy"></div>
+            <figcaption>Princess sleepover</figcaption>
+          </figure>
+          <figure>
+            <div class="image-shell"><img src="party-superhero-teepees.jpg" alt="Superhero teepee sleepover set up across a full room" loading="lazy"></div>
+            <figcaption>Superhero teepee sleepover</figcaption>
+          </figure>
+        </div>
+
+        <div class="proof-videos">
+          <figure>
+            <video src="party-video-spa.mp4" poster="party-video-spa-poster.jpg" muted loop autoplay playsinline preload="none"></video>
+            <figcaption>Kids spa party, walkthrough</figcaption>
+          </figure>
+          <figure>
+            <video src="party-video-bear-station.mp4" poster="party-video-bear-station-poster.jpg" muted loop autoplay playsinline preload="none"></video>
+            <figcaption>Stuff-a-bear, stuffing station</figcaption>
+          </figure>
+          <figure>
+            <video src="party-video-bear-tables.mp4" poster="party-video-bear-tables-poster.jpg" muted loop autoplay playsinline preload="none"></video>
+            <figcaption>Stuff-a-bear party setup</figcaption>
+          </figure>
+          <figure>
+            <video src="party-video-gold-teepees.mp4" poster="party-video-gold-teepees-poster.jpg" muted loop autoplay playsinline preload="none"></video>
+            <figcaption>Gold and mint teepee sleepover</figcaption>
+          </figure>
+          <figure>
+            <video src="party-video-superhero.mp4" poster="party-video-superhero-poster.jpg" muted loop autoplay playsinline preload="none"></video>
+            <figcaption>Superhero sleepover, walkthrough</figcaption>
+          </figure>
+        </div>
+
+        <p style="font-size:0.76rem;color:var(--muted);text-align:center;margin-top:12px;">
+          Real parties from my own businesses. Guest photos used with parent permission.
+        </p>
       </div>
     </section>
 
@@ -1752,213 +1786,133 @@
       <div class="container"><div class="divider"></div></div>
     </section>
 
-    <!-- WHY NOT STARTED -->
+    <!-- 3. THE MONEY MATH -->
     <section class="section">
-      <div class="container grid-2">
-        <div class="card">
-          <div class="eyebrow">Why starting feels so hard</div>
-          <h2 class="display display-md">
-            The hard part is not creativity.
-            <br><span class="accent">It is knowing what to do first.</span>
-          </h2>
-          <p class="lead" style="margin-top:10px;">
-            Most beginners stay stuck in research mode because every decision feels connected. They do not know which niche to choose, what to charge, what to buy first, or how to look professional without overspending.
-          </p>
-          <p class="lead" style="margin-top:10px;">
-            KPPS helps you make those decisions in the right order, so you can build with intention instead of buying supplies and hoping it works.
-          </p>
-          <div class="btn-row">
-            <a class="btn btn-primary btn-sm" href="https://buy.stripe.com/28E28r5eZ4eG3H51wwbAs00">Start My Business for $197</a>
-          </div>
-          <span class="value-inline">One payment of $197 · Flexible payment methods available at checkout</span>
+      <div class="container card" style="text-align:center;">
+        <div class="eyebrow" style="justify-content:center;">The math</div>
+        <h2 class="display display-md">One booking can cover the whole system.</h2>
+        <p class="lead" style="margin:10px auto 0;">
+          Parties in my own business book from <strong>$450 to $900</strong>. KPPS is <strong>$197</strong>. Your first deposit can cover a good part of what you spend to get started.
+        </p>
+        <div class="receipts">
+          <img src="proof-payment-850.jpg" alt="PayPal notification showing a payment of $850 to Glitz and Glam Kids Spa" loading="lazy">
+          <img src="proof-payment-600.jpg" alt="PayPal notification showing a payment of $600 to Glitz and Glam Kids Spa" loading="lazy">
         </div>
-        <div class="card soft" style="display:flex;flex-direction:column;gap:10px;">
-          <div class="eyebrow">What changes after KPPS</div>
-          <ul class="list">
-            <li>No more guessing what to charge or how to package your offer.</li>
-            <li>No more stitching together 7 different platforms to run one business.</li>
-            <li>No more looking unprofessional because your systems are not in place.</li>
-            <li>No more starting over every time something does not work.</li>
-            <li>A real business with an offer, packages, scripts, tools, and a booking flow.</li>
-          </ul>
+        <p style="font-size:0.76rem;color:var(--muted);margin-top:10px;">
+          Two payments for parties in my own business. Client names and transaction details removed.
+        </p>
+
+        <p class="lead" style="margin:16px auto 0;">
+          You do not stock up on inventory. You pick one niche, start with the basics, and buy for each event as bookings come in.
+        </p>
+        <div class="btn-row" style="justify-content:center;margin-top:18px;">
+          <a class="btn btn-primary" href="https://buy.stripe.com/28E28r5eZ4eG3H51wwbAs00">Start My Party Business for $197</a>
         </div>
+        <p style="font-size:0.72rem;color:var(--muted);margin-top:12px;">
+          Results vary. Your bookings depend on your market, your pricing and your follow-through.
+        </p>
       </div>
     </section>
 
-
-    <!-- PAIN TO TRANSFORMATION -->
-    <section class="section">
-      <div class="container">
-        <div style="text-align:center;margin-bottom:14px;">
-          <div class="eyebrow">The real problem</div>
-          <h2 class="display display-lg">
-            You do not need another random side hustle idea.
-            <br><span class="accent">You need a clear business you can actually launch, book, and run.</span>
-          </h2>
-          <p class="lead" style="margin:0 auto;">
-            The pain is not that you are lazy. The pain is that you are tired of watching other people make money while you keep researching, saving videos, second-guessing prices, and wondering where to start.
-          </p>
-        </div>
-
-        <div class="grid-2">
-          <div class="card">
-            <div class="eyebrow">Before KPPS</div>
-            <h3 class="display display-md">What staying stuck feels like</h3>
-            <ul class="list" style="margin-top:14px;">
-              <li>You want extra income, but every business idea feels expensive, confusing, or overcrowded.</li>
-              <li>You see kids parties happening every weekend, but you do not know how to turn that demand into paid bookings.</li>
-              <li>You are afraid to buy inventory, post your offer, or charge real prices because you do not feel fully prepared.</li>
-              <li>You keep asking, “What should I offer? What should I charge? What do I say when someone asks for details?”</li>
-              <li>You are tired of piecing together free information that gives you motivation but no actual launch path.</li>
-            </ul>
-          </div>
-
-          <div class="card soft">
-            <div class="eyebrow">After KPPS</div>
-            <h3 class="display display-md">What clarity creates</h3>
-            <ul class="list" style="margin-top:14px;">
-              <li>You choose one party niche and know exactly how to position it.</li>
-              <li>You build packages that make sense, look professional, and are easier to sell.</li>
-              <li>You use scripts, templates, quotes, contracts, and a website so your business feels real.</li>
-              <li>You stop sounding like you are “trying something” and start showing up like a prepared business owner.</li>
-              <li>You have a clear path from idea → offer → inquiry → quote → contract → paid booking.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div style="text-align:center;margin-top:24px;">
-          <p class="lead" style="margin:0 auto 14px;">
-            The transformation is simple: you go from overwhelmed beginner to a business owner with a clear offer, a professional setup, and a repeatable booking path.
-          </p>
-          <a class="btn btn-primary" href="https://buy.stripe.com/28E28r5eZ4eG3H51wwbAs00">See Everything Included — $197</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- SIMPLE LAUNCH PATH -->
-    <section class="section-tight">
-      <div class="container">
-        <div style="text-align:center;margin-bottom:18px;">
-          <div class="eyebrow">Your simple launch path</div>
-          <h2 class="display display-md">You are not building fifteen businesses. <span class="accent">You are launching one clear offer.</span></h2>
-        </div>
-        <div class="pillars">
-          <div class="pillar">
-            <div class="pillar-num">01</div>
-            <h4>Choose</h4>
-            <p>Select one party niche that fits your interests, market, and realistic startup budget.</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-num">02</div>
-            <h4>Build</h4>
-            <p>Create a clear package, price it for profit, and identify only the supplies you need first.</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-num">03</div>
-            <h4>Set Up</h4>
-            <p>Use the included website, scripts, quotes, contracts, and software to look ready for business.</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-num">04</div>
-            <h4>Launch</h4>
-            <p>Start sharing your offer, responding to inquiries, and improving through real customer feedback.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-<!-- ⭐ BUSINESS IN A BOX REVEAL -->
+    <!-- 4. WHAT YOU GET -->
     <section class="section" id="bundle">
       <div class="container">
-        <div class="hub-section">
-          <div class="hub-header">
-            <div class="hub-header-left">
-              <div class="eyebrow">Party Biz Hub is ready now</div>
-              <h2 class="display display-lg">
-                The tools to actually <span class="accent">run</span> the business.
-              </h2>
-              <p class="lead" style="margin-top:8px;">
-                When you enroll in KPPS, you do not just walk away with training. You get access to the actual software to run your party business — Party Biz Hub, the first SaaS built specifically for kids party pros. <strong>Full year included.</strong> Then locked at $29/mo for life.
-              </p>
-            </div>
-            <div class="hub-value-badge">
-              <span class="label">1 Year Value</span>
-              <span class="amount">$588</span>
+        <div style="text-align:center;margin-bottom:18px;">
+          <div class="eyebrow" style="justify-content:center;">What you get</div>
+          <h2 class="display display-lg">Everything you need to launch <span class="accent">one offer.</span></h2>
+        </div>
+
+        <div class="outcome-grid">
+          <div class="outcome-item">
+            <div class="outcome-icon">1</div>
+            <div>
+              <h4>The 30-day launch plan</h4>
+              <p>Step by step, from picking your niche to answering your first inquiry.</p>
             </div>
           </div>
-
-          <div class="tools-grid">
-            <div class="tool">
-              <div class="tool-icon">📋</div>
-              <h5>Quote Builder</h5>
-              <p>Branded PDF quotes in under 60 seconds. Packages pre-built.</p>
-            </div>
-            <div class="tool">
-              <div class="tool-icon">📝</div>
-              <h5>Contract Pro</h5>
-              <p>Client contracts that protect your time and deposit.</p>
-            </div>
-            <div class="tool">
-              <div class="tool-icon">💰</div>
-              <h5>Profit Calc</h5>
-              <p>Real profit math. No more $450 parties with $80 left over.</p>
-            </div>
-            <div class="tool">
-              <div class="tool-icon">✅</div>
-              <h5>Event Prep</h5>
-              <p>Every detail. Every event. Nothing falls through the cracks.</p>
-            </div>
-            <div class="tool">
-              <div class="tool-icon">🤝</div>
-              <h5>Vendor Directory</h5>
-              <p>Your balloon girl, your face painter, your cake plug — saved.</p>
-            </div>
-            <div class="tool">
-              <div class="tool-icon">🎬</div>
-              <h5>Content Creator</h5>
-              <p>Create party business content faster and attract ready-to-book leads.</p>
+          <div class="outcome-item">
+            <div class="outcome-icon">2</div>
+            <div>
+              <h4>15 niche playbooks</h4>
+              <p>Choose one: spa, stuff-a-bear, slumber, slime, paint and sip, and more. Each has the setup, supply list and pricing.</p>
             </div>
           </div>
+          <div class="outcome-item">
+            <div class="outcome-icon">3</div>
+            <div>
+              <h4>A plug-and-play website</h4>
+              <p>Your name, colors and packages. Live in an afternoon.</p>
+            </div>
+          </div>
+          <div class="outcome-item">
+            <div class="outcome-icon">4</div>
+            <div>
+              <h4>Party Biz Hub, one year included</h4>
+              <p>Quotes, contracts, profit calculator and event prep in one login.</p>
+            </div>
+          </div>
+          <div class="outcome-item">
+            <div class="outcome-icon">5</div>
+            <div>
+              <h4>Scripts and templates</h4>
+              <p>What to say and what to send when a parent asks for details.</p>
+            </div>
+          </div>
+          <div class="outcome-item">
+            <div class="outcome-icon">6</div>
+            <div>
+              <h4>Private community</h4>
+              <p>Ask questions and build alongside other women doing the same thing.</p>
+            </div>
+          </div>
+          <div class="outcome-item">
+            <div class="outcome-icon">7</div>
+            <div>
+              <h4>A personal launch plan with me</h4>
+              <p>After you join, you get my contact and we set your timeline together.</p>
+            </div>
+          </div>
+        </div>
 
-          <p class="lead" style="margin-top:16px;">
-            Non-KPPS members pay $47/month to access the Hub. <strong>You get it bundled for a full year, then $27/month for as long as your membership remains active.</strong> Your first year is included in today’s $197 purchase.
-          </p>
+        <p class="lead" style="margin:18px auto 0;text-align:center;max-width:720px;">
+          <strong>Bonus:</strong> you also get 15 done-for-you party printable packs and a ready-to-brand store, for when you want to add digital products.
+        </p>
+
+        <div class="hero-media" style="max-width:820px;margin:20px auto 0;">
+          <div class="image-shell hero-wide">
+            <img src="hero-system-mockup.jpg" alt="Kids Party Profit System — what is included">
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- PLAYBOOKS -->
+    <!-- The playbooks, the tools and the community are items 2, 4 and 6 above,
+         shown here so they are more than a line in a list. -->
     <section class="section" id="playbooks">
       <div class="container">
         <div style="text-align:center;margin-bottom:14px;">
-          <div class="eyebrow">Niche playbooks</div>
-          <h2 class="display display-lg">
-            Pick one niche.
-            <span class="accent">Build it. Launch it. Then expand.</span>
-          </h2>
-          <p class="lead" style="margin:0 auto;">
-            Each playbook helps you choose a niche, understand the setup, price the offer, and launch with more confidence and less guessing.
-          </p>
-          <p class="lead" style="text-align:center;max-width:600px;margin:10px auto 0;">
-            You do not need ten services to begin. You need one clear offer you can confidently explain and deliver.
+          <div class="eyebrow" style="justify-content:center;">Item 2 — niche playbooks</div>
+          <h2 class="display display-md">Pick one niche. <span class="accent">Build it. Launch it.</span></h2>
+          <p class="lead" style="margin:8px auto 0;">
+            Each playbook gives you the setup, the supply list and the pricing for that one party type. You need one clear offer you can explain and deliver, not ten.
           </p>
         </div>
 
         <div class="grid-3">
           <article class="playbook">
-            <img class="playbook-img" src="playbook-spa-party.png" alt="Spa Party Playbook">
+            <img class="playbook-img" src="playbook-spa-party.jpg" alt="Spa Party Playbook">
             <h3>Spa Party Playbook</h3>
-            <p>Create a polished mobile spa experience kids love with a niche that feels elevated, in-demand, and easy to position as premium.</p>
+            <p>A polished mobile spa experience, priced and packaged as a premium offer.</p>
           </article>
           <article class="playbook">
-            <img class="playbook-img" src="playbook-bear-business.png" alt="Bear Business Playbook">
+            <img class="playbook-img" src="playbook-bear-business.jpg" alt="Stuff-A-Bear Party Playbook">
             <h3>Stuff-A-Bear Party Playbook</h3>
-            <p>Build a memorable teddy bear party experience with strong perceived value, simple add-ons, and real booking potential.</p>
+            <p>A teddy bear party with strong perceived value, simple add-ons and real booking potential.</p>
           </article>
           <article class="playbook">
-            <img class="playbook-img" src="playbook-slumber-party.png" alt="Slumber Party Playbook">
+            <img class="playbook-img" src="playbook-slumber-party.jpg" alt="Slumber Party Playbook">
             <h3>Slumber Party Playbook</h3>
-            <p>Launch a luxury sleepover setup business with styling, pricing, systems, and client flow already mapped out for you.</p>
+            <p>A luxury sleepover setup, with styling, pricing and client flow mapped out.</p>
           </article>
         </div>
 
@@ -1978,82 +1932,61 @@
           <div class="coming-card"><span class="cs-label">Included</span><strong>Soft Play for Toddlers</strong></div>
           <div class="coming-card"><span class="cs-label">Included</span><strong>Bounce House Rentals</strong></div>
           <div class="coming-card"><span class="cs-label">Included</span><strong>Kids Event Coordinator</strong></div>
-          <div class="coming-card"><span class="cs-label">Included</span><strong>Content Creator System</strong></div>
         </div>
       </div>
     </section>
 
-
-    <!-- 🌟 WEBSITE TEMPLATE + CONTENT CREATOR -->
     <section class="section">
       <div class="container">
-        <div class="teaser-card">
-          <div class="teaser-inner">
-            <span class="teaser-ribbon">✅ Included Now</span>
-            <h2 class="display display-lg">
-              Your plug-and-play <span style="background:linear-gradient(135deg,#f5cc5f,#e6bb54);-webkit-background-clip:text;background-clip:text;color:transparent;">party business website</span> is already included.
-            </h2>
-            <p class="lead" style="margin-top:10px;">
-              No staring at a blank website builder. No wondering what pages you need. No paying a designer before you even book your first client. Your Business in a Box includes a professional kids party website template you can brand, customize, and use to look legit from day one.
-            </p>
-            <ul class="list" style="margin-top:16px;">
-              <li>Your colors, your logo, your packages — plug in and publish</li>
-              <li>Built-in booking inquiry flow to help turn interest into conversations</li>
-              <li>Niche-ready layouts for spa parties, bear parties, slumber parties, rentals, and more</li>
-              <li>Mobile-friendly design that helps you look professional on the first click</li>
-              <li>Built to work alongside your Party Biz Hub for quotes, contracts, and client flow</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 🎀 PARTY PROFIT PRINTABLES -->
-    <section class="section printables-section" id="printables">
-      <div class="container">
-        <div class="printables-inner">
-          <div class="printables-header">
-            <div>
-              <div class="eyebrow">Bonus — Party Profit Printables™</div>
-              <h2 class="display display-lg">
-                A done-for-you digital product business.
-                <br><span class="accent">Already built. Ready to sell.</span>
+        <div class="hub-section">
+          <div class="hub-header">
+            <div class="hub-header-left">
+              <div class="eyebrow">Item 4 — Party Biz Hub</div>
+              <h2 class="display display-md">
+                The tools to actually <span class="accent">run</span> the business.
               </h2>
-              <p class="lead" style="margin-top:10px;">
-                On top of the course, the tools, and the website — you also get your own branded <strong>Party Profit Printables store</strong>. 15 professional party printable templates, a live digital storefront, and a checkout that collects payments automatically. No Canva skills required. No website to build. No inventory.
+              <p class="lead" style="margin-top:8px;">
+                One login for the work that happens after a parent says yes. <strong>Included for a full year with KPPS.</strong>
               </p>
             </div>
-            <span class="printables-badge">Included in KPPS</span>
           </div>
 
-          <p style="font-weight:700;font-size:0.88rem;color:var(--heading);margin-bottom:10px;">Each theme pack includes all 11 item types:</p>
-          <div class="printables-items">
-            <div class="printables-item">Chip Bag Labels</div>
-            <div class="printables-item">Capri Sun Labels</div>
-            <div class="printables-item">Water Bottle Labels</div>
-            <div class="printables-item">Candy Bar Wrappers</div>
-            <div class="printables-item">Pringles Wrappers</div>
-            <div class="printables-item">Favor Bag Toppers</div>
-            <div class="printables-item">Treat Box Labels</div>
-            <div class="printables-item">Cupcake Toppers</div>
-            <div class="printables-item">Thank You Tags</div>
-            <div class="printables-item">Sticker Sheets</div>
-            <div class="printables-item">Welcome Sign &amp; Invitation</div>
-          </div>
-
-          <p style="font-size:0.88rem;color:var(--muted);margin-top:6px;">
-            ✦ 15 theme packs included now &nbsp;·&nbsp; A ready-to-brand storefront &nbsp;·&nbsp; No physical inventory required
-          </p>
-
-          <div class="printables-passive">
-            <strong>Add a digital product income stream to your party brand.</strong><br>
-            Your storefront can accept an order and deliver the customer’s download automatically. You add your brand, set your prices, and market the store. The system handles checkout and delivery.
+          <div class="tools-grid">
+            <div class="tool">
+              <div class="tool-icon">📋</div>
+              <h5>Quote Builder</h5>
+              <p>Branded PDF quotes in under 60 seconds. Packages pre-built.</p>
+            </div>
+            <div class="tool">
+              <div class="tool-icon">📝</div>
+              <h5>Contract Pro</h5>
+              <p>Client contracts that protect your time and deposit.</p>
+            </div>
+            <div class="tool">
+              <div class="tool-icon">💰</div>
+              <h5>Profit Calc</h5>
+              <p>Real profit math, so a $450 party does not leave you $80.</p>
+            </div>
+            <div class="tool">
+              <div class="tool-icon">✅</div>
+              <h5>Event Prep</h5>
+              <p>Every detail. Every event. Nothing falls through the cracks.</p>
+            </div>
+            <div class="tool">
+              <div class="tool-icon">🤝</div>
+              <h5>Vendor Directory</h5>
+              <p>Your balloon girl, your face painter, your cake plug — saved.</p>
+            </div>
+            <div class="tool">
+              <div class="tool-icon">🎬</div>
+              <h5>Content Creator</h5>
+              <p>Create party business content faster and attract ready-to-book leads.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- COMMUNITY -->
     <section class="section" id="community">
       <div class="container">
         <div class="community-dark">
@@ -2062,26 +1995,17 @@
               <img src="private-community-preview.jpg" alt="Kids Profit Academy community preview">
             </div>
             <div>
-              <div class="eyebrow">Private community included</div>
+              <div class="eyebrow">Item 6 — private community</div>
               <h2 class="display display-md" style="color:white;">
                 You will not be building this
                 <span style="background:linear-gradient(135deg,#d8b4fe,#f3e8ff);-webkit-background-clip:text;background-clip:text;color:transparent;">alone.</span>
               </h2>
               <p class="lead" style="color:rgba(255,255,255,0.72);margin-top:8px;">
-                Most people quit when they get stuck. That does not have to be your story.
+                Inside <strong style="color:white;">Kids Profit Academy</strong> you can ask questions when you hit a wall, and build alongside other women doing the same thing.
               </p>
-              <p class="lead" style="color:rgba(255,255,255,0.72);margin-top:8px;">
-                Inside the Kids Party Profit System™, you also get access to the private community: <strong style="color:white;">Kids Profit Academy</strong>.
-              </p>
-              <ul class="list" style="margin-top:14px;">
-                <li>Ask questions when you hit a wall</li>
-                <li>Learn alongside women building the same kind of business</li>
-                <li>Get support, momentum, and real-time ideas</li>
-                <li>Stay in motion instead of starting and stopping</li>
-              </ul>
               <div class="btn-row" style="margin-top:18px;">
-                <a class="btn btn-primary" href="https://buy.stripe.com/28E28r5eZ4eG3H51wwbAs00">Join KPPS</a>
-                </div>
+                <a class="btn btn-primary" href="https://buy.stripe.com/28E28r5eZ4eG3H51wwbAs00">Start My Party Business for $197</a>
+              </div>
               <span class="value-inline" style="color: rgba(255,255,255,0.82);">Included with KPPS · $197 one-time</span>
             </div>
           </div>
@@ -2089,201 +2013,69 @@
       </div>
     </section>
 
-    <!-- 💰 INVESTMENT -->
-    <section class="section" id="investment">
+    <!-- 5. HOW IT WORKS -->
+    <section class="section" id="how">
       <div class="container">
-        <div style="text-align:center;margin-bottom:20px;">
-          <div class="eyebrow">Your investment</div>
-          <h2 class="display display-lg">Everything you need to build your first clear offer.</h2>
-          <p class="lead" style="margin:0 auto 12px;">
-            Stop paying for scattered information and disconnected tools. Get the training, business systems, website, software, and support together in one place.
-          </p>
-          <p class="lead" style="margin:0 auto;"><strong>Your investment: $197 once.</strong> Start with one niche and build at your own pace.</p>
-          <div class="pill-row" style="justify-content:center;margin-top:14px;">
-            <span class="pill">30-Day Launch</span>
-            <span class="pill">15 Playbooks</span>
-            <span class="pill">Private Community</span>
-            <span class="pill pill-gold">★ Party Biz Hub (1 yr)</span>
-            <span class="pill pill-gold">★ Website Template</span>
-            <span class="pill pill-gold">★ Printables Store</span>
-            <span class="pill">Lifetime Course Access</span>
+        <div style="text-align:center;margin-bottom:18px;">
+          <div class="eyebrow" style="justify-content:center;">How it works</div>
+          <h2 class="display display-md">You are not doing this alone. <span class="accent">We start with your plan.</span></h2>
+        </div>
+        <div class="pillars">
+          <div class="pillar">
+            <div class="pillar-num">01</div>
+            <h4>Join and text me</h4>
+            <p>We set your timeline and choose your niche together.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">02</div>
+            <h4>Build one package</h4>
+            <p>Use the playbook to price it for profit and buy only what the first party needs.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">03</div>
+            <h4>Set up</h4>
+            <p>Brand your website, load your packages into Party Biz Hub, and save your scripts.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">04</div>
+            <h4>Launch</h4>
+            <p>Share your offer, answer inquiries with the scripts, send the quote and contract, and collect the deposit.</p>
           </div>
         </div>
-        <div style="max-width:560px;margin:0 auto;">
-
-        <div class="price-box">
-          <div class="price-box-ribbon">👑 Business in a Box</div>
-          <div class="eyebrow" style="margin-top:8px;">Kids Party Profit System™</div>
-
-          <div class="price">
-            <span class="amount">$197</span>
-            <span class="per">one-time</span>
-          </div>
-<div class="pay-options">
-                          <span class="pay-label">Flexible checkout:</span>
-                          <span class="pay-badge cashapp">$ Cash App</span>
-                          <span class="pay-badge afterpay">afterpay</span>
-                          <span class="pay-badge klarna">K klarna</span>
-                          <span class="pay-badge zip">zip</span>
-                        </div>
-          <div class="urgency-bar">Start with one party offer · Keep lifetime access to the training</div>
-
-          <div class="value-stack">
-            <div class="value-stack-row">
-              <span class="label">KPPS Course + 15 Niche Playbooks</span>
-              <span class="val">Included</span>
-            </div>
-            <div class="value-stack-row">
-              <span class="label">Party Biz Hub — 1 year</span>
-              <span class="val">Included for 1 year</span>
-            </div>
-            <div class="value-stack-row">
-              <span class="label">Plug-and-Play Website Template</span>
-              <span class="val">Included</span>
-            </div>
-            <div class="value-stack-row">
-              <span class="label">Private Community (Kids Profit Academy)</span>
-              <span class="val">Included</span>
-            </div>
-            <div class="value-stack-row">
-              <span class="label">Party Profit Printables™ Store</span>
-              <span class="val">Included</span>
-            </div>
-            <div class="value-stack-total">
-              <span>Your price today</span>
-              <span class="val">$197</span>
-            </div>
-          </div>
-
-          <ul class="list">
-            <li>Instant access to the full system</li>
-            <li>All 15 niche playbooks</li>
-            <li>Complete template vault</li>
-            <li>Private community access</li>
-            <li>Party Biz Hub — 1 year included, then $29/mo locked for life</li>
-            <li>Website template included now</li>
-            <li>Party Profit Printables™ — 15 done-for-you templates + your own digital store</li>
-          </ul>
-          <div class="btn-row" style="margin-top:16px;">
-            <a class="btn btn-primary" style="width:100%;justify-content:center;" href="https://buy.stripe.com/28E28r5eZ4eG3H51wwbAs00">Yes — Start My Party Business for $197</a>
-          </div>
-          <span class="value-inline" style="text-align:center;">One payment · Full Business in a Box · Start today</span>
-
-          <div class="plan-offer" data-plan-offer
-               data-plan-deadline="2026-10-04"
-               data-plan-spots="10">
-            <div class="plan-offer-flag">⚡ Only <span class="plan-spots-count">10</span> spots · Payment plan</div>
-            <div class="plan-offer-head">Can't do $197 today? Split it:</div>
-            <div class="plan-offer-price">3 &times; $69<small>$207 total · two weeks apart</small></div>
-            <div class="plan-offer-sub">
-              <strong>You get everything immediately</strong> — the full system on your
-              first payment, not in thirds.<br>
-              Stops on its own after the third. There is never a fourth charge.
-            </div>
-            <a class="btn btn-plan" href="https://buy.stripe.com/9B600jazjaD42D17UUbAs02">
-              Start the 3-payment plan →
-            </a>
-            <div class="plan-offer-deadline" data-plan-deadline-text></div>
-          </div>
-
-          <div class="pill-row" style="justify-content:center;margin-top:10px;">
-            <span class="pill">Cash App Pay</span>
-            <span class="pill">Afterpay</span>
-            <span class="pill">Klarna</span>
-            <span class="pill">Zip</span>
-          </div>
-          <p style="font-size:0.72rem;color:var(--muted);margin-top:10px;text-align:center;">
-            Digital product. All sales are final. KPPS provides education, tools, and support. Business results vary and depend on your decisions, effort, market, and follow-through. Questions before purchasing? Email monica@partybusinesscoach.com.
-          </p>
-        </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- OUTCOMES -->
-    <section class="section">
-      <div class="container">
-        <div style="text-align:center;margin-bottom:14px;">
-          <div class="eyebrow">What you will be equipped to do</div>
-          <h2 class="display display-lg">Replace guesswork with a business you understand.</h2>
+        <div style="text-align:center;margin-top:18px;">
           <p class="lead" style="margin:0 auto;">
-            KPPS gives you a clear path and ready-to-use tools. You bring the action, consistency, and local market knowledge.
+            <strong>Serious students are set up in 7 to 14 days.</strong> The plan gives you 30.
           </p>
-        </div>
-
-        <div class="outcome-grid">
-          <div class="outcome-item">
-            <div class="outcome-icon">📅</div>
-            <div>
-              <h4>Market a clear offer</h4>
-              <p>Create content around one specific party experience instead of promoting a confusing list of services.</p>
-            </div>
-          </div>
-          <div class="outcome-item">
-            <div class="outcome-icon">💸</div>
-            <div>
-              <h4>Charge with confidence</h4>
-              <p>Profit Calc shows you your real margin. You know your pricing, your value, and how to package.</p>
-            </div>
-          </div>
-          <div class="outcome-item">
-            <div class="outcome-icon">📦</div>
-            <div>
-              <h4>Be ready for inquiries</h4>
-              <p>Use scripts, quotes, and contracts so you know what to say and what to send when interest arrives.</p>
-            </div>
-          </div>
-          <div class="outcome-item">
-            <div class="outcome-icon">🏆</div>
-            <div>
-              <h4>Build a repeatable process</h4>
-              <p>Follow the same organized path from inquiry to quote, contract, payment, and event preparation.</p>
-            </div>
-          </div>
-          <div class="outcome-item">
-            <div class="outcome-icon">😴</div>
-            <div>
-              <h4>Add digital products</h4>
-              <p>Use your branded printables store to sell downloadable party products alongside your event services.</p>
-            </div>
-          </div>
-        </div>
-
-        <div style="text-align:center;margin-top:26px;">
-          <p class="lead" style="margin:0 auto 16px;">
-            You do not have to feel completely ready. You need a clear next step and a system you will actually use.
-          </p>
-          <div class="btn-row" style="justify-content:center;">
-            <a class="btn btn-primary" href="https://buy.stripe.com/28E28r5eZ4eG3H51wwbAs00">Start Today for $197</a>
-            <a class="btn btn-secondary" href="#vip-coaching">See VIP Coaching</a>
-          </div>
-          <div class="value-note" style="margin-top:14px;">
-            One payment · <strong>Lifetime course access</strong> · Party Biz Hub included for one year
-          </div>
-<div class="pay-options center">
-            <span class="pay-label">Flexible checkout:</span>
-            <span class="pay-badge cashapp">$ Cash App</span>
-            <span class="pay-badge afterpay">afterpay</span>
-            <span class="pay-badge klarna">K klarna</span>
-            <span class="pay-badge zip">zip</span>
-          </div>
+          <span class="value-inline" style="justify-content:center;">Text and phone support, Monday to Friday, 9am to 6pm ET. I answer within one business day.</span>
         </div>
       </div>
     </section>
 
-    <!-- TESTIMONIALS -->
+    <!-- 6. STUDENT RESULTS AND YOUR STORY -->
     <section class="section testimonials-section">
       <div class="container">
         <div style="text-align:center;margin-bottom:8px;">
-          <div class="eyebrow">What KPPS members say</div>
-          <h2 class="display display-lg">Clear, practical, and built for beginners.</h2>
-          <p class="lead" style="margin:0 auto;">Hear from members about their experience inside the training.</p>
+          <div class="eyebrow" style="justify-content:center;">Reviews</div>
+          <h2 class="display display-lg">What members say</h2>
         </div>
 
         <div class="testimonials-grid">
           <div class="testi-card">
             <div class="testi-stars">★★★★★</div>
-            <p class="testi-quote">"I've purchased at least 12 different business courses over the years, and this is hands down the best one I've taken. It's the most straightforward, easiest-to-follow business-in-a-box system I've ever seen. The training breaks everything down into simple, actionable steps — and it's one of the most affordable investments I've made in business education. If you're looking for a simple, proven business model you can get up and running quickly, I highly recommend KPPS."</p>
+            <p class="testi-quote" style="font-size:1.05rem;font-weight:700;">"It gave me the confidence, tools, and support I needed to finally launch my side hustle."</p>
+            <p class="testi-quote" style="margin-top:8px;">"The program provides step-by-step guidance on how to build and launch your business in a way that feels simple and achievable. It includes easy-to-use templates that helped me get my website up and running quickly without feeling overwhelmed. The biggest benefit, though, is having access to Monica herself. Being able to ask questions, receive guidance, and learn from someone who truly wants to see you succeed has been invaluable. Everything you need is truly in one place."</p>
+            <div class="testi-author">
+              <div class="testi-avatar">E</div>
+              <div>
+                <div class="testi-name">Erica</div>
+                <div class="testi-location">KPPS Member</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-quote" style="font-size:1.05rem;font-weight:700;">"The most straightforward, easiest-to-follow business-in-a-box system I've ever seen."</p>
+            <p class="testi-quote" style="margin-top:8px;">"I've purchased at least 12 different business courses over the years, and this is hands down the best one I've taken. The training breaks everything down into simple, actionable steps — and it's one of the most affordable investments I've made in business education. If you're looking for a simple, proven business model you can get up and running quickly, I highly recommend KPPS."</p>
             <div class="testi-author">
               <div class="testi-avatar">Z</div>
               <div>
@@ -2294,7 +2086,7 @@
           </div>
           <div class="testi-card">
             <div class="testi-stars">★★★★★</div>
-            <p class="testi-quote">"I'm excited about the information and ideas this program provides for starting and growing a kids party business. The training offers helpful guidance, creative party concepts, and motivation. I especially enjoyed learning new ways to structure services and think about profit opportunities. The content is useful for beginners and gives a great starting point if you're serious about building a party business."</p>
+            <p class="testi-quote">"I especially enjoyed learning new ways to structure services and think about profit opportunities. The content is useful for beginners and gives a great starting point if you're serious about building a party business."</p>
             <div class="testi-author">
               <div class="testi-avatar">K</div>
               <div>
@@ -2305,56 +2097,18 @@
           </div>
         </div>
 
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section">
-      <div class="container">
-        <div style="text-align:center;margin-bottom:22px;">
-          <div class="eyebrow">Before you decide</div>
-          <h2 class="display display-lg">Questions new party business owners ask.</h2>
-        </div>
-        <div class="grid-2">
+        <!-- ────────────────────────────────────────────────────────────────
+             RESULT SLOTS — three of them. Fill one in as each win comes in:
+             name, city, the niche she launched, how many days it took, and
+             the date of her first inquiry or booking. Add her screenshot or
+             photo. Until a slot is real, it stays commented out.
+        <div class="grid-3" style="margin-top:18px;">
           <div class="card">
-            <h3>What if I do not know which party business to start?</h3>
-            <p class="lead" style="margin-top:8px;">That is exactly where the system begins. You will compare the niches, your interests, your local market, and your realistic startup budget before choosing one offer.</p>
-          </div>
-          <div class="card soft">
-            <h3>Do I need a large inventory or storefront?</h3>
-            <p class="lead" style="margin-top:8px;">No. Many of the included models can begin as mobile services with a focused supply list. The goal is to start with what your first offer actually needs.</p>
-          </div>
-          <div class="card soft">
-            <h3>Is this only for complete beginners?</h3>
-            <p class="lead" style="margin-top:8px;">No. Beginners receive a full launch path, while existing party pros can use the pricing, systems, website, software, and digital store to organize and expand.</p>
-          </div>
-          <div class="card">
-            <h3>Do I have to launch all 15 niches?</h3>
-            <p class="lead" style="margin-top:8px;">No. Choose one playbook first. The others remain available when you are ready to add another service.</p>
-          </div>
-          <div class="card">
-            <h3>Will I get a website and business tools?</h3>
-            <p class="lead" style="margin-top:8px;">Yes. Your website template is included, along with one year of Party Biz Hub for quotes, contracts, profit planning, event preparation, vendors, and content support.</p>
-          </div>
-          <div class="card soft">
-            <h3>Does joining guarantee bookings or income?</h3>
-            <p class="lead" style="margin-top:8px;">No honest program can guarantee business results. KPPS gives you the plan, tools, and support. Your results depend on how you implement, market, follow up, and serve your customers.</p>
+            <h3>[Name, city]</h3>
+            <p class="lead" style="margin-top:8px;">Launched her [niche] business in [X] days. First [inquiry or booking] on [date].</p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- PRIVATE COACHING TEASER -->
-    <section class="section-tight" id="vip-coaching">
-      <div class="container">
-        <div style="text-align:center;padding:20px;background:linear-gradient(135deg,#1a0050,#4c1d95);border-radius:14px;color:#fff;">
-          <p style="font-size:0.95rem;font-weight:600;line-height:1.7;margin-bottom:10px;">
-            Want to work with Coach Monica directly? Private 1-on-1 coaching spots are available for women who are done with self-paced and want results fast.
-          </p>
-          <a href="https://form.jotform.com/260948290253057" target="_blank" rel="noopener" style="display:inline-block;background:#d4a840;color:#1a0050;font-weight:800;font-size:0.88rem;padding:10px 24px;border-radius:999px;text-decoration:none;">
-            Learn About Private Coaching →
-          </a>
-        </div>
+             ──────────────────────────────────────────────────────────── -->
       </div>
     </section>
 
@@ -2372,13 +2126,11 @@
               <h3>Coach Monica</h3>
               <div class="bio-tag">Queen of Side Hustles™ · Entrepreneur · Business Coach · Orlando, FL</div>
               <p>
-                Monica Lewis is not teaching from guesses. She is teaching from real business experience.
+                I am Monica Lewis, the Queen of Side Hustles. I have run 220+ kids parties through three businesses: <strong>Glitz and Glam Kids Mobile Spa</strong> in Alabama, <strong>Mimolew Events</strong> in Ghana, and <strong>Bear Hug Events</strong> in Orlando.
                 <br><br>
-                She is the founder of <strong>Bear Hug Events</strong> — an active, operating kids party business in Orlando, Florida. She previously built and operated <strong>Glitz and Glam Kids Mobile Spa</strong> in Alabama, and she oversees <strong>Mimolew Events</strong> in Ghana — a kids party and events brand with genuine international reach. Before building her party business portfolio she spent years in <strong>corporate logistics</strong>, which is exactly why her system is built the way it is — structured, process-driven, and designed to create repeatable results.
+                Before that I spent 14 years in logistics. That is why this system is built as a process, in order, with nothing left to guess.
                 <br><br>
-                She built the Kids Party Profit System™ because she kept watching talented women sit on an income opportunity that could change their lives and never pull the trigger. Then she built <strong>Party Biz Hub</strong> — the first SaaS platform designed specifically for kids party pros — because she realized her students needed more than training. They needed tools. The blueprint she teaches is the same one she has used — across multiple markets, multiple cities, and multiple countries — to build real businesses that operate.
-                <br><br>
-                This is not motivation for the sake of motivation. This is instruction from someone who has already done what you are trying to do.
+                I built the Kids Party Profit System™ because I kept watching talented women sit on a real income opportunity and never start.
               </p>
 
               <div class="bio-creds">
@@ -2386,7 +2138,7 @@
                 <span class="bio-cred">✨ Glitz &amp; Glam Kids — Alabama</span>
                 <span class="bio-cred">🌍 Mimolew Events — Ghana</span>
                 <span class="bio-cred">👑 Creator of Party Biz Hub</span>
-                <span class="bio-cred">📦 Corporate Logistics Background</span>
+                <span class="bio-cred">📦 14 Years in Logistics</span>
               </div>
             </div>
           </div>
@@ -2394,23 +2146,152 @@
       </div>
     </section>
 
-    <!-- FINAL CTA -->
+    <!-- 7. PRICE AND FINE PRINT -->
+    <section class="section" id="investment">
+      <div class="container">
+        <div style="text-align:center;margin-bottom:20px;">
+          <div class="eyebrow" style="justify-content:center;">Your investment</div>
+          <h2 class="display display-lg">Your investment: <span class="accent">$197, one time.</span></h2>
+          <p class="lead" style="margin:0 auto;">
+            The 30-day launch plan, 15 niche playbooks, your website, one year of Party Biz Hub, scripts and templates, the private community, and your personal launch plan with me.
+          </p>
+        </div>
+        <div style="max-width:560px;margin:0 auto;">
+
+        <div class="price-box">
+          <div class="price-box-ribbon">👑 Business in a Box</div>
+          <div class="eyebrow" style="margin-top:8px;">Kids Party Profit System™</div>
+
+          <div class="price">
+            <span class="amount">$197</span>
+            <span class="per">one-time</span>
+          </div>
+
+          <div class="pay-options">
+            <span class="pay-label">Flexible checkout:</span>
+            <span class="pay-badge cashapp">$ Cash App</span>
+            <span class="pay-badge afterpay">afterpay</span>
+            <span class="pay-badge klarna">K klarna</span>
+            <span class="pay-badge zip">zip</span>
+          </div>
+
+          <div class="value-stack">
+            <div class="value-stack-row">
+              <span class="label">The 30-day launch plan</span>
+              <span class="val">Included</span>
+            </div>
+            <div class="value-stack-row">
+              <span class="label">15 niche playbooks</span>
+              <span class="val">Included</span>
+            </div>
+            <div class="value-stack-row">
+              <span class="label">Plug-and-play website</span>
+              <span class="val">Included</span>
+            </div>
+            <div class="value-stack-row">
+              <span class="label">Party Biz Hub</span>
+              <span class="val">1 year included</span>
+            </div>
+            <div class="value-stack-row">
+              <span class="label">Scripts and templates</span>
+              <span class="val">Included</span>
+            </div>
+            <div class="value-stack-row">
+              <span class="label">Private community</span>
+              <span class="val">Included</span>
+            </div>
+            <div class="value-stack-row">
+              <span class="label">Your personal launch plan with me</span>
+              <span class="val">Included</span>
+            </div>
+            <div class="value-stack-total">
+              <span>Your price today</span>
+              <span class="val">$197</span>
+            </div>
+          </div>
+
+          <div class="btn-row" style="margin-top:16px;">
+            <a class="btn btn-primary" style="width:100%;justify-content:center;" href="https://buy.stripe.com/28E28r5eZ4eG3H51wwbAs00">Yes, Start My Party Business for $197</a>
+          </div>
+          <span class="value-inline" style="text-align:center;">One payment · Instant access · Lifetime training access</span>
+
+          <!-- The payment plan, stated once here and once in the hero line.
+               No deadline and no spot count: both were invented pressure on a
+               digital product, and the old deadline had already passed. -->
+          <div class="plan-offer">
+            <div class="plan-offer-head">Prefer to split it?</div>
+            <div class="plan-offer-price">3 &times; $69<small>$207 total · two weeks apart</small></div>
+            <div class="plan-offer-sub">
+              <strong>You get everything on the first payment</strong>, not in thirds.<br>
+              It stops after the third. There is never a fourth charge.
+            </div>
+            <a class="btn btn-plan" href="https://buy.stripe.com/9B600jazjaD42D17UUbAs02">
+              Start the 3-payment plan →
+            </a>
+          </div>
+
+          <p style="font-size:0.78rem;color:var(--muted);margin-top:14px;">
+            <strong>Party Biz Hub terms:</strong> included for one year. After that it is $27 a month if you choose to keep it &mdash; nothing renews automatically and no card is charged on its own. Your training, playbooks and website stay yours either way.
+          </p>
+
+          <p style="font-size:0.72rem;color:var(--muted);margin-top:10px;text-align:center;">
+            Digital product with instant downloads. All sales are final. Questions before you buy? Email monica@partybusinesscoach.com and I will answer personally &mdash; ask me anything before you pay.
+          </p>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. FAQ -->
+    <section class="section">
+      <div class="container">
+        <div style="text-align:center;margin-bottom:22px;">
+          <div class="eyebrow" style="justify-content:center;">Before you decide</div>
+          <h2 class="display display-lg">Questions new party business owners ask.</h2>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>What if I do not know which party business to start?</h3>
+            <p class="lead" style="margin-top:8px;">We choose it together in your launch plan, based on your interests, your area and your budget.</p>
+          </div>
+          <div class="card soft">
+            <h3>Do I need a lot of money for supplies?</h3>
+            <p class="lead" style="margin-top:8px;">No. You start with the basics for one niche and buy for each event as bookings come in.</p>
+          </div>
+          <div class="card soft">
+            <h3>How fast can I launch?</h3>
+            <p class="lead" style="margin-top:8px;">Serious students are set up in 7 to 14 days. The plan gives you 30.</p>
+          </div>
+          <div class="card">
+            <h3>Will I get help, or am I on my own?</h3>
+            <p class="lead" style="margin-top:8px;">You get my contact for text and phone support, Monday to Friday, 9am to 6pm ET, with an answer within one business day. You also get the private community, which is there around the clock.</p>
+          </div>
+          <div class="card">
+            <h3>What happens to Party Biz Hub after year one?</h3>
+            <p class="lead" style="margin-top:8px;">It is $27 a month if you keep it, and nothing renews automatically &mdash; you decide when the year is up. Your training, playbooks and website stay yours.</p>
+          </div>
+          <div class="card soft">
+            <h3>Does this guarantee bookings?</h3>
+            <p class="lead" style="margin-top:8px;">No honest program can. You get the plan, the tools and my support. Your results depend on your market and your follow-through.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
     <section class="section">
       <div class="container card soft" style="text-align:center;">
         <div class="eyebrow" style="justify-content:center;">Your next move</div>
         <h2 class="display display-md" style="max-width:700px;margin-inline:auto;">
-          Your business does not have to start with everything.
-          <br><span class="accent">It starts with one clear offer.</span>
+          Your first party could pay for this.
+          <br><span class="accent">Start with one offer.</span>
         </h2>
-        <p class="lead" style="margin:0 auto;max-width:620px;">
-          The training, tools, website template, Party Biz Hub, and printables store are ready. Choose your starting niche and follow the plan one step at a time.
-        </p>
         <div class="btn-row" style="justify-content:center;margin-top:18px;">
-          <a class="btn btn-primary" href="https://buy.stripe.com/28E28r5eZ4eG3H51wwbAs00">Start My Party Business — $197</a>
-          <a class="btn btn-secondary" href="https://partybusinesscoach.com/free">Get the Free Kick Start</a>
+          <a class="btn btn-primary" href="https://buy.stripe.com/28E28r5eZ4eG3H51wwbAs00">Start My Party Business for $197</a>
+          <a class="btn btn-secondary" href="https://partybusinesscoach.com/free">Not ready yet? Get the free Kick Start checklist</a>
         </div>
         <div class="value-note" style="margin-top:14px;">
-          One payment of <strong>$197</strong> · Lifetime training access · Party Biz Hub included for one year
+          One payment of <strong>$197</strong> · Instant access · Or 3 payments of $69
         </div>
       </div>
     </section>
@@ -2426,12 +2307,13 @@
       </div>
 
       <nav class="footer-links">
-        <a href="#system">System</a>
-        <a href="#bundle">Business in a Box</a>
+        <a href="#proof">220+ Parties</a>
+        <a href="#bundle">What You Get</a>
         <a href="#playbooks">Playbooks</a>
-        <a href="#community">Community</a>
+        <a href="#how">How It Works</a>
         <a href="#investment">Investment</a>
         <a href="#bio">Coach Monica</a>
+        <a href="https://form.jotform.com/260948290253057" target="_blank" rel="noopener">Want private 1-on-1 coaching? Apply here</a>
       </nav>
 
       <p class="footer-legal">© <span id="yr"></span> Kids Party Profit System™. All rights reserved.</p>
@@ -2440,56 +2322,6 @@
 
   <script>
     document.getElementById("yr").textContent = new Date().getFullYear();
-  </script>
-  <script>
-  /* The payment plan closes itself.
-     ─────────────────────────────────────────────────────────────────────
-     A deadline that only exists in the copy is one the page keeps
-     advertising after it has passed, and returning visitors notice a
-     "last chance" that was also there last month. So the date is read from
-     the markup and enforced here: once it is gone, so is the offer, and the
-     page is back to the one-time price on its own.
-
-     To extend it, change data-plan-deadline on the blocks. Nothing else.
-
-     The spot count is a promise this page cannot keep by itself — nothing
-     here can see how many have sold. When they are gone, deactivate the
-     payment link in Stripe, or lower data-plan-spots. */
-  (function () {
-    var blocks = document.querySelectorAll('[data-plan-offer]');
-    if (!blocks.length) return;
-
-    blocks.forEach(function (block) {
-      var raw = block.getAttribute('data-plan-deadline') || '';
-      // Local midnight at the END of the closing day, so a deadline of the
-      // 4th is still open all day on the 4th, in the reader's own timezone.
-      var parts = raw.split('-').map(Number);
-      var closes = parts.length === 3
-        ? new Date(parts[0], parts[1] - 1, parts[2], 23, 59, 59)
-        : null;
-      if (!closes || isNaN(closes)) return;
-
-      if (Date.now() > closes.getTime()) {
-        block.hidden = true;
-        return;
-      }
-
-      var spots = block.getAttribute('data-plan-spots');
-      var count = block.querySelector('.plan-spots-count');
-      if (count && spots) count.textContent = spots;
-
-      var msLeft = closes.getTime() - Date.now();
-      var daysLeft = Math.ceil(msLeft / 86400000);
-      var dayName = closes.toLocaleDateString(undefined, {
-        weekday: 'long', month: 'long', day: 'numeric'
-      });
-      var urgency = daysLeft <= 1 ? 'Closes today'
-                  : daysLeft === 2 ? 'Closes tomorrow'
-                  : daysLeft + ' days left';
-      var line = block.querySelector('[data-plan-deadline-text]');
-      if (line) line.textContent = '\u23F0 ' + urgency + ' \u00b7 plan closes ' + dayName;
-    });
-  })();
   </script>
 </body>
 </html>
