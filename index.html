@@ -470,6 +470,100 @@
       box-shadow: var(--shadow-sm);
     }
 
+    /* Proof gallery: five items, photos and clips at one size. */
+    .proof-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .proof-gallery figure {
+      margin: 0;
+      flex: 0 1 calc(50% - 9px);
+    }
+    .proof-frame {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      background: var(--bg-soft);
+    }
+    .proof-frame img, .proof-frame video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .proof-gallery figcaption {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+    @media (max-width: 640px) { .proof-gallery figure { flex: 0 1 100%; } }
+
+    /* The 15 playbooks, as a compact list rather than 15 big tiles. */
+    .playbook-pills-head {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-top: 26px;
+    }
+    .playbook-pills {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .playbook-pills span {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text);
+      text-align: center;
+    }
+    @media (max-width: 900px) { .playbook-pills { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 560px) { .playbook-pills { grid-template-columns: repeat(2, 1fr); } }
+
+    /* Erica's review, featured under the math. */
+    .featured-review {
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 26px 24px;
+    }
+    .featured-quote {
+      font-size: 1.25rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+    .featured-body {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-top: 12px;
+    }
+
+    /* Stat tiles sit level, whatever the label length. */
+    .stats.stats-3 { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
+    .stats .stat { display: flex; flex-direction: column; justify-content: center; height: 100%; }
+    @media (max-width: 760px) { .stats.stats-3 { grid-template-columns: 1fr; } }
+
     .proof-photos {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -617,7 +711,13 @@
     .playbook {
       display: flex;
       flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 18px 18px 20px;
     }
+    .playbook h3 { margin-top: 0; }
 
     .playbook h3 {
       font-family: "Playfair Display", serif;
@@ -1519,7 +1619,7 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--purple), var(--pink));
+      background: linear-gradient(135deg, var(--g1), var(--g3));
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1630,6 +1730,35 @@
       .stats { grid-template-columns: 1fr; }
       .tools-grid { grid-template-columns: 1fr 1fr; }
     }
+    /* The payment plan is the second option, so it reads quieter than the
+       $197 button above it. */
+    .plan-offer {
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      color: var(--text);
+      box-shadow: none;
+      padding: 22px 20px 20px;
+    }
+    .plan-offer-head { color: var(--text); font-size: 1rem; }
+    .plan-offer-price { color: var(--g3); font-size: clamp(1.6rem, 4vw, 2rem); }
+    .plan-offer-price small { color: var(--muted); font-size: .82rem; }
+    .plan-offer-sub { color: var(--muted); font-size: .86rem; }
+    .plan-offer-sub strong { color: var(--text); }
+    .btn-plan {
+      background: transparent;
+      border: 1.5px solid var(--g2);
+      color: var(--g2);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 12px 22px;
+      box-shadow: none;
+    }
+    .btn-plan:hover { background: var(--g4); filter: none; }
+
+    /* The hero's decorative glow sits 180px outside the viewport, which made
+       the whole document 500px wide on a 390px phone and clipped the copy. */
+    html, body { overflow-x: hidden; }
+
   </style>
 </head>
 <body>
@@ -1720,59 +1849,36 @@
           </p>
         </div>
 
-        <div class="stats" style="grid-template-columns:repeat(3,1fr);">
-          <div class="stat"><strong>220+ parties run</strong><span>Alabama · Florida · Ghana</span></div>
-          <div class="stat"><strong>3 party businesses built</strong><span>Glitz &amp; Glam · Mimolew · Bear Hug</span></div>
+        <div class="stats stats-3">
+          <div class="stat"><strong>220+ parties</strong><span>Alabama · Florida · Ghana</span></div>
+          <div class="stat"><strong>3 businesses</strong><span>Glitz &amp; Glam · Mimolew · Bear Hug</span></div>
           <div class="stat"><strong>2 countries</strong><span>United States &amp; Ghana</span></div>
         </div>
 
-        <div class="proof-photos">
+        <div class="proof-gallery">
           <figure>
-            <div class="image-shell"><img src="party-spa-robes-group.jpg" alt="Guests in robes at a kids spa party" loading="lazy"></div>
-            <figcaption>Kids spa party</figcaption>
+            <div class="proof-frame"><img src="party-spa-in-action.jpg" alt="Kids spa party with guests at their pedicure stations" loading="lazy"></div>
+            <figcaption>Spa party, Glitz and Glam, Alabama</figcaption>
           </figure>
           <figure>
-            <div class="image-shell"><img src="party-spa-in-action.jpg" alt="Kids spa party in progress, guests at their pedicure stations" loading="lazy"></div>
-            <figcaption>Spa party, pedicure stations</figcaption>
+            <div class="proof-frame"><img src="party-princess-sleepover.jpg" alt="Princess sleepover setup in pink with three teepees" loading="lazy"></div>
+            <figcaption>Princess sleepover, Mimolew Events, Ghana</figcaption>
           </figure>
           <figure>
-            <div class="image-shell"><img src="party-superhero-sleepover.jpg" alt="Superhero sleepover setup with teepees, lanterns and personalised gift bags" loading="lazy"></div>
-            <figcaption>Superhero sleepover</figcaption>
+            <div class="proof-frame"><img src="party-superhero-teepees.jpg" alt="Superhero teepee sleepover set up across a full room" loading="lazy"></div>
+            <figcaption>Superhero teepee sleepover, Mimolew Events, Ghana</figcaption>
           </figure>
           <figure>
-            <div class="image-shell"><img src="party-unicorn-sleepover.jpg" alt="Unicorn sleepover setup with six teepees and plush unicorns" loading="lazy"></div>
-            <figcaption>Unicorn sleepover</figcaption>
+            <div class="proof-frame"><img src="party-unicorn-sleepover.jpg" alt="Unicorn sleepover setup with six teepees and plush unicorns" loading="lazy"></div>
+            <figcaption>Unicorn sleepover, Mimolew Events, Ghana</figcaption>
           </figure>
           <figure>
-            <div class="image-shell"><img src="party-princess-sleepover.jpg" alt="Princess sleepover setup in pink with three teepees" loading="lazy"></div>
-            <figcaption>Princess sleepover</figcaption>
+            <div class="proof-frame"><video src="party-video-bear-station.mp4" poster="party-video-bear-station-poster.jpg" muted loop autoplay playsinline preload="none"></video></div>
+            <figcaption>Stuff-a-bear stuffing station, Bear Hug Events, Orlando</figcaption>
           </figure>
           <figure>
-            <div class="image-shell"><img src="party-superhero-teepees.jpg" alt="Superhero teepee sleepover set up across a full room" loading="lazy"></div>
-            <figcaption>Superhero teepee sleepover</figcaption>
-          </figure>
-        </div>
-
-        <div class="proof-videos">
-          <figure>
-            <video src="party-video-spa.mp4" poster="party-video-spa-poster.jpg" muted loop autoplay playsinline preload="none"></video>
-            <figcaption>Kids spa party, walkthrough</figcaption>
-          </figure>
-          <figure>
-            <video src="party-video-bear-station.mp4" poster="party-video-bear-station-poster.jpg" muted loop autoplay playsinline preload="none"></video>
-            <figcaption>Stuff-a-bear, stuffing station</figcaption>
-          </figure>
-          <figure>
-            <video src="party-video-bear-tables.mp4" poster="party-video-bear-tables-poster.jpg" muted loop autoplay playsinline preload="none"></video>
-            <figcaption>Stuff-a-bear party setup</figcaption>
-          </figure>
-          <figure>
-            <video src="party-video-gold-teepees.mp4" poster="party-video-gold-teepees-poster.jpg" muted loop autoplay playsinline preload="none"></video>
-            <figcaption>Gold and mint teepee sleepover</figcaption>
-          </figure>
-          <figure>
-            <video src="party-video-superhero.mp4" poster="party-video-superhero-poster.jpg" muted loop autoplay playsinline preload="none"></video>
-            <figcaption>Superhero sleepover, walkthrough</figcaption>
+            <div class="proof-frame"><video src="party-video-gold-teepees.mp4" poster="party-video-gold-teepees-poster.jpg" muted loop autoplay playsinline preload="none"></video></div>
+            <figcaption>Gold and mint teepee, Glitz and Glam, Alabama</figcaption>
           </figure>
         </div>
 
@@ -1811,6 +1917,24 @@
         <p style="font-size:0.72rem;color:var(--muted);margin-top:12px;">
           Results vary. Your bookings depend on your market, your pricing and your follow-through.
         </p>
+      </div>
+    </section>
+
+    <!-- Erica's review, directly after the math it backs up. -->
+    <section class="section-tight">
+      <div class="container">
+        <div class="featured-review">
+          <div class="testi-stars">★★★★★</div>
+          <p class="featured-quote">"It gave me the confidence, tools, and support I needed to finally launch my side hustle."</p>
+          <p class="featured-body">"The program provides step-by-step guidance on how to build and launch your business in a way that feels simple and achievable. It includes easy-to-use templates that helped me get my website up and running quickly without feeling overwhelmed. The biggest benefit, though, is having access to Monica herself. Being able to ask questions, receive guidance, and learn from someone who truly wants to see you succeed has been invaluable. Everything you need is truly in one place."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">E</div>
+            <div>
+              <div class="testi-name">Erica</div>
+              <div class="testi-location">KPPS Member</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1877,12 +2001,6 @@
         <p class="lead" style="margin:18px auto 0;text-align:center;max-width:720px;">
           <strong>Bonus:</strong> you also get 15 done-for-you party printable packs and a ready-to-brand store, for when you want to add digital products.
         </p>
-
-        <div class="hero-media" style="max-width:820px;margin:20px auto 0;">
-          <div class="image-shell hero-wide">
-            <img src="hero-system-mockup.jpg" alt="Kids Party Profit System — what is included">
-          </div>
-        </div>
       </div>
     </section>
 
@@ -1900,38 +2018,36 @@
 
         <div class="grid-3">
           <article class="playbook">
-            <img class="playbook-img" src="playbook-spa-party.jpg" alt="Spa Party Playbook">
             <h3>Spa Party Playbook</h3>
             <p>A polished mobile spa experience, priced and packaged as a premium offer.</p>
           </article>
           <article class="playbook">
-            <img class="playbook-img" src="playbook-bear-business.jpg" alt="Stuff-A-Bear Party Playbook">
             <h3>Stuff-A-Bear Party Playbook</h3>
             <p>A teddy bear party with strong perceived value, simple add-ons and real booking potential.</p>
           </article>
           <article class="playbook">
-            <img class="playbook-img" src="playbook-slumber-party.jpg" alt="Slumber Party Playbook">
             <h3>Slumber Party Playbook</h3>
             <p>A luxury sleepover setup, with styling, pricing and client flow mapped out.</p>
           </article>
         </div>
 
-        <div class="coming-grid">
-          <div class="coming-card"><span class="cs-label">Included</span><strong>Kids Spa Party</strong></div>
-          <div class="coming-card"><span class="cs-label">Included</span><strong>Stuff-A-Bear Party</strong></div>
-          <div class="coming-card"><span class="cs-label">Included</span><strong>Teepee Party</strong></div>
-          <div class="coming-card"><span class="cs-label">Included</span><strong>Slime &amp; Science Party</strong></div>
-          <div class="coming-card"><span class="cs-label">Included</span><strong>Kids Paint &amp; Sip</strong></div>
-          <div class="coming-card"><span class="cs-label">Included</span><strong>DIY Craft Party</strong></div>
-          <div class="coming-card"><span class="cs-label">Included</span><strong>Candy &amp; Dessert Table</strong></div>
-          <div class="coming-card"><span class="cs-label">Included</span><strong>Food Cart Rentals</strong></div>
-          <div class="coming-card"><span class="cs-label">Included</span><strong>Face Painting &amp; Balloons</strong></div>
-          <div class="coming-card"><span class="cs-label">Included</span><strong>Photo Booth Rentals</strong></div>
-          <div class="coming-card"><span class="cs-label">Included</span><strong>Outdoor Movie Night</strong></div>
-          <div class="coming-card"><span class="cs-label">Included</span><strong>Party Rentals</strong></div>
-          <div class="coming-card"><span class="cs-label">Included</span><strong>Soft Play for Toddlers</strong></div>
-          <div class="coming-card"><span class="cs-label">Included</span><strong>Bounce House Rentals</strong></div>
-          <div class="coming-card"><span class="cs-label">Included</span><strong>Kids Event Coordinator</strong></div>
+        <h3 class="playbook-pills-head">All 15 playbooks included</h3>
+        <div class="playbook-pills">
+          <span>Kids Spa Party</span>
+          <span>Stuff-A-Bear Party</span>
+          <span>Teepee Party</span>
+          <span>Slime &amp; Science Party</span>
+          <span>Kids Paint &amp; Sip</span>
+          <span>DIY Craft Party</span>
+          <span>Candy &amp; Dessert Table</span>
+          <span>Food Cart Rentals</span>
+          <span>Face Painting &amp; Balloons</span>
+          <span>Photo Booth Rentals</span>
+          <span>Outdoor Movie Night</span>
+          <span>Party Rentals</span>
+          <span>Soft Play for Toddlers</span>
+          <span>Bounce House Rentals</span>
+          <span>Kids Event Coordinator</span>
         </div>
       </div>
     </section>
@@ -2062,18 +2178,6 @@
         <div class="testimonials-grid">
           <div class="testi-card">
             <div class="testi-stars">★★★★★</div>
-            <p class="testi-quote" style="font-size:1.05rem;font-weight:700;">"It gave me the confidence, tools, and support I needed to finally launch my side hustle."</p>
-            <p class="testi-quote" style="margin-top:8px;">"The program provides step-by-step guidance on how to build and launch your business in a way that feels simple and achievable. It includes easy-to-use templates that helped me get my website up and running quickly without feeling overwhelmed. The biggest benefit, though, is having access to Monica herself. Being able to ask questions, receive guidance, and learn from someone who truly wants to see you succeed has been invaluable. Everything you need is truly in one place."</p>
-            <div class="testi-author">
-              <div class="testi-avatar">E</div>
-              <div>
-                <div class="testi-name">Erica</div>
-                <div class="testi-location">KPPS Member</div>
-              </div>
-            </div>
-          </div>
-          <div class="testi-card">
-            <div class="testi-stars">★★★★★</div>
             <p class="testi-quote" style="font-size:1.05rem;font-weight:700;">"The most straightforward, easiest-to-follow business-in-a-box system I've ever seen."</p>
             <p class="testi-quote" style="margin-top:8px;">"I've purchased at least 12 different business courses over the years, and this is hands down the best one I've taken. The training breaks everything down into simple, actionable steps — and it's one of the most affordable investments I've made in business education. If you're looking for a simple, proven business model you can get up and running quickly, I highly recommend KPPS."</p>
             <div class="testi-author">
@@ -2086,7 +2190,8 @@
           </div>
           <div class="testi-card">
             <div class="testi-stars">★★★★★</div>
-            <p class="testi-quote">"I especially enjoyed learning new ways to structure services and think about profit opportunities. The content is useful for beginners and gives a great starting point if you're serious about building a party business."</p>
+            <p class="testi-quote" style="font-size:1.05rem;font-weight:700;">"A great starting point if you're serious about building a party business."</p>
+            <p class="testi-quote" style="margin-top:8px;">"I especially enjoyed learning new ways to structure services and think about profit opportunities. The content is useful for beginners and gives a great starting point if you're serious about building a party business."</p>
             <div class="testi-author">
               <div class="testi-avatar">K</div>
               <div>
