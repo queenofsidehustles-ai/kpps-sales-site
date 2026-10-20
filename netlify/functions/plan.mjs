@@ -116,9 +116,6 @@ Income goal: ${a.income_goal}
 Biggest worry: ${a.biggest_worry}
 Start timing: ${a.start_timing}`;
 
-  // Add to MailerLite in the background (optional)
-  const mailerlite = addToMailerLite(a).catch((e) => console.error("MailerLite:", e.message));
-
   let plan;
   try {
     const res = await fetch("https://api.anthropic.com/v1/messages", {
@@ -143,15 +140,33 @@ Start timing: ${a.start_timing}`;
     plan = JSON.parse(text.slice(start, end + 1));
   } catch (e) {
     console.error(e.message);
-    await mailerlite;
     return json(502, { error: "Something went wrong writing your plan. Please try again." });
   }
 
-  await mailerlite;
+  // Save the person and their plan to MailerLite. A MailerLite automation emails it to them.
+  try { await addToMailerLite(a, plan); } catch (e) { console.error("MailerLite:", e.message); }
+
   return json(200, { first_name: a.first_name, plan });
 };
 
-async function addToMailerLite(a) {
+// MailerLite text fields hold about 1,000 characters, so each plan section gets its own field.
+const fit = (s) => String(s ?? "").replace(/\s+/g, " ").trim().slice(0, 1000);
+const tipLine = (s) => (s ? ` KPPS shortcut: ${s}` : "");
+
+function planFields(p) {
+  const n = p.niche || {}, k = p.package || {}, sh = p.shopping || {}, nu = p.numbers || {}, tl = p.timeline || {}, w = p.worry || {};
+  return {
+    plan_note: fit(p.note),
+    plan_niche: fit(`${n.title || ""}. ${n.body || ""}${tipLine(n.shortcut)}`),
+    plan_package: fit(`"${k.name || ""}": ${k.body || ""} Typical starting range: ${k.price || ""}.${tipLine(k.shortcut)}`),
+    plan_shopping: fit(`${(sh.items || []).join(", ")}. ${sh.body || ""}${tipLine(sh.shortcut)}`),
+    plan_numbers: fit(`${nu.big1 || ""} ${nu.label1 || ""}, ${nu.big2 || ""} ${nu.label2 || ""}. ${nu.body || ""}${tipLine(nu.shortcut)} Typical starting ranges; adjust for your area. This is an example, not a promise.`),
+    plan_timeline: fit(`${tl.intro ? tl.intro + " " : ""}${(tl.steps || []).map((x) => `${x.days}: ${x.task}`).join(" · ").replace(/\.?$/, ".")}${tipLine(tl.shortcut)}`),
+    plan_worry: fit(`${w.title ? w.title + ". " : ""}${w.body || ""}${tipLine(w.shortcut)}`),
+  };
+}
+
+async function addToMailerLite(a, plan) {
   const key = process.env.MAILERLITE_API_KEY;
   if (!key) return;
   const body = {
@@ -160,11 +175,9 @@ async function addToMailerLite(a) {
       name: a.first_name,
       city: a.city_state,
       quiz_party_type: a.party_group,
-      quiz_situation: a.situation,
-      quiz_budget: a.budget,
-      quiz_goal: a.income_goal,
       quiz_worry: a.biggest_worry,
       quiz_start: a.start_timing,
+      ...planFields(plan),
     },
   };
   if (process.env.MAILERLITE_GROUP_ID) body.groups = [process.env.MAILERLITE_GROUP_ID];
