@@ -111,7 +111,7 @@ function shapePlan(f) {
   return {
     note: t(f.note),
     niche: { title: t(f.niche_title), body: t(f.niche_body), shortcut: t(f.niche_shortcut) },
-    package: { name: t(f.package_name), body: t(f.package_body), price: t(f.package_price), shortcut: t(f.package_shortcut) },
+    package: { name: t(f.package_name), body: t(f.package_body), price: t(f.package_price).replace(/\s*\(.*\)\s*$/, ""), shortcut: t(f.package_shortcut) },
     shopping: { items: (Array.isArray(f.shopping_items) ? f.shopping_items : []).map(t).filter(Boolean), body: t(f.shopping_body), shortcut: t(f.shopping_shortcut) },
     numbers: { big1: t(f.parties_per_month), label1: "parties a month", big2: t(f.monthly_after_supplies), label2: "a month after supplies", body: t(f.numbers_body), shortcut: t(f.numbers_shortcut) },
     timeline: {
@@ -236,7 +236,7 @@ async function addToMailerLite(a, plan) {
       ...planFields(plan),
     },
   };
-  if (process.env.MAILERLITE_GROUP_ID) body.groups = [process.env.MAILERLITE_GROUP_ID];
+  body.groups = [String(process.env.MAILERLITE_GROUP_ID || "").trim() || "201806353583309946"]; // Launch Plan Quiz group
   const res = await fetch("https://connect.mailerlite.com/api/subscribers", {
     method: "POST",
     headers: { Authorization: `Bearer ${key}`, "content-type": "application/json", accept: "application/json" },
