@@ -99,7 +99,7 @@ const PLAN_TOOL = {
       timeline_steps: { type: "array", items: { type: "string" }, description: "Exactly 5 steps, each formatted 'Days 1–3: short task'" },
       timeline_shortcut: S("One-sentence KPPS shortcut, or empty string"),
       worry_title: S("Their worry in a few words"),
-      worry_body: S("2-3 sentences drawing on Monica's experience"),
+      worry_body: S("2-3 sentences of practical advice in a warm voice. Do not describe Monica's past or feelings."),
       worry_shortcut: S("One-sentence KPPS shortcut, or empty string"),
     },
   },
@@ -107,7 +107,14 @@ const PLAN_TOOL = {
 
 // Turn the flat tool answer into the sections the page and MailerLite use.
 function shapePlan(f) {
-  const t = (v) => String(v ?? "").trim();
+  const t = (v) => String(v ?? "").replace(/<\/?[a-z_]+[^>]*>[\s\S]*$/i, "").trim(); // cut any leaked tool markup
+  // Safety net: if the steps leaked into another field, pull them back out.
+  if (!Array.isArray(f.timeline_steps) || !f.timeline_steps.length) {
+    for (const v of Object.values(f)) {
+      const m = typeof v === "string" && v.match(/timeline_steps[^\[]*(\[[\s\S]*?\])/);
+      if (m) { try { f.timeline_steps = JSON.parse(m[1].replace(/\\"/g, '"')); } catch {} break; }
+    }
+  }
   return {
     note: t(f.note),
     niche: { title: t(f.niche_title), body: t(f.niche_body), shortcut: t(f.niche_shortcut) },
