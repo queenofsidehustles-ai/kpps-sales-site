@@ -50,8 +50,7 @@ Service
 
 How to use the prices:
 - Always call them "typical starting ranges" and tell the reader to adjust for their area.
-- Numbers: use the middle of the price range minus supplies to show what one party nets before gas and time, then how many parties a month their income goal takes. Round to whole numbers. Double-check your arithmetic.
-- For setups and rentals, say how many bookings it takes to pay back the startup cost.
+- Numbers: only report the midpoint price, supplies per party and startup cost. The math is done for you afterwards.
 - Food carts that cook or sell food may need permits, insurance and health-department approval. Say so if you suggest one.
 
 KPPS shortcut notes: give exactly 3 or 4 sections a one-sentence "shortcut" naming the Kids Party Profit System tool that makes that step faster. Only these tools exist: Quote Builder, Contract Generator, done-for-you website, party printables, marketing templates, booking and invoicing tools. Leave "shortcut" as an empty string on the other sections.
@@ -77,7 +76,7 @@ const PLAN_TOOL = {
   input_schema: {
     type: "object",
     required: ["note", "niche_title", "niche_body", "niche_shortcut", "package_name", "package_body", "package_price", "package_shortcut",
-      "shopping_items", "shopping_body", "shopping_shortcut", "parties_per_month", "monthly_after_supplies", "numbers_body", "numbers_shortcut",
+      "shopping_items", "shopping_body", "shopping_shortcut", "price_midpoint", "supplies_per_party", "startup_cost", "numbers_note", "numbers_shortcut",
       "timeline_intro", "timeline_steps", "timeline_shortcut", "worry_title", "worry_body", "worry_shortcut"],
     properties: {
       note: S("2 warm sentences to the reader by first name"),
@@ -91,9 +90,10 @@ const PLAN_TOOL = {
       shopping_items: { type: "array", items: { type: "string" }, description: "3 to 6 short shopping items" },
       shopping_body: S("1 sentence about buying per booking"),
       shopping_shortcut: S("One-sentence KPPS shortcut, or empty string"),
-      parties_per_month: S("Just the number of parties a month their income goal takes, e.g. 3"),
-      monthly_after_supplies: S("Just the monthly amount after supplies at that many parties, e.g. ~$590"),
-      numbers_body: S("1-2 sentences showing the math: midpoint price minus supplies = net per party, times parties"),
+      price_midpoint: { type: "number", description: "Middle of the starter party's typical price range in dollars, e.g. 325" },
+      supplies_per_party: { type: "number", description: "Supplies used up per party in dollars for the package's guest count, e.g. 130. Not equipment." },
+      startup_cost: { type: "number", description: "One-time equipment cost in dollars (low end of the startup range) for setups and rentals; 0 for hosted parties" },
+      numbers_note: S("Optional short extra tip about the numbers, or empty string. Do not do any math here."),
       numbers_shortcut: S("One-sentence KPPS shortcut, or empty string"),
       timeline_intro: S("How much time per week this assumes, 1 short sentence"),
       timeline_steps: { type: "array", items: { type: "string" }, description: "Exactly 5 steps, each formatted 'Days 1–3: short task'" },
@@ -105,8 +105,31 @@ const PLAN_TOOL = {
   },
 };
 
+
+const GOALS = { "An extra $500 a month": 500, "$1,000 to $2,000 a month": 1000, "Replace my income someday": 2000 };
+const money = (n) => "$" + Math.round(n).toLocaleString("en-US");
+const round5 = (n) => Math.round(n / 5) * 5;
+
+// The math is done here, not by the AI, so the numbers always add up.
+function computeNumbers(f, goalText) {
+  const price = Math.max(0, Number(f.price_midpoint) || 0);
+  const supplies = Math.max(0, Number(f.supplies_per_party) || 0);
+  const startup = Math.max(0, Number(f.startup_cost) || 0);
+  const net = round5(price - supplies);
+  const goal = GOALS[goalText] || 500;
+  if (!(net > 0)) return { big1: "", label1: "", big2: "", label2: "", body: String(f.numbers_note || "").trim() };
+  const parties = Math.max(1, Math.ceil(goal / net));
+  const monthly = parties * net;
+  let body = `At about ${money(price)} a party with about ${money(supplies)} in supplies, each party nets about ${money(net)} before gas and your time. ${parties} ${parties === 1 ? "party" : "parties"} a month gets you about ${money(monthly)}.`;
+  if (goalText === "Replace my income someday") body += ` Think of ${money(goal)} a month as a first milestone on the way to replacing your income.`;
+  if (startup > 0) { const payback = Math.ceil(startup / net); body += ` Your equipment costs about ${money(startup)} up front, which about ${payback} ${payback === 1 ? "booking pays" : "bookings pay"} back.`; }
+  const note = String(f.numbers_note || "").trim();
+  if (note) body += " " + note;
+  return { big1: String(parties), label1: parties === 1 ? "party a month" : "parties a month", big2: "~" + money(monthly), label2: "a month after supplies", body };
+}
+
 // Turn the flat tool answer into the sections the page and MailerLite use.
-function shapePlan(f) {
+function shapePlan(f, goal) {
   const t = (v) => String(v ?? "").replace(/<\/?[a-z_]+[^>]*>[\s\S]*$/i, "").trim(); // cut any leaked tool markup
   // Safety net: if the steps leaked into another field, pull them back out.
   if (!Array.isArray(f.timeline_steps) || !f.timeline_steps.length) {
@@ -120,7 +143,7 @@ function shapePlan(f) {
     niche: { title: t(f.niche_title), body: t(f.niche_body), shortcut: t(f.niche_shortcut) },
     package: { name: t(f.package_name), body: t(f.package_body), price: t(f.package_price).replace(/\s*\(.*\)\s*$/, ""), shortcut: t(f.package_shortcut) },
     shopping: { items: (Array.isArray(f.shopping_items) ? f.shopping_items : []).map(t).filter(Boolean), body: t(f.shopping_body), shortcut: t(f.shopping_shortcut) },
-    numbers: { big1: t(f.parties_per_month), label1: "parties a month", big2: t(f.monthly_after_supplies), label2: "a month after supplies", body: t(f.numbers_body), shortcut: t(f.numbers_shortcut) },
+    numbers: { ...computeNumbers(f, goal), shortcut: t(f.numbers_shortcut) },
     timeline: {
       intro: t(f.timeline_intro),
       steps: (Array.isArray(f.timeline_steps) ? f.timeline_steps : []).map((x) => {
@@ -194,7 +217,7 @@ Start timing: ${a.start_timing}`;
     const data = await res.json();
     const raw = data.content?.find((c) => c.type === "tool_use")?.input;
     if (!raw || !raw.niche_title) throw new Error(`No plan returned (stop_reason: ${data.stop_reason})`);
-    plan = shapePlan(raw);
+    plan = shapePlan(raw, a.income_goal);
     // Keep at most 4 KPPS shortcuts so the plan never reads like a sales pitch.
     let kept = 0;
     for (const k of ["package", "shopping", "timeline", "worry", "niche", "numbers"]) {
