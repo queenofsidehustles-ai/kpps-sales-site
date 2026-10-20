@@ -69,27 +69,61 @@ Rules:
 Save the plan by calling the save_plan tool. Keep every field short and phone-friendly.`;
 
 
-const str = { type: "string" };
+const S = (description) => ({ type: "string", description });
 const PLAN_TOOL = {
   name: "save_plan",
-  description: "Save the personalized Party Business Launch Plan.",
+  description: "Save the personalized Party Business Launch Plan. Every field is plain text. Exactly 3 or 4 of the *_shortcut fields are filled; the rest are empty strings.",
   input_schema: {
     type: "object",
-    required: ["note", "niche", "package", "shopping", "numbers", "timeline", "worry"],
+    required: ["note", "niche_title", "niche_body", "niche_shortcut", "package_name", "package_body", "package_price", "package_shortcut",
+      "shopping_items", "shopping_body", "shopping_shortcut", "parties_per_month", "monthly_after_supplies", "numbers_body", "numbers_shortcut",
+      "timeline_intro", "timeline_steps", "timeline_shortcut", "worry_title", "worry_body", "worry_shortcut"],
     properties: {
-      note: { type: "string", description: "2 warm sentences to the reader by first name" },
-      niche: { type: "object", required: ["title", "body", "shortcut"], properties: { title: str, body: str, shortcut: str } },
-      package: { type: "object", required: ["name", "body", "price", "shortcut"], properties: { name: str, body: str, price: str, shortcut: str } },
-      shopping: { type: "object", required: ["items", "body", "shortcut"], properties: { items: { type: "array", items: str }, body: str, shortcut: str } },
-      numbers: { type: "object", required: ["big1", "label1", "big2", "label2", "body", "shortcut"], properties: { big1: str, label1: str, big2: str, label2: str, body: str, shortcut: str } },
-      timeline: {
-        type: "object", required: ["intro", "steps", "shortcut"],
-        properties: { intro: str, shortcut: str, steps: { type: "array", items: { type: "object", required: ["days", "task"], properties: { days: str, task: str } } } },
-      },
-      worry: { type: "object", required: ["title", "body", "shortcut"], properties: { title: str, body: str, shortcut: str } },
+      note: S("2 warm sentences to the reader by first name"),
+      niche_title: S("The one specific starter party, e.g. Stuff-A-Bear parties"),
+      niche_body: S("Why it fits them, 1-2 sentences"),
+      niche_shortcut: S("One-sentence KPPS shortcut, or empty string"),
+      package_name: S("A catchy package name, e.g. Build-a-Buddy Party"),
+      package_body: S("What's included, 1 sentence"),
+      package_price: S("Typical starting range only, e.g. $300–$350"),
+      package_shortcut: S("One-sentence KPPS shortcut, or empty string"),
+      shopping_items: { type: "array", items: { type: "string" }, description: "3 to 6 short shopping items" },
+      shopping_body: S("1 sentence about buying per booking"),
+      shopping_shortcut: S("One-sentence KPPS shortcut, or empty string"),
+      parties_per_month: S("Just the number of parties a month their income goal takes, e.g. 3"),
+      monthly_after_supplies: S("Just the monthly amount after supplies at that many parties, e.g. ~$590"),
+      numbers_body: S("1-2 sentences showing the math: midpoint price minus supplies = net per party, times parties"),
+      numbers_shortcut: S("One-sentence KPPS shortcut, or empty string"),
+      timeline_intro: S("How much time per week this assumes, 1 short sentence"),
+      timeline_steps: { type: "array", items: { type: "string" }, description: "Exactly 5 steps, each formatted 'Days 1–3: short task'" },
+      timeline_shortcut: S("One-sentence KPPS shortcut, or empty string"),
+      worry_title: S("Their worry in a few words"),
+      worry_body: S("2-3 sentences drawing on Monica's experience"),
+      worry_shortcut: S("One-sentence KPPS shortcut, or empty string"),
     },
   },
 };
+
+// Turn the flat tool answer into the sections the page and MailerLite use.
+function shapePlan(f) {
+  const t = (v) => String(v ?? "").trim();
+  return {
+    note: t(f.note),
+    niche: { title: t(f.niche_title), body: t(f.niche_body), shortcut: t(f.niche_shortcut) },
+    package: { name: t(f.package_name), body: t(f.package_body), price: t(f.package_price), shortcut: t(f.package_shortcut) },
+    shopping: { items: (Array.isArray(f.shopping_items) ? f.shopping_items : []).map(t).filter(Boolean), body: t(f.shopping_body), shortcut: t(f.shopping_shortcut) },
+    numbers: { big1: t(f.parties_per_month), label1: "parties a month", big2: t(f.monthly_after_supplies), label2: "a month after supplies", body: t(f.numbers_body), shortcut: t(f.numbers_shortcut) },
+    timeline: {
+      intro: t(f.timeline_intro),
+      steps: (Array.isArray(f.timeline_steps) ? f.timeline_steps : []).map((x) => {
+        const m = t(x).match(/^(Days?\s[^:]+):\s*(.+)$/i);
+        return m ? { days: m[1], task: m[2] } : { days: "", task: t(x) };
+      }),
+      shortcut: t(f.timeline_shortcut),
+    },
+    worry: { title: t(f.worry_title), body: t(f.worry_body), shortcut: t(f.worry_shortcut) },
+  };
+}
 
 const json = (status, body) =>
   new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json" } });
@@ -150,8 +184,9 @@ Start timing: ${a.start_timing}`;
     });
     if (!res.ok) throw new Error(`Claude API ${res.status}: ${await res.text()}`);
     const data = await res.json();
-    plan = data.content?.find((c) => c.type === "tool_use")?.input;
-    if (!plan || !plan.niche) throw new Error(`No plan returned (stop_reason: ${data.stop_reason})`);
+    const raw = data.content?.find((c) => c.type === "tool_use")?.input;
+    if (!raw || !raw.niche_title) throw new Error(`No plan returned (stop_reason: ${data.stop_reason})`);
+    plan = shapePlan(raw);
   } catch (e) {
     console.error(e.message);
     const code = (e.message.match(/Claude API (\d{3})/) || [])[1] || "parse";
