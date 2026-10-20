@@ -140,7 +140,8 @@ Start timing: ${a.start_timing}`;
     plan = JSON.parse(text.slice(start, end + 1));
   } catch (e) {
     console.error(e.message);
-    return json(502, { error: "Something went wrong writing your plan. Please try again." });
+    const code = (e.message.match(/Claude API (\d{3})/) || [])[1] || "parse";
+    return json(502, { error: `Something went wrong writing your plan (code ${code}).` });
   }
 
   // Save the person and their plan to MailerLite. A MailerLite automation emails it to them.
