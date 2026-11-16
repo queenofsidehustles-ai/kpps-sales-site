@@ -230,7 +230,11 @@ Start timing: ${a.start_timing}`;
   }
 
   // Save the person and their plan to MailerLite. A MailerLite automation emails it to them.
-  try { await addToMailerLite(a, plan); } catch (e) { console.error("MailerLite:", e.message); }
+  let mlOk = true, mlError = null;
+  try { await addToMailerLite(a, plan); } catch (e) { mlOk = false; mlError = String(e.message).slice(0, 500); console.error("MailerLite:", e.message); }
+
+  // Backup: always keep the lead in Supabase, so nobody is lost if MailerLite refuses them.
+  try { await saveBackup(a, plan, mlOk, mlError); } catch (e) { console.error("Backup:", e.message); }
 
   return json(200, { first_name: a.first_name, plan });
 };
@@ -271,6 +275,20 @@ async function addToMailerLite(a, plan) {
     method: "POST",
     headers: { Authorization: `Bearer ${key}`, "content-type": "application/json", accept: "application/json" },
     body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
+}
+
+// Lead backup table (Party Biz Hub Supabase project). The publishable key can only insert rows here.
+const BACKUP_URL = "https://dmqwoddwzpfnmpjtwiee.supabase.co/rest/v1/kpps_quiz_leads";
+const BACKUP_KEY = "sb_publishable_DFQoTRoat37YdIzPHzbZsQ_rAcubQH8";
+
+async function saveBackup(a, plan, mlOk, mlError) {
+  const { first_name, email, city_state, ...answers } = a;
+  const res = await fetch(BACKUP_URL, {
+    method: "POST",
+    headers: { apikey: BACKUP_KEY, Authorization: `Bearer ${BACKUP_KEY}`, "content-type": "application/json", Prefer: "return=minimal" },
+    body: JSON.stringify({ first_name, email, city_state, answers, plan, mailerlite_ok: mlOk, mailerlite_error: mlError }),
   });
   if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
 }
