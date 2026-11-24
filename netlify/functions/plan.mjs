@@ -25,16 +25,15 @@ If the list says their party type doesn't fit their budget yet, say so kindly in
 
 Pricing (typical national starting ranges; use only these, never invent numbers):
 Hosted parties: price to charge / supplies used per party
-- Stuff-A-Bear: $300–$350 for up to 8 kids, $30–$40 per extra child / $12–$20 per child
-- DIY Craft: $275–$350 for up to 10 kids / $5–$12 per child
-- Paint & Sip (kids' drinks): $325–$450 for up to 10 kids / $5–$12 per child
-- Slime / Science: $300–$400 for up to 10 kids / $5–$12 per child
-- Mobile Spa: $450–$650 for up to 8 kids / $10–$25 per child
+- Stuff-A-Bear: $350–$900+ for 8 to 12 kids depending on the package, $30 per extra child / $12–$20 per child
+- DIY Craft: $300–$550 for up to 10 kids / $5–$12 per child
+- Paint & Sip (kids' drinks): $300–$550 for up to 10 kids / $5–$12 per child
+- Slime / Science: $300–$550 for up to 10 kids / $5–$12 per child
+- Mobile Spa: $400–$800 for up to 8 kids / $10–$25 per child
 - Face Paint & Balloons: $300–$450 for a 2-hour party with both / $25–$60 per event
 Setups and rentals: price to charge / one-time startup cost to buy
-- Slumber Parties: $300–$450 for about 4 kids / $800–$1,800 for 4–6 reusable setups
-- Teepee Setups: $250–$350 for 4 teepees, extra for more / $800–$1,800 for 4–6 teepees
-- Outdoor Movie Nights: $350–$500 per setup / $700–$2,000 for screen, projector, sound
+- Slumber Parties / Teepee Sleepovers: $450–$1,200 for up to 6 guests depending on customizations / $800–$1,800 for 4–6 reusable setups
+- Outdoor Movie Nights: $700–$900+ for 8 to 10 guests / $700–$2,000 for screen, projector, sound
 - Bounce House: $150–$250 per rental / $1,500–$3,000
 - Soft Play / Toddler: $250–$400 per rental / $2,000–$6,000
 - Photo Booth: $300–$600 for 2 hours / $800–$2,500 digital, $4,000–$7,000 print-ready
@@ -69,15 +68,15 @@ Save the plan by calling the save_plan tool. Keep every field short and phone-fr
 // price = typical starting range. supplies = used up per party for the package's guests
 // (per-child cost x guests). startup = one-time equipment to buy (low end of the range).
 const NICHES = {
-  bear:       { group: "Build & Craft", title: "Stuff-A-Bear parties", price: [300, 350], guests: "up to 8 kids", supplies: 128, startup: 0 },   // $12–$20 a child x 8
-  craft:      { group: "Build & Craft", title: "DIY Craft parties", price: [275, 350], guests: "up to 10 kids", supplies: 85, startup: 0 },      // $5–$12 a child x 10
-  paint:      { group: "Build & Craft", title: "Paint & Sip parties", price: [325, 450], guests: "up to 10 kids", supplies: 85, startup: 0 },
-  slime:      { group: "Build & Craft", title: "Slime / Science parties", price: [300, 400], guests: "up to 10 kids", supplies: 85, startup: 0 },
-  spa:        { group: "Spa & Glam", title: "Mobile Spa parties", price: [450, 650], guests: "up to 8 kids", supplies: 140, startup: 0 },       // $10–$25 a child x 8
+  bear:       { group: "Build & Craft", title: "Stuff-A-Bear parties", price: [350, 900], plus: true, guests: "8 to 12 kids, by package", supplies: 160, startup: 0 }, // $12–$20 a child x ~10
+  craft:      { group: "Build & Craft", title: "DIY Craft parties", price: [300, 550], guests: "up to 10 kids", supplies: 85, startup: 0 },      // $5–$12 a child x 10
+  paint:      { group: "Build & Craft", title: "Paint & Sip parties", price: [300, 550], guests: "up to 10 kids", supplies: 85, startup: 0 },
+  slime:      { group: "Build & Craft", title: "Slime / Science parties", price: [300, 550], guests: "up to 10 kids", supplies: 85, startup: 0 },
+  spa:        { group: "Spa & Glam", title: "Mobile Spa parties", price: [400, 800], guests: "up to 8 kids", supplies: 140, startup: 0 },       // $10–$25 a child x 8
   facepaint:  { group: "Spa & Glam", title: "Face Paint & Balloons", price: [300, 450], guests: "a 2-hour party", supplies: 45, startup: 0 },     // $25–$60 an event
-  slumber:    { group: "Sleepovers & Movie Nights", title: "Slumber Parties", price: [300, 450], guests: "about 4 kids", supplies: 0, startup: 800 },
-  teepee:     { group: "Sleepovers & Movie Nights", title: "Teepee Setups", price: [250, 350], guests: "4 teepees", supplies: 0, startup: 800 },
-  movie:      { group: "Sleepovers & Movie Nights", title: "Outdoor Movie Nights", price: [350, 500], guests: "one setup", supplies: 0, startup: 700 },
+  slumber:    { group: "Sleepovers & Movie Nights", title: "Slumber Parties", price: [450, 1200], guests: "up to 6 guests, by customization", supplies: 0, startup: 800 },
+  teepee:     { group: "Sleepovers & Movie Nights", title: "Teepee Sleepovers", price: [450, 1200], guests: "up to 6 guests, by customization", supplies: 0, startup: 800 },
+  movie:      { group: "Sleepovers & Movie Nights", title: "Outdoor Movie Nights", price: [700, 900], plus: true, guests: "8 to 10 guests", supplies: 0, startup: 700 },
   bounce:     { group: "Rentals & Stations", title: "Bounce House rentals", price: [150, 250], guests: "one rental", supplies: 0, startup: 1500 },
   softplay:   { group: "Rentals & Stations", title: "Soft Play / Toddler rentals", price: [250, 400], guests: "one rental", supplies: 0, startup: 2000 },
   photo:      { group: "Rentals & Stations", title: "Photo Booth rentals", price: [300, 600], guests: "2 hours", supplies: 0, startup: 800 },
@@ -170,7 +169,7 @@ function shapePlan(f, goal) {
   return {
     note: t(f.note),
     niche: { title: niche.title, body: t(f.niche_body), shortcut: t(f.niche_shortcut) },
-    package: { name: t(f.package_name).replace(/"$/, ""), body: t(f.package_body), price: `${money(niche.price[0])}–${money(niche.price[1])} for ${niche.guests}`, shortcut: t(f.package_shortcut) },
+    package: { name: t(f.package_name).replace(/"$/, ""), body: t(f.package_body), price: `${money(niche.price[0])}–${money(niche.price[1])}${niche.plus ? "+" : ""} for ${niche.guests}`, shortcut: t(f.package_shortcut) },
     shopping: { items: (Array.isArray(f.shopping_items) ? f.shopping_items : []).map(t).filter(Boolean), body: t(f.shopping_body), shortcut: t(f.shopping_shortcut) },
     numbers: { ...computeNumbers(niche, t(f.numbers_note), goal), shortcut: t(f.numbers_shortcut) },
     timeline: {
