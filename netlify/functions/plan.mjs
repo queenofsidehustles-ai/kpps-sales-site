@@ -30,15 +30,15 @@ Hosted parties: price to charge / supplies used per party
 - Paint & Sip (kids' drinks): $300–$550 for up to 10 kids / $5–$12 per child
 - Slime / Science: $300–$550 for up to 10 kids / $5–$12 per child
 - Mobile Spa: $400–$800 for up to 8 kids / $10–$25 per child
-- Face Paint & Balloons: $300–$450 for a 2-hour party with both / $25–$60 per event
+- Face Paint & Balloons: $300–$400 for a party of 8 to 10 kids / $25–$60 per event
 Setups and rentals: price to charge / one-time startup cost to buy
 - Slumber Parties / Teepee Sleepovers: $450–$1,200 for up to 6 guests depending on customizations / $800–$1,800 for 4–6 reusable setups
 - Outdoor Movie Nights: $700–$900+ for 8 to 10 guests / $700–$2,000 for screen, projector, sound
-- Bounce House: $150–$250 per rental / $1,500–$3,000
-- Soft Play / Toddler: $250–$400 per rental / $2,000–$6,000
-- Photo Booth: $300–$600 for 2 hours / $800–$2,500 digital, $4,000–$7,000 print-ready
-- Food Cart (party display or treat cart): $150–$300 cart only, $300–$700 stocked or staffed / $300–$1,500
-- Candy / Dessert Station: $275–$500 / $300–$1,000, plus $40–$100 in supplies per event
+- Bounce House: $250–$500 per rental / $1,500–$3,000
+- Soft Play / Toddler: about $600+ per modular set, depending on the setup / $2,000–$6,000
+- Photo Booth: $500–$600+ per event / $800–$2,500 digital, $4,000–$7,000 print-ready
+- Food Cart (party display or treat cart): $400–$500 per rental / $300–$1,500
+- Candy / Dessert Station: $400–$500 / $300–$1,000, plus $40–$100 in supplies per event
 Service
 - Event Coordinator: $400–$900 for a small party with day-of coordination; more when planning, vendor booking or decorating is included
 
@@ -73,15 +73,15 @@ const NICHES = {
   paint:      { group: "Build & Craft", title: "Paint & Sip parties", price: [300, 550], guests: "up to 10 kids", supplies: 85, startup: 0 },
   slime:      { group: "Build & Craft", title: "Slime / Science parties", price: [300, 550], guests: "up to 10 kids", supplies: 85, startup: 0 },
   spa:        { group: "Spa & Glam", title: "Mobile Spa parties", price: [400, 800], guests: "up to 8 kids", supplies: 140, startup: 0 },       // $10–$25 a child x 8
-  facepaint:  { group: "Spa & Glam", title: "Face Paint & Balloons", price: [300, 450], guests: "a 2-hour party", supplies: 45, startup: 0 },     // $25–$60 an event
+  facepaint:  { group: "Spa & Glam", title: "Face Paint & Balloons", price: [300, 400], guests: "8 to 10 kids", supplies: 45, startup: 0 },     // $25–$60 an event
   slumber:    { group: "Sleepovers & Movie Nights", title: "Slumber Parties", price: [450, 1200], guests: "up to 6 guests, by customization", supplies: 0, startup: 800 },
   teepee:     { group: "Sleepovers & Movie Nights", title: "Teepee Sleepovers", price: [450, 1200], guests: "up to 6 guests, by customization", supplies: 0, startup: 800 },
   movie:      { group: "Sleepovers & Movie Nights", title: "Outdoor Movie Nights", price: [700, 900], plus: true, guests: "8 to 10 guests", supplies: 0, startup: 700 },
-  bounce:     { group: "Rentals & Stations", title: "Bounce House rentals", price: [150, 250], guests: "one rental", supplies: 0, startup: 1500 },
-  softplay:   { group: "Rentals & Stations", title: "Soft Play / Toddler rentals", price: [250, 400], guests: "one rental", supplies: 0, startup: 2000 },
-  photo:      { group: "Rentals & Stations", title: "Photo Booth rentals", price: [300, 600], guests: "2 hours", supplies: 0, startup: 800 },
-  foodcart:   { group: "Rentals & Stations", title: "Food Cart rentals", price: [150, 300], guests: "cart only", supplies: 0, startup: 300 },
-  candy:      { group: "Rentals & Stations", title: "Candy / Dessert Stations", price: [275, 500], guests: "one station", supplies: 70, startup: 300 }, // $40–$100 an event
+  bounce:     { group: "Rentals & Stations", title: "Bounce House rentals", price: [250, 500], guests: "one rental, by size", supplies: 0, startup: 1500 },
+  softplay:   { group: "Rentals & Stations", title: "Soft Play / Toddler rentals", price: [600, 600], plus: true, guests: "one modular set, by setup", supplies: 0, startup: 2000 },
+  photo:      { group: "Rentals & Stations", title: "Photo Booth rentals", price: [500, 600], plus: true, guests: "one event", supplies: 0, startup: 800 },
+  foodcart:   { group: "Rentals & Stations", title: "Food Cart rentals", price: [400, 500], guests: "one rental", supplies: 0, startup: 300 },
+  candy:      { group: "Rentals & Stations", title: "Candy / Dessert Stations", price: [400, 500], guests: "one station", supplies: 70, startup: 300 }, // $40–$100 an event
   coordinator:{ group: "Something else", title: "Event Coordinating", price: [400, 900], guests: "a small party, day-of", supplies: 0, startup: 0 },
 };
 const BUDGET_MAX = { "Under $300": 300, "$300 to $700": 700, "$700 to $1,500": 1500, "$1,500+": Infinity };
@@ -169,7 +169,7 @@ function shapePlan(f, goal) {
   return {
     note: t(f.note),
     niche: { title: niche.title, body: t(f.niche_body), shortcut: t(f.niche_shortcut) },
-    package: { name: t(f.package_name).replace(/"$/, ""), body: t(f.package_body), price: `${money(niche.price[0])}–${money(niche.price[1])}${niche.plus ? "+" : ""} for ${niche.guests}`, shortcut: t(f.package_shortcut) },
+    package: { name: t(f.package_name).replace(/"$/, ""), body: t(f.package_body), price: `${money(niche.price[0])}${niche.price[1] > niche.price[0] ? "–" + money(niche.price[1]) : ""}${niche.plus ? "+" : ""} for ${niche.guests}`, shortcut: t(f.package_shortcut) },
     shopping: { items: (Array.isArray(f.shopping_items) ? f.shopping_items : []).map(t).filter(Boolean), body: t(f.shopping_body), shortcut: t(f.shopping_shortcut) },
     numbers: { ...computeNumbers(niche, t(f.numbers_note), goal), shortcut: t(f.numbers_shortcut) },
     timeline: {
