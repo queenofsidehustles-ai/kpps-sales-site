@@ -231,12 +231,12 @@ Start timing: ${a.start_timing}`;
 
   // Save the person and their plan to MailerLite. A MailerLite automation emails it to them.
   let mlOk = true, mlError = null;
-  try { await addToMailerLite(a, plan); } catch (e) { mlOk = false; mlError = String(e.message).slice(0, 500); console.error("MailerLite:", e.message); }
+  try { mlError = await addToMailerLite(a, plan); } catch (e) { mlOk = false; mlError = String(e.message).slice(0, 500); console.error("MailerLite:", e.message); }
 
   // Backup: always keep the lead in Supabase, so nobody is lost if MailerLite refuses them.
   try { await saveBackup(a, plan, mlOk, mlError); } catch (e) { console.error("Backup:", e.message); }
 
-  return json(200, { first_name: a.first_name, plan });
+  return json(200, { first_name: a.first_name, plan, emailed: mlOk && !!process.env.MAILERLITE_API_KEY });
 };
 
 // MailerLite text fields hold about 1,000 characters, so each plan section gets its own field.
@@ -256,9 +256,18 @@ function planFields(p) {
   };
 }
 
+const ML = "https://connect.mailerlite.com/api";
+const QUIZ_GROUP = () => String(process.env.MAILERLITE_GROUP_ID || "").trim() || "201806353583309946"; // Launch Plan Quiz group
+
+// Saves the quiz taker in MailerLite. Returns a note about anything that was skipped (or null).
 async function addToMailerLite(a, plan) {
   const key = process.env.MAILERLITE_API_KEY;
-  if (!key) return;
+  if (!key) return null;
+  const ml = (path, method, body) => fetch(ML + path, {
+    method,
+    headers: { Authorization: `Bearer ${key}`, "content-type": "application/json", accept: "application/json" },
+    body: body ? JSON.stringify(body) : undefined,
+  });
   const body = {
     email: a.email,
     fields: {
@@ -270,13 +279,40 @@ async function addToMailerLite(a, plan) {
       ...planFields(plan),
     },
   };
-  body.groups = [String(process.env.MAILERLITE_GROUP_ID || "").trim() || "201806353583309946"]; // Launch Plan Quiz group
-  const res = await fetch("https://connect.mailerlite.com/api/subscribers", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${key}`, "content-type": "application/json", accept: "application/json" },
-    body: JSON.stringify(body),
-  });
+  body.groups = [QUIZ_GROUP()];
+
+  // Were they already in the quiz group (a retake)? Check before saving.
+  let existing = null;
+  const look = await ml(`/subscribers/${encodeURIComponent(a.email)}`, "GET");
+  if (look.ok) existing = (await look.json().catch(() => ({}))).data || null;
+  const retake = !!existing && (existing.groups || []).some((g) => String(g.id) === QUIZ_GROUP());
+
+  let res = await ml("/subscribers", "POST", body);
+  let note = null;
+
+  // MailerLite's content filter sometimes refuses one plan field ("Forbidden").
+  // Drop just those fields and try again, so the person still gets their plan email.
+  if (res.status === 422) {
+    const text = await res.text();
+    let refused = [];
+    try { refused = Object.keys(JSON.parse(text).errors || {}).filter((k) => k.startsWith("fields.")).map((k) => k.slice(7)); } catch {}
+    if (!refused.length) throw new Error(`422 ${text}`);
+    for (const f of refused) delete body.fields[f];
+    note = `Saved without refused field(s): ${refused.join(", ")}`;
+    res = await ml("/subscribers", "POST", body);
+  }
   if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
+
+  // A retake: adding someone to a group they're already in does nothing, so take them out
+  // and put them back. That counts as joining again, so the automation sends the plan
+  // email for their new answers (the automation must allow subscribers to repeat it).
+  if (retake && existing.id) {
+    await ml(`/subscribers/${existing.id}/groups/${QUIZ_GROUP()}`, "DELETE");
+    const back = await ml(`/subscribers/${existing.id}/groups/${QUIZ_GROUP()}`, "POST");
+    if (!back.ok) throw new Error(`Re-adding to quiz group: ${back.status} ${await back.text()}`);
+    note = (note ? note + ". " : "") + "Retake: re-added to quiz group";
+  }
+  return note;
 }
 
 // Lead backup table (Party Biz Hub Supabase project). The publishable key can only insert rows here.

@@ -86,6 +86,14 @@ input::placeholder{color:#8f7e9c}
 .cta h2{font-size:24px;color:#fff}
 .cta p{color:#fff}
 .cta .link{color:#fff;text-decoration:underline}
+.keep{padding:18px;border-radius:20px;background:rgba(13,1,24,.75);border:1px solid rgba(212,168,64,.55);display:flex;flex-direction:column;gap:12px}
+.keep p{font-size:14px;color:var(--muted)}
+.keep p strong{color:var(--ink);word-break:break-all}
+.keep .btns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.btn.small{min-height:48px;font-size:15px;box-shadow:none}
+.btn.ghost{background:transparent;border:2px solid var(--gold);color:var(--ink)}
+.keep .status{font-size:13px;color:var(--gold);text-align:center;min-height:18px}
+@media print{.glow,.cta,.keep{display:none!important}body,html{background:#fff;color:#000}.card,.card p,.hero{background:none;color:#000;border-color:#999}}
 </style>
 </head>
 <body>
@@ -251,7 +259,7 @@ $("form").onsubmit = async (e) => {
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || "Something went wrong.");
-    renderPlan(data.first_name, data.plan);
+    renderPlan(data.first_name, data.plan, email, data.emailed !== false);
     show("s-plan");
   } catch (err) {
     $("err").textContent = err.message + " Please try again.";
@@ -263,12 +271,62 @@ function tip(text) {
   return text ? el("p", { class: "tip" }, el("strong", {}, "KPPS shortcut: "), text) : null;
 }
 
-function renderPlan(name, p) {
+// The whole plan as plain text, for copying, sharing or texting to yourself.
+function planText(name, p) {
+  const n = p.niche || {}, k = p.package || {}, sh = p.shopping || {}, nu = p.numbers || {}, tl = p.timeline || {}, w = p.worry || {};
+  const L = [`${name}'s Party Business Launch Plan`, "", p.note || "",
+    "", "1. YOUR STARTER NICHE", n.title || "", n.body || "",
+    "", "2. YOUR FIRST PACKAGE", k.name ? `"${k.name}"` : "", k.body || "", k.price ? `Typical starting range: ${k.price}` : "",
+    "", "3. FIRST-EVENT SHOPPING LIST", ...(sh.items || []).map((x) => "- " + x), sh.body || "",
+    "", "4. YOUR NUMBERS", [nu.big1, nu.label1].filter(Boolean).join(" "), [nu.big2, nu.label2].filter(Boolean).join(" "), nu.body || "",
+    "Typical starting ranges; adjust for your area. This is an example, not a promise.",
+    "", "5. YOUR 14-DAY LAUNCH", tl.intro || "", ...(tl.steps || []).map((x) => `${x.days ? x.days + ": " : ""}${x.task || ""}`),
+    "", "6. YOUR BIGGEST WORRY", w.title || "", w.body || "",
+    "", "From Coach Monica · " + KPPS_URL];
+  return L.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+
+// "Keep your plan" box: where it was emailed, plus share / copy / save buttons that work on phones.
+function keepBox(name, p, email, emailed) {
+  const status = el("p", { class: "status", role: "status" });
+  const flash = (msg) => { status.textContent = msg; setTimeout(() => { status.textContent = ""; }, 4000); };
+  const text = planText(name, p);
+
+  const copy = async () => {
+    try { await navigator.clipboard.writeText(text); flash("Copied! Paste it into a note or a text to yourself."); }
+    catch {
+      const t = el("textarea", { style: "position:fixed;opacity:0" }); t.value = text; document.body.append(t); t.select();
+      const ok = document.execCommand && document.execCommand("copy"); t.remove();
+      flash(ok ? "Copied! Paste it into a note or a text to yourself." : "Couldn't copy here. Try Share or Save instead.");
+    }
+  };
+  const share = async () => {
+    try { await navigator.share({ title: `${name}'s Party Business Launch Plan`, text }); }
+    catch (e) { if (e && e.name !== "AbortError") copy(); }
+  };
+
+  const shareBtn = el("button", { class: "btn small", type: "button" }, "Share or text it");
+  shareBtn.onclick = navigator.share ? share : copy;
+  if (!navigator.share) shareBtn.textContent = "Copy my plan";
+  const saveBtn = el("button", { class: "btn small ghost", type: "button" }, "Save as PDF");
+  saveBtn.onclick = () => { try { window.print(); } catch {} setTimeout(() => flash("No save screen? Use Share or Copy instead."), 1500); };
+  const copyBtn = navigator.share ? el("button", { class: "link", type: "button" }, "Or copy the whole plan") : null;
+  if (copyBtn) copyBtn.onclick = copy;
+
+  const msg = emailed
+    ? el("p", {}, "📬 A copy is on its way to ", el("strong", {}, email), ". Check your Promotions or Spam folder if you don't see it in a few minutes.")
+    : el("p", {}, "I couldn't email this one, so save it now with the buttons below.");
+  return el("div", { class: "keep" }, el("span", { class: "label" }, "KEEP YOUR PLAN"), msg,
+    el("div", { class: "btns" }, shareBtn, saveBtn), copyBtn, status);
+}
+
+function renderPlan(name, p, email, emailed) {
   const s = $("s-plan"); s.replaceChildren();
   s.append(el("div", { class: "hero" },
     el("div", { class: "kicker" }, "YOUR PERSONAL PLAN"),
     el("h1", { style: "font-size:34px" }, `${name}'s `, el("em", {}, "Party Business"), " Launch Plan"),
     el("p", { class: "lead", style: "font-size:15px" }, p.note || "", " — Monica")));
+  s.append(keepBox(name, p, email, emailed));
 
   const n = p.niche || {};
   s.append(el("div", { class: "card hot" }, el("span", { class: "label" }, "01 · YOUR STARTER NICHE"), el("h3", {}, n.title || ""), el("p", {}, n.body || ""), tip(n.shortcut)));
@@ -296,8 +354,8 @@ function renderPlan(name, p) {
 
   s.append(el("div", { class: "cta" }, el("h2", {}, "Want help executing this?"),
     el("p", {}, "That's exactly what Kids Party Profit System is for: your website, printables, business tools and me in your corner."),
-    el("a", { class: "btn light", href: KPPS_URL }, "See Kids Party Profit System"),
-    el("button", { class: "link", type: "button", onclick: "window.print()" }, "Save or print my plan")));
+    el("a", { class: "btn light", href: KPPS_URL }, "See Kids Party Profit System")));
+  s.append(keepBox(name, p, email, emailed));
 }
 </script>
 </body>
