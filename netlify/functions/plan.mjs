@@ -20,13 +20,8 @@ const SYSTEM = `You are writing a personalized Party Business Launch Plan on beh
 Write in Monica's voice: warm, encouraging, practical, humble. Never sound like you have it all figured out. Address the reader by first name. Short sentences. Readable on a phone.
 
 Picking the starter party (one specific party, never a whole group):
-- Build & Craft: Stuff-A-Bear, DIY Craft, Paint & Sip, or Slime / Science
-- Spa & Glam: Mobile Spa, or Face Paint & Balloons
-- Sleepovers & Movie Nights: Slumber Parties (complete styled sleepover), Teepee Setups (teepee rental only), or Outdoor Movie Nights
-- Rentals & Stations: Bounce House, Soft Play / Toddler, Photo Booth, Food Cart, or Candy / Dessert Station
-- Something else: Event Coordinator
-- Not sure yet: choose the best fit for their hours and budget and say why
-Match startup cost to their budget. Under $700: favor Build & Craft or Spa & Glam, which need little upfront equipment. Only suggest a rental or a sleepover setup when the budget covers its startup cost. If their group doesn't fit their budget, say so kindly and suggest a better first step inside or near that group.
+You will be given a list of starter parties that fit the person's startup budget. Pick exactly one of them as niche_key: the best fit for their party type, hours and situation. Never recommend a party that is not on that list, and never tell them to start with something else.
+If the list says their party type doesn't fit their budget yet, say so kindly in niche_body: the party you picked is a smart first step, and they can add their favorite type later from what it earns.
 
 Pricing (typical national starting ranges; use only these, never invent numbers):
 Hosted parties: price to charge / supplies used per party
@@ -50,7 +45,7 @@ Service
 
 How to use the prices:
 - Always call them "typical starting ranges" and tell the reader to adjust for their area.
-- Numbers: only report the midpoint price, supplies per party and startup cost. The math is done for you afterwards.
+- The price range, supplies and income math are filled in for you from this table afterwards. Never write prices or dollar math in any field.
 - Food carts that cook or sell food may need permits, insurance and health-department approval. Say so if you suggest one.
 
 KPPS shortcut notes: give exactly 3 or 4 sections a one-sentence "shortcut" naming the Kids Party Profit System tool that makes that step faster. Only these tools exist: Quote Builder, Contract Generator, done-for-you website, party printables, marketing templates, booking and invoicing tools. Leave "shortcut" as an empty string on the other sections.
@@ -69,31 +64,60 @@ Rules:
 Save the plan by calling the save_plan tool. Keep every field short and phone-friendly.`;
 
 
+// Starter parties, with the price, supplies and startup cost the plan uses. The AI only picks
+// one of these by key; every dollar figure on the plan comes from here, so it can't be wrong.
+// price = typical starting range. supplies = used up per party for the package's guests
+// (per-child cost x guests). startup = one-time equipment to buy (low end of the range).
+const NICHES = {
+  bear:       { group: "Build & Craft", title: "Stuff-A-Bear parties", price: [300, 350], guests: "up to 8 kids", supplies: 128, startup: 0 },   // $12–$20 a child x 8
+  craft:      { group: "Build & Craft", title: "DIY Craft parties", price: [275, 350], guests: "up to 10 kids", supplies: 85, startup: 0 },      // $5–$12 a child x 10
+  paint:      { group: "Build & Craft", title: "Paint & Sip parties", price: [325, 450], guests: "up to 10 kids", supplies: 85, startup: 0 },
+  slime:      { group: "Build & Craft", title: "Slime / Science parties", price: [300, 400], guests: "up to 10 kids", supplies: 85, startup: 0 },
+  spa:        { group: "Spa & Glam", title: "Mobile Spa parties", price: [450, 650], guests: "up to 8 kids", supplies: 140, startup: 0 },       // $10–$25 a child x 8
+  facepaint:  { group: "Spa & Glam", title: "Face Paint & Balloons", price: [300, 450], guests: "a 2-hour party", supplies: 45, startup: 0 },     // $25–$60 an event
+  slumber:    { group: "Sleepovers & Movie Nights", title: "Slumber Parties", price: [300, 450], guests: "about 4 kids", supplies: 0, startup: 800 },
+  teepee:     { group: "Sleepovers & Movie Nights", title: "Teepee Setups", price: [250, 350], guests: "4 teepees", supplies: 0, startup: 800 },
+  movie:      { group: "Sleepovers & Movie Nights", title: "Outdoor Movie Nights", price: [350, 500], guests: "one setup", supplies: 0, startup: 700 },
+  bounce:     { group: "Rentals & Stations", title: "Bounce House rentals", price: [150, 250], guests: "one rental", supplies: 0, startup: 1500 },
+  softplay:   { group: "Rentals & Stations", title: "Soft Play / Toddler rentals", price: [250, 400], guests: "one rental", supplies: 0, startup: 2000 },
+  photo:      { group: "Rentals & Stations", title: "Photo Booth rentals", price: [300, 600], guests: "2 hours", supplies: 0, startup: 800 },
+  foodcart:   { group: "Rentals & Stations", title: "Food Cart rentals", price: [150, 300], guests: "cart only", supplies: 0, startup: 300 },
+  candy:      { group: "Rentals & Stations", title: "Candy / Dessert Stations", price: [275, 500], guests: "one station", supplies: 70, startup: 300 }, // $40–$100 an event
+  coordinator:{ group: "Something else", title: "Event Coordinating", price: [400, 900], guests: "a small party, day-of", supplies: 0, startup: 0 },
+};
+const BUDGET_MAX = { "Under $300": 300, "$300 to $700": 700, "$700 to $1,500": 1500, "$1,500+": Infinity };
+
+// Which starter parties fit this person's budget, starting with their favorite party type.
+function nicheChoices(group, budget) {
+  const max = BUDGET_MAX[budget] ?? 300;
+  const affordable = Object.keys(NICHES).filter((k) => NICHES[k].startup <= max);
+  const inGroup = affordable.filter((k) => NICHES[k].group === group);
+  if (inGroup.length) return { keys: inGroup, fits: true };
+  // Their type doesn't fit the budget (or they're not sure): offer every affordable party.
+  return { keys: affordable, fits: group === "Not sure yet" };
+}
+
 const S = (description) => ({ type: "string", description });
-const PLAN_TOOL = {
+const planTool = (keys) => ({
   name: "save_plan",
   description: "Save the personalized Party Business Launch Plan. Every field is plain text. Exactly 3 or 4 of the *_shortcut fields are filled; the rest are empty strings.",
   input_schema: {
     type: "object",
-    required: ["note", "niche_title", "niche_body", "niche_shortcut", "package_name", "package_body", "package_price", "package_shortcut",
-      "shopping_items", "shopping_body", "shopping_shortcut", "price_midpoint", "supplies_per_party", "startup_cost", "numbers_note", "numbers_shortcut",
+    required: ["note", "niche_key", "niche_body", "niche_shortcut", "package_name", "package_body", "package_shortcut",
+      "shopping_items", "shopping_body", "shopping_shortcut", "numbers_note", "numbers_shortcut",
       "timeline_intro", "timeline_steps", "timeline_shortcut", "worry_title", "worry_body", "worry_shortcut"],
     properties: {
       note: S("2 warm sentences to the reader by first name"),
-      niche_title: S("The one specific starter party, e.g. Stuff-A-Bear parties"),
-      niche_body: S("Why it fits them, 1-2 sentences"),
+      niche_key: { type: "string", enum: keys, description: "The one starter party, chosen from the list you were given" },
+      niche_body: S("Why it fits them, 1-2 sentences. No prices."),
       niche_shortcut: S("One-sentence KPPS shortcut, or empty string"),
       package_name: S("A catchy package name, e.g. Build-a-Buddy Party"),
-      package_body: S("What's included, 1 sentence"),
-      package_price: S("Typical starting range only, e.g. $300–$350"),
+      package_body: S("What's included, 1 sentence. No prices."),
       package_shortcut: S("One-sentence KPPS shortcut, or empty string"),
       shopping_items: { type: "array", items: { type: "string" }, description: "3 to 6 short shopping items" },
       shopping_body: S("1 sentence about buying per booking"),
       shopping_shortcut: S("One-sentence KPPS shortcut, or empty string"),
-      price_midpoint: { type: "number", description: "Middle of the starter party's typical price range in dollars, e.g. 325" },
-      supplies_per_party: { type: "number", description: "Supplies used up per party in dollars for the package's guest count, e.g. 130. Not equipment." },
-      startup_cost: { type: "number", description: "One-time equipment cost in dollars (low end of the startup range) for setups and rentals; 0 for hosted parties" },
-      numbers_note: S("Optional short extra tip about the numbers, or empty string. Do not do any math here."),
+      numbers_note: S("Optional short extra tip about the numbers, or empty string. No dollar amounts or math."),
       numbers_shortcut: S("One-sentence KPPS shortcut, or empty string"),
       timeline_intro: S("How much time per week this assumes, 1 short sentence"),
       timeline_steps: { type: "array", items: { type: "string" }, description: "Exactly 5 steps, each formatted 'Days 1–3: short task'" },
@@ -103,34 +127,38 @@ const PLAN_TOOL = {
       worry_shortcut: S("One-sentence KPPS shortcut, or empty string"),
     },
   },
-};
+});
 
 
 const GOALS = { "An extra $500 a month": 500, "$1,000 to $2,000 a month": 1000, "Replace my income someday": 2000 };
 const money = (n) => "$" + Math.round(n).toLocaleString("en-US");
 const round5 = (n) => Math.round(n / 5) * 5;
 
-// The math is done here, not by the AI, so the numbers always add up.
-function computeNumbers(f, goalText) {
-  const price = Math.max(0, Number(f.price_midpoint) || 0);
-  const supplies = Math.max(0, Number(f.supplies_per_party) || 0);
-  const startup = Math.max(0, Number(f.startup_cost) || 0);
+// The math is done here from the NICHES table, not by the AI, so the numbers always add up.
+function computeNumbers(niche, note, goalText) {
+  const price = (niche.price[0] + niche.price[1]) / 2;
+  const supplies = niche.supplies, startup = niche.startup;
   const net = round5(price - supplies);
   const goal = GOALS[goalText] || 500;
-  if (!(net > 0)) return { big1: "", label1: "", big2: "", label2: "", body: String(f.numbers_note || "").trim() };
   const parties = Math.max(1, Math.ceil(goal / net));
   const monthly = parties * net;
-  let body = `At about ${money(price)} a party with about ${money(supplies)} in supplies, each party nets about ${money(net)} before gas and your time. ${parties} ${parties === 1 ? "party" : "parties"} a month gets you about ${money(monthly)}.`;
+  let body = supplies > 0
+    ? `At about ${money(price)} a party with about ${money(supplies)} in supplies, each party nets about ${money(net)} before gas and your time.`
+    : `At about ${money(price)} a booking, each one brings in about ${money(net)} before gas and your time.`;
+  body += ` ${parties} ${parties === 1 ? "booking" : "bookings"} a month gets you about ${money(monthly)}.`;
   if (goalText === "Replace my income someday") body += ` Think of ${money(goal)} a month as a first milestone on the way to replacing your income.`;
   if (startup > 0) { const payback = Math.ceil(startup / net); body += ` Your equipment costs about ${money(startup)} up front, which about ${payback} ${payback === 1 ? "booking pays" : "bookings pay"} back.`; }
-  const note = String(f.numbers_note || "").trim();
   if (note) body += " " + note;
-  return { big1: String(parties), label1: parties === 1 ? "party a month" : "parties a month", big2: "~" + money(monthly), label2: "a month after supplies", body };
+  return { big1: String(parties), label1: parties === 1 ? "booking a month" : "bookings a month", big2: "~" + money(monthly), label2: supplies > 0 ? "a month after supplies" : "a month", body };
 }
 
 // Turn the flat tool answer into the sections the page and MailerLite use.
 function shapePlan(f, goal) {
-  const t = (v) => String(v ?? "").replace(/<\/?[a-z_]+[^>]*>[\s\S]*$/i, "").trim(); // cut any leaked tool markup
+  const t = (v) => String(v ?? "")
+    .replace(/<\/?[a-z_]+[^>]*>[\s\S]*$/i, "")   // cut any leaked tool markup
+    .replace(/^[\s"'>\\]+/, "")                   // stray quotes or "> at the start
+    .replace(/^""$/, "")
+    .trim();
   // Safety net: if the steps leaked into another field, pull them back out.
   if (!Array.isArray(f.timeline_steps) || !f.timeline_steps.length) {
     for (const v of Object.values(f)) {
@@ -138,12 +166,13 @@ function shapePlan(f, goal) {
       if (m) { try { f.timeline_steps = JSON.parse(m[1].replace(/\\"/g, '"')); } catch {} break; }
     }
   }
+  const niche = NICHES[f.niche_key];
   return {
     note: t(f.note),
-    niche: { title: t(f.niche_title), body: t(f.niche_body), shortcut: t(f.niche_shortcut) },
-    package: { name: t(f.package_name), body: t(f.package_body), price: t(f.package_price).replace(/\s*\(.*\)\s*$/, ""), shortcut: t(f.package_shortcut) },
+    niche: { title: niche.title, body: t(f.niche_body), shortcut: t(f.niche_shortcut) },
+    package: { name: t(f.package_name).replace(/"$/, ""), body: t(f.package_body), price: `${money(niche.price[0])}–${money(niche.price[1])} for ${niche.guests}`, shortcut: t(f.package_shortcut) },
     shopping: { items: (Array.isArray(f.shopping_items) ? f.shopping_items : []).map(t).filter(Boolean), body: t(f.shopping_body), shortcut: t(f.shopping_shortcut) },
-    numbers: { ...computeNumbers(f, goal), shortcut: t(f.numbers_shortcut) },
+    numbers: { ...computeNumbers(niche, t(f.numbers_note), goal), shortcut: t(f.numbers_shortcut) },
     timeline: {
       intro: t(f.timeline_intro),
       steps: (Array.isArray(f.timeline_steps) ? f.timeline_steps : []).map((x) => {
@@ -184,6 +213,7 @@ export default async (req) => {
     return json(400, { error: "Please add your first name and a valid email." });
   }
 
+  const choice = nicheChoices(a.party_group, a.budget);
   const userMsg = `The person's answers:
 First name: ${a.first_name}
 Party type they like: ${a.party_group}
@@ -193,7 +223,10 @@ Hours per week: ${a.hours}
 Startup budget: ${a.budget}
 Income goal: ${a.income_goal}
 Biggest worry: ${a.biggest_worry}
-Start timing: ${a.start_timing}`;
+Start timing: ${a.start_timing}
+
+${choice.fits ? "Starter parties that fit their party type and budget" : `Their party type (${a.party_group}) needs more startup money than their budget. Starter parties that fit their budget`} (pick one niche_key):
+${choice.keys.map((k) => `- ${k}: ${NICHES[k].title} (${NICHES[k].group})`).join("\n")}`;
 
   let plan;
   try {
@@ -208,7 +241,7 @@ Start timing: ${a.start_timing}`;
         model: MODEL,
         max_tokens: 2500,
         system: SYSTEM,
-        tools: [PLAN_TOOL],
+        tools: [planTool(choice.keys)],
         tool_choice: { type: "tool", name: "save_plan" },
         messages: [{ role: "user", content: userMsg }],
       }),
@@ -216,7 +249,8 @@ Start timing: ${a.start_timing}`;
     if (!res.ok) throw new Error(`Claude API ${res.status}: ${await res.text()}`);
     const data = await res.json();
     const raw = data.content?.find((c) => c.type === "tool_use")?.input;
-    if (!raw || !raw.niche_title) throw new Error(`No plan returned (stop_reason: ${data.stop_reason})`);
+    if (raw && !choice.keys.includes(raw.niche_key)) raw.niche_key = choice.keys[0]; // never show a party outside their budget
+    if (!raw) throw new Error(`No plan returned (stop_reason: ${data.stop_reason})`);
     plan = shapePlan(raw, a.income_goal);
     // Keep at most 4 KPPS shortcuts so the plan never reads like a sales pitch.
     let kept = 0;
