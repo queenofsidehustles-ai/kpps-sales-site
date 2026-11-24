@@ -35,7 +35,7 @@ Setups and rentals: price to charge / one-time startup cost to buy
 - Slumber Parties / Teepee Sleepovers: $450–$1,200 for up to 6 guests depending on customizations / $800–$1,800 for 4–6 reusable setups
 - Outdoor Movie Nights: $700–$900+ for 8 to 10 guests / $700–$2,000 for screen, projector, sound
 - Bounce House: $250–$500 per rental / $1,500–$3,000
-- Soft Play / Toddler: about $600+ per modular set, depending on the setup / $2,000–$6,000
+- Soft Play / Toddler: about $600+ per modular set, depending on the setup / $2,500–$5,000 for a rental-grade starter set with ball pit and mats
 - Photo Booth: $500–$600+ per event / $800–$2,500 digital, $4,000–$7,000 print-ready
 - Food Cart (party display or treat cart): $400–$500 per rental / $300–$1,500
 - Candy / Dessert Station: $400–$500 / $300–$1,000, plus $40–$100 in supplies per event
@@ -78,7 +78,7 @@ const NICHES = {
   teepee:     { group: "Sleepovers & Movie Nights", title: "Teepee Sleepovers", price: [450, 1200], guests: "up to 6 guests, by customization", supplies: 0, startup: 800 },
   movie:      { group: "Sleepovers & Movie Nights", title: "Outdoor Movie Nights", price: [700, 900], plus: true, guests: "8 to 10 guests", supplies: 0, startup: 700 },
   bounce:     { group: "Rentals & Stations", title: "Bounce House rentals", price: [250, 500], guests: "one rental, by size", supplies: 0, startup: 1500 },
-  softplay:   { group: "Rentals & Stations", title: "Soft Play / Toddler rentals", price: [600, 600], plus: true, guests: "one modular set, by setup", supplies: 0, startup: 2000 },
+  softplay:   { group: "Rentals & Stations", title: "Soft Play / Toddler rentals", price: [600, 600], plus: true, guests: "one modular set, by setup", supplies: 0, startup: 2500 }, // rental-grade starter set + ball pit + mats: ~$2,500–$5,000
   photo:      { group: "Rentals & Stations", title: "Photo Booth rentals", price: [500, 600], plus: true, guests: "one event", supplies: 0, startup: 800 },
   foodcart:   { group: "Rentals & Stations", title: "Food Cart rentals", price: [400, 500], guests: "one rental", supplies: 0, startup: 300 },
   candy:      { group: "Rentals & Stations", title: "Candy / Dessert Stations", price: [400, 500], guests: "one station", supplies: 70, startup: 300 }, // $40–$100 an event
